@@ -530,7 +530,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section homeDiscoverySection">
         <div className="container">
           <div className="sectionHeaderRow premiumSectionRow">
             <div>
@@ -604,7 +604,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section homeClosingSection">
         <div className="container">
           <div className="homeClosingCard">
             <Diamond size={24} />
