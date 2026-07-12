@@ -1,12 +1,20 @@
-import { ArrowLeft, Compass, Heart, Home, Map, MoreHorizontal } from "lucide-react";
+import { ArrowLeft, Calculator, Compass, Heart, Home, Map, MoreHorizontal } from "lucide-react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { PrivacyConsent } from "../compliance/PrivacyConsent";
 
-const sidebarItems = [
+type SidebarItem = {
+  label: string;
+  path: string;
+  icon: typeof Home;
+  tone?: "plan";
+};
+
+const sidebarItems: SidebarItem[] = [
   { label: "Home", path: "/", icon: Home },
   { label: "Explore", path: "/destinations", icon: Compass },
+  { label: "Plan", path: "/planner", icon: Calculator, tone: "plan" },
   { label: "Map", path: "/map", icon: Map },
   { label: "Memories", path: "/saved-trips", icon: Heart }
 ];
@@ -38,7 +46,9 @@ export function Layout() {
                 <NavLink
                   key={item.path}
                   to={item.path}
-                  className={({ isActive }) => (isActive ? "active" : undefined)}
+                  className={({ isActive }) =>
+                    [isActive ? "active" : "", item.tone === "plan" ? "planNav" : ""].filter(Boolean).join(" ") || undefined
+                  }
                 >
                   <Icon size={27} />
                   <span>{item.label}</span>

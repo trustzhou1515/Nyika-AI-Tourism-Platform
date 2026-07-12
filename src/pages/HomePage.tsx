@@ -284,7 +284,7 @@ export function HomePage() {
         <div className="container">
           <section className="homeNyikaAISection homeNyikaLiveSection" aria-label="Chat with Nyika AI">
             <div className="homeNyikaLiveHeader">
-              <span className="pill">Nyika AI</span>
+              <span className="pill">Nyika AI · Discover</span>
               <h2>Chat with your imagination.</h2>
             </div>
 
@@ -388,7 +388,7 @@ export function HomePage() {
       <section className="section homePremiumIntro">
         <div className="container">
           <div className="homeFeatureHeader compactHomeHeader">
-            <span className="pill">Plan with Nyika AI</span>
+            <span className="pill">Plan AI · Budget</span>
             <h2>Tell Nyika the trip. Get the budget and route.</h2>
             <p className="lead">
               Type the destination, days and people. Nyika turns it into a practical tourism plan.

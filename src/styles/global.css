@@ -1725,4 +1725,321 @@ textarea{min-height:108px;resize:vertical}
     padding-left:64px;
     padding-right:64px;
   }
+
+  /* Desktop command-panel presentation for the home AI flow. */
+  .appDesktopShell{
+    grid-template-columns:328px minmax(0,1fr);
+  }
+  .desktopSidebar{
+    padding:36px 16px;
+    background:#0b0b0a;
+    border-right:1px solid rgba(255,255,255,.12);
+  }
+  .desktopSidebarBrand,
+  .desktopSidebarTrending{
+    display:none;
+  }
+  .desktopSidebarNav{
+    gap:14px;
+  }
+  .desktopSidebarNav a{
+    min-height:62px;
+    padding:0 22px;
+    border-radius:14px;
+    color:rgba(244,241,234,.68);
+    font-size:24px;
+    font-weight:720;
+  }
+  .desktopSidebarNav a svg{
+    width:26px;
+    height:26px;
+    stroke-width:2.05;
+  }
+  .desktopSidebarNav a.active{
+    background:#182236;
+    color:#8bb8ff;
+  }
+  .desktopSidebarNav a.planNav{
+    background:#0d3a31;
+    color:#55d8bd;
+  }
+  .desktopSidebarNav a.planNav:hover,
+  .desktopSidebarNav a.planNav.active{
+    background:#0d3a31;
+    color:#55d8bd;
+  }
+  .desktopMoreButton{
+    top:6px;
+    right:18px;
+    width:56px;
+    height:56px;
+    border-radius:10px;
+    background:#1a1a18;
+  }
+  .homeNyikaLiveShell{
+    min-height:auto;
+    padding:44px 64px 22px;
+    background:#0b0b0a;
+  }
+  .homeNyikaLiveShell .container,
+  .homePremiumIntro>.container{
+    max-width:1044px;
+    margin:0;
+    padding:0;
+  }
+  .homeNyikaAISection{
+    max-width:1044px;
+    gap:18px;
+    padding:0 0 28px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .homeNyikaLiveHeader{
+    width:100%;
+    justify-content:stretch;
+    gap:8px;
+  }
+  .homeNyikaLiveHeader .pill,
+  .homePremiumIntro .compactHomeHeader .pill{
+    width:max-content;
+    padding:0;
+    border:0;
+    background:transparent;
+    text-transform:uppercase;
+    letter-spacing:0;
+    font-size:16px;
+    font-weight:820;
+  }
+  .homeNyikaLiveHeader .pill{
+    color:#ff5d93;
+  }
+  .homeNyikaLiveHeader h2{
+    width:100%;
+    max-width:none;
+    margin:0;
+    padding:18px 28px;
+    border-left:4px solid #ff5d93;
+    border-radius:0 12px 12px 0;
+    background:#1b1b1a;
+    color:#f4f1ea;
+    font-size:22px;
+    line-height:1.3;
+    font-weight:520;
+  }
+  .homeNyikaChatCard{
+    gap:12px;
+  }
+  .homeNyikaBubble{
+    max-width:100%;
+    border-radius:14px;
+    box-shadow:none;
+  }
+  .homeNyikaBubble.assistant:not(.answer){
+    display:none;
+  }
+  .homeNyikaBubble.user{
+    max-width:100%;
+    padding:16px 22px;
+    border-left:4px solid #ff5d93;
+    border-radius:0 12px 12px 0;
+    background:#220912;
+    color:#f8eef2;
+  }
+  .homeNyikaBubble.user p{
+    color:#f8eef2;
+    font-size:18px;
+    font-weight:640;
+  }
+  .homeNyikaBubble.answer{
+    padding:0;
+    background:transparent;
+    border:0;
+    color:#f4f1ea;
+  }
+  .homeNyikaBubble.answer>p,
+  .homeNyikaBubble.answer>img,
+  .nyikaDetectedTags,
+  .nyikaGuidanceBox{
+    margin-bottom:12px;
+  }
+  .homeNyikaBubble.answer>p{
+    padding:16px 22px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    background:#141414;
+    color:#f4f1ea;
+    font-size:18px;
+    font-weight:660;
+  }
+  .homeNyikaBubble.answer>img{
+    display:none;
+  }
+  .heroChatPlaces{
+    display:grid;
+    gap:12px;
+  }
+  .heroChatPlaceCard{
+    display:grid;
+    grid-template-columns:54px minmax(0,1fr) auto;
+    align-items:center;
+    gap:14px;
+    min-height:82px;
+    padding:12px 18px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    background:#141414;
+    color:#f4f1ea;
+  }
+  .heroChatPlaceCard img{
+    width:54px;
+    height:54px;
+    border-radius:12px;
+    object-fit:cover;
+  }
+  .heroChatPlaceCard strong{
+    color:#f4f1ea;
+    font-size:19px;
+    line-height:1.12;
+  }
+  .heroChatPlaceCard span{
+    color:#ff5d93;
+    font-size:16px;
+    font-weight:780;
+  }
+  .heroChatPlaceCard small{
+    color:rgba(244,241,234,.62);
+    font-size:13px;
+  }
+  .homeNyikaIdeas{
+    display:none;
+  }
+  .homeNyikaComposer{
+    max-width:100%;
+    grid-template-columns:auto minmax(0,1fr) auto auto;
+    padding:10px;
+    border:1px solid rgba(255,93,147,.55);
+    border-radius:14px;
+    background:#121212;
+  }
+  .homeNyikaComposerIcon{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    background:#1b1b1a;
+    color:#f4f1ea;
+  }
+  .homeNyikaComposerIcon svg{
+    width:21px;
+    height:21px;
+  }
+  .homeNyikaComposer textarea{
+    min-height:42px;
+    color:#f4f1ea;
+    font-size:18px;
+    line-height:1.25;
+    font-weight:560;
+  }
+  .homeNyikaClear{
+    width:42px;
+    height:42px;
+    border-radius:999px;
+    background:#1b1b1a;
+    color:#f4f1ea;
+  }
+  .homeNyikaClear svg{
+    width:22px;
+    height:22px;
+  }
+  .homeNyikaSend{
+    min-height:42px;
+    padding:0 22px;
+    border-radius:10px;
+    background:#8e0011;
+    color:#fff;
+    font-size:17px;
+    font-weight:740;
+  }
+  .homeNyikaSend svg{
+    width:20px;
+    height:20px;
+  }
+  .homePremiumIntro{
+    padding:24px 64px 42px;
+    background:#0b0b0a;
+    border-top:0;
+  }
+  .homePremiumIntro:before{
+    display:none;
+  }
+  .homePremiumIntro .compactHomeHeader{
+    margin:0 0 10px;
+  }
+  .homePremiumIntro .compactHomeHeader .pill{
+    color:#55d8bd;
+  }
+  .homePremiumIntro .compactHomeHeader h2,
+  .homePremiumIntro .compactHomeHeader .lead{
+    display:none;
+  }
+  .homePlanAIBox{
+    max-width:1044px;
+    padding:0;
+    gap:12px;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    color:#f4f1ea;
+  }
+  .homePlanAIIntro,
+  .homePlanIdeas{
+    display:none;
+  }
+  .homePlanComposer{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px;
+    border:0;
+    border-left:4px solid #55d8bd;
+    border-radius:0 12px 12px 0;
+    background:#0d211c;
+  }
+  .homePlanComposer .homePlanComposerIcon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:rgba(85,216,189,.12);
+    color:#55d8bd;
+  }
+  .homePlanComposer textarea{
+    min-height:34px;
+    color:#f4f1ea;
+    font-size:20px;
+    line-height:1.25;
+    font-weight:560;
+  }
+  .homePlanComposer textarea::placeholder{
+    color:#f4f1ea;
+    opacity:.92;
+  }
+  .homePlanSend{
+    min-height:38px;
+    padding:0 20px;
+    border-radius:10px;
+    background:#0d3a31;
+    color:#55d8bd;
+    font-size:16px;
+    font-weight:760;
+  }
+  .homePlanConfirmation{
+    margin-top:12px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:14px;
+    background:#141414;
+    box-shadow:none;
+  }
+  .homeObjectiveGrid{
+    display:none;
+  }
 }
