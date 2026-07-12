@@ -97,6 +97,19 @@ export function PlanResultPage() {
           </article>
         </div>
 
+        <section className="simpleAnswerCard compact">
+          <h2>Budget split</h2>
+          <div className="simpleSplitGrid">
+            {Object.entries(plan.budgetBreakdown).map(([label, value]) => (
+              <div key={label}>
+                <span>{label.replace(/([A-Z])/g, " $1")}</span>
+                <b>{value}</b>
+              </div>
+            ))}
+          </div>
+          <p className="simpleMuted">Daily average: {dailyAverage}</p>
+        </section>
+
         <section className="simpleAnswerCard">
           <h2>Day-by-day itinerary</h2>
           <div className="simpleDayRows">
@@ -130,19 +143,6 @@ export function PlanResultPage() {
           <ul>
             {safetyTips.map((tip) => <li key={tip}>{tip}</li>)}
           </ul>
-        </section>
-
-        <section className="simpleAnswerCard compact">
-          <h2>Budget split</h2>
-          <div className="simpleSplitGrid">
-            {Object.entries(plan.budgetBreakdown).map(([label, value]) => (
-              <div key={label}>
-                <span>{label.replace(/([A-Z])/g, " $1")}</span>
-                <b>{value}</b>
-              </div>
-            ))}
-          </div>
-          <p className="simpleMuted">Daily average: {dailyAverage}</p>
         </section>
       </div>
     </section>
