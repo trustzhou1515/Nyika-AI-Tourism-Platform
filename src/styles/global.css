@@ -6,6 +6,105 @@
   --shadow:0 28px 80px rgba(17,17,17,.12); --radius:24px;
 }
 
+/* Claude-like typography pass: calmer, consistent, app-wide sizing. */
+:root{
+  --font-ui:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --type-display:clamp(30px,3.3vw,42px);
+  --type-heading:clamp(24px,2.2vw,30px);
+  --type-card:18px;
+  --type-body:15px;
+  --type-small:13px;
+  --weight-heading:650;
+  --weight-body:460;
+  --weight-strong:620;
+}
+html,
+body,
+button,
+input,
+select,
+textarea{
+  font-family:var(--font-ui);
+}
+body{
+  font-size:var(--type-body);
+  font-weight:var(--weight-body);
+  letter-spacing:0;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+[class] h1,
+[class] .destinationTitle,
+[class] .heroWelcomeCopy h1,
+[class] .exploreHeroCopy h1,
+[class] .mosiHeroCopy h2{
+  font-size:var(--type-display);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  font-weight:var(--weight-heading);
+}
+[class] h2,
+[class] .sectionHeaderRow h2,
+[class] .premiumSectionRow h2,
+[class] .homeFeatureHeader h2,
+[class] .destinationChipSection h3,
+[class] .mapDetails h2,
+[class] .resultHeader h2{
+  font-size:var(--type-heading);
+  line-height:1.16;
+  letter-spacing:-.015em;
+  font-weight:var(--weight-heading);
+}
+[class] h3,
+[class] .toolCard h3,
+[class] .discoveryCard h3,
+[class] .activityCard h3,
+[class] .journeyHeader h3,
+[class] .assistantAnswer h3{
+  font-size:var(--type-card);
+  line-height:1.24;
+  letter-spacing:-.01em;
+  font-weight:var(--weight-heading);
+}
+[class] p,
+[class] li,
+[class] label,
+[class] input,
+[class] select,
+[class] textarea,
+[class] .lead,
+[class] .destinationDescription,
+[class] .exploreHeroCopy p,
+[class] .homeNyikaBubble p,
+[class] .homePlanComposer textarea,
+[class] .homeNyikaComposer textarea{
+  font-size:var(--type-body);
+  line-height:1.55;
+  letter-spacing:0;
+  font-weight:var(--weight-body);
+}
+[class] small,
+[class] .pill,
+[class] .tag,
+[class] .exploreCategoryBadge,
+[class] .visualDiscoveryCard span,
+[class] .homeObjectiveCard>span,
+[class] .homeStoryContent>span{
+  font-size:var(--type-small);
+  line-height:1.25;
+  letter-spacing:.02em;
+  font-weight:var(--weight-strong);
+}
+[class] strong,
+[class] b,
+[class] .button,
+[class] button,
+[class] .navLinks,
+[class] .desktopSidebarNav a{
+  font-weight:var(--weight-strong);
+  letter-spacing:0;
+}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
@@ -2041,5 +2140,85 @@ textarea{min-height:108px;resize:vertical}
   }
   .homeObjectiveGrid{
     display:none;
+  }
+}
+
+/* Final typography overrides must stay last so older page-specific rules cannot re-enlarge text. */
+@media(max-width:767px){
+  .homeNyikaLiveHeader h2,
+  .homeDiscoverySection h2,
+  .homeDiscoverySection .premiumSectionRow h2,
+  .homePremiumIntro h2,
+  .homePremiumIntro .compactHomeHeader h2,
+  .sectionHeaderRow h2,
+  .premiumSectionRow h2{
+    font-size:clamp(22px,7vw,28px);
+    line-height:1.14;
+    font-weight:650;
+    letter-spacing:-.015em;
+  }
+}
+
+@media(min-width:1024px){
+  .desktopSidebarNav a{
+    font-size:18px;
+    min-height:56px;
+    font-weight:620;
+  }
+  .desktopSidebarNav a svg{
+    width:23px;
+    height:23px;
+  }
+  .homeNyikaLiveHeader .pill,
+  .homePremiumIntro .compactHomeHeader .pill{
+    font-size:14px;
+    font-weight:650;
+    letter-spacing:.01em;
+  }
+  .homeNyikaLiveHeader h2{
+    font-size:18px;
+    line-height:1.32;
+    font-weight:500;
+    letter-spacing:0;
+  }
+  .homeNyikaBubble.user p,
+  .homeNyikaBubble.answer>p,
+  .homeNyikaComposer textarea,
+  .homePlanComposer textarea{
+    font-size:16px;
+    line-height:1.45;
+    font-weight:500;
+  }
+  .homeNyikaSend,
+  .homePlanSend{
+    font-size:15px;
+    font-weight:620;
+  }
+  .heroChatPlaceCard strong{
+    font-size:17px;
+    font-weight:620;
+  }
+  .heroChatPlaceCard span{
+    font-size:14px;
+    font-weight:620;
+  }
+  .homePremiumIntro .compactHomeHeader h2,
+  .homeDiscoverySection .premiumSectionRow h2,
+  .homeClosingCard h2{
+    font-size:clamp(24px,2.2vw,30px);
+    line-height:1.16;
+    font-weight:650;
+    letter-spacing:-.015em;
+  }
+  .homePremiumIntro .lead,
+  .homeDiscoverySection .lead,
+  .homeClosingCard .lead,
+  .homeObjectiveCard p,
+  .discoveryCard p,
+  .toolCard p,
+  .visualDiscoveryCard p{
+    font-size:15px;
+    line-height:1.55;
+    font-weight:460;
   }
 }
