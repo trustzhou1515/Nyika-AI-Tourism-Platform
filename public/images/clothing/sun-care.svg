@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-labelledby="title desc">
+  <title id="title">Sun protection clothing</title>
+  <desc id="desc">A sun hat, sunglasses and light clothes for hot days.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff8df"/>
+      <stop offset="1" stop-color="#f3dfc8"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="240" fill="url(#bg)"/>
+  <circle cx="287" cy="54" r="33" fill="#ffc857"/>
+  <path d="M287 9v18M287 81v18M242 54h18M314 54h18M255 22l13 13M306 73l13 13M319 22l-13 13M268 73l-13 13" stroke="#ffc857" stroke-width="7" stroke-linecap="round"/>
+  <ellipse cx="162" cy="97" rx="79" ry="19" fill="#caa76d"/>
+  <path d="M112 91c8-45 91-45 100 0 0 22-100 22-100 0z" fill="#e0bf82"/>
+  <path d="M115 137h91l34 29-20 33H101l-20-33 34-29z" fill="#fff"/>
+  <path d="M132 137c12 17 24 25 29 25s18-8 30-25" fill="none" stroke="#eaded5" stroke-width="9" stroke-linecap="round"/>
+  <path d="M138 114c18-10 35-10 52 0" stroke="#111" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="142" cy="114" r="12" fill="#111"/>
+  <circle cx="186" cy="114" r="12" fill="#111"/>
+</svg>

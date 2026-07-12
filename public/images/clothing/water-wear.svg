@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-labelledby="title desc">
+  <title id="title">Water activity clothing</title>
+  <desc id="desc">Quick dry clothing, sandals and a towel for water activities.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#e9fbff"/>
+      <stop offset="1" stop-color="#f8efe8"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="240" fill="url(#bg)"/>
+  <path d="M0 177c35-18 70-18 105 0s70 18 105 0 70-18 105 0 45 16 45 16v47H0z" fill="#2ea6c7" opacity=".24"/>
+  <path d="M112 62h67l33 30-20 37-18-10v70h-58v-70l-18 10-20-37 34-30z" fill="#111"/>
+  <path d="M179 62l34 29 28-25c13 12 13 31 0 43l-26 24-36-31z" fill="#c1121f"/>
+  <rect x="233" y="137" width="64" height="20" rx="10" fill="#c1121f"/>
+  <path d="M240 157c8 20 42 20 50 0" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round"/>
+  <rect x="62" y="143" width="56" height="28" rx="14" fill="#fff"/>
+  <path d="M75 172c4 20 31 20 35 0" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round"/>
+  <path d="M307 85c0 15-12 25-24 25s-24-10-24-25c0-18 24-47 24-47s24 29 24 47z" fill="#2ea6c7"/>
+</svg>

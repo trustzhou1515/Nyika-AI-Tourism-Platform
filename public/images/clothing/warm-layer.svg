@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-labelledby="title desc">
+  <title id="title">Warm travel layer</title>
+  <desc id="desc">A jacket, folded scarf and warm cap for cold mornings.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7ef"/>
+      <stop offset="1" stop-color="#ead7ca"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="240" fill="url(#bg)"/>
+  <circle cx="294" cy="48" r="46" fill="#c1121f" opacity=".08"/>
+  <path d="M143 52h72l43 33-24 43-21-12v75H145v-75l-21 12-24-43 43-33z" fill="#111"/>
+  <path d="M159 52c8 17 18 27 32 27s24-10 32-27" fill="none" stroke="#f7efe9" stroke-width="11" stroke-linecap="round"/>
+  <path d="M173 78v113M205 78v113" stroke="#2d2d2d" stroke-width="5"/>
+  <path d="M91 167c39-23 81-25 125-7 20 8 39 9 57 2" fill="none" stroke="#c1121f" stroke-width="18" stroke-linecap="round"/>
+  <path d="M101 189c35-18 72-17 112 1 24 11 47 10 69-3" fill="none" stroke="#6d625b" stroke-width="16" stroke-linecap="round"/>
+  <path d="M251 61c7-21 45-21 52 0 7 20-10 41-26 41s-33-21-26-41z" fill="#2d2d2d"/>
+  <path d="M249 67h56" stroke="#c1121f" stroke-width="8" stroke-linecap="round"/>
+</svg>

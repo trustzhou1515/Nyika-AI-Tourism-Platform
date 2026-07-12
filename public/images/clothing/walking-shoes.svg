@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-labelledby="title desc">
+  <title id="title">Walking shoes</title>
+  <desc id="desc">Strong walking shoes for trails and rocky ground.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff7ef"/>
+      <stop offset="1" stop-color="#eaded5"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="240" fill="url(#bg)"/>
+  <path d="M59 160c46-19 87-19 122 0 25 13 63 16 114 9 17-2 30 10 30 28H44c0-17 5-30 15-37z" fill="#111"/>
+  <path d="M81 130c38-9 68 2 88 31h-90c-8-11-8-21 2-31z" fill="#6d625b"/>
+  <path d="M170 159c43 12 85 13 126 4 7 0 17 7 20 15H175z" fill="#c1121f"/>
+  <path d="M63 197h255" stroke="#6d625b" stroke-width="10" stroke-linecap="round"/>
+  <path d="M100 145l43 23M119 137l43 24M138 137l35 20" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <path d="M88 212h36M147 212h36M207 212h36M267 212h36" stroke="#111" stroke-width="7" stroke-linecap="round"/>
+  <path d="M54 81l20 20 39-52M253 70l18 18 36-48" fill="none" stroke="#c1121f" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/>
+</svg>

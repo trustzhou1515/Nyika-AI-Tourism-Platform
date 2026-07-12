@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 240" role="img" aria-labelledby="title desc">
+  <title id="title">Neutral safari clothing</title>
+  <desc id="desc">A neutral shirt, trousers and safari hat.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#fff4e4"/>
+      <stop offset="1" stop-color="#dfc6a8"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="240" fill="url(#bg)"/>
+  <path d="M58 177c74-45 151-47 232-5" fill="none" stroke="#c69f67" stroke-width="18" stroke-linecap="round" opacity=".5"/>
+  <ellipse cx="178" cy="66" rx="62" ry="14" fill="#7f694d"/>
+  <path d="M137 62c6-31 76-31 82 0 0 16-82 16-82 0z" fill="#a48358"/>
+  <path d="M136 81h86l40 32-22 38-22-12v48h-78v-48l-22 12-22-38 40-32z" fill="#d6c2a0"/>
+  <path d="M154 81c7 16 16 25 25 25s18-9 25-25" fill="none" stroke="#fffaf2" stroke-width="9" stroke-linecap="round"/>
+  <rect x="146" y="116" width="25" height="22" rx="4" fill="#b2966e"/>
+  <rect x="188" y="116" width="25" height="22" rx="4" fill="#b2966e"/>
+  <path d="M151 187l-10 35h31l7-35zM185 187l7 35h31l-10-35z" fill="#7f694d"/>
+</svg>
