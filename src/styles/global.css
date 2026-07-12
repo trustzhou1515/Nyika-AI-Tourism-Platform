@@ -1533,7 +1533,7 @@ textarea{min-height:108px;resize:vertical}
     padding:0;
     border:0;
     background:transparent;
-    color:#74b4ff;
+    color:#ff4053;
     font-size:13px;
     font-weight:760;
     text-transform:none;
@@ -1638,8 +1638,8 @@ textarea{min-height:108px;resize:vertical}
   }
   .homeNyikaSend{
     border-radius:12px;
-    background:#082c55;
-    color:#80baff;
+    background:linear-gradient(135deg,#c1121f,#76000c);
+    color:#fff;
     box-shadow:none;
   }
   .homePremiumIntro{

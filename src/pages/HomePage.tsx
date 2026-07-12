@@ -6,7 +6,6 @@ import { destinations } from "../data/destinations";
 import type { TravelStyle } from "../types/tourism";
 import { searchDestinations, type VisualSearchFilters } from "../utils/destinationMatcher";
 import { analyzeNyikaQuery } from "../utils/nyikaIntelligence";
-import { TravelMapOverview } from "./TravelMapPage";
 
 const homeDefaultVisualFilters: VisualSearchFilters = {
   province: "all",
@@ -511,22 +510,6 @@ export function HomePage() {
               <h3>Find places on the map</h3>
               <p>View Zimbabwe, tourism pins, nearby places and activities in a simple map experience.</p>
               <b>Open map <ArrowRight size={15} /></b>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section homeMapLiveSection">
-        <div className="container">
-          <TravelMapOverview
-            title="Explore using map"
-            description="Move the map, tap pins, and see what a traveller can find in each area."
-          />
-          <div className="homeMapActionBar">
-            <p className="muted">Use the full map page for destination details, nearby tourism places and directions.</p>
-            <Link className="button" to="/map">
-              <MapPinned size={16} />
-              Open full map
             </Link>
           </div>
         </div>
