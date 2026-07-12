@@ -1388,7 +1388,7 @@ textarea{min-height:108px;resize:vertical}
   }
   .appDesktopShell{
     display:grid;
-    grid-template-columns:340px minmax(0,1fr);
+    grid-template-columns:292px minmax(0,1fr);
     min-height:100vh;
     background:#0b0b0b;
     color:#f6f4ee;
@@ -1401,38 +1401,40 @@ textarea{min-height:108px;resize:vertical}
     height:100vh;
     flex-direction:column;
     justify-content:space-between;
-    padding:32px 32px 26px;
+    padding:30px 24px 24px;
     background:#1a1a18;
     border-right:1px solid rgba(255,255,255,.06);
     color:#d8d6cf;
   }
   .desktopSidebarBrand{
     display:block;
-    margin-bottom:46px;
+    margin-bottom:42px;
     color:#d8d6cf;
-    font-size:27px;
+    font-size:22px;
     line-height:1.05;
     font-weight:900;
     letter-spacing:0;
   }
   .desktopSidebarNav{
     display:grid;
-    gap:14px;
+    gap:10px;
   }
   .desktopSidebarNav a{
     display:flex;
     align-items:center;
-    gap:22px;
-    min-height:68px;
-    padding:0 22px;
-    border-radius:14px;
+    gap:16px;
+    min-height:54px;
+    padding:0 18px;
+    border-radius:12px;
     color:#d0cec7;
-    font-size:28px;
-    font-weight:850;
+    font-size:20px;
+    font-weight:760;
     transition:background .18s ease,color .18s ease,transform .18s ease;
   }
   .desktopSidebarNav a svg{
     margin:0;
+    width:22px;
+    height:22px;
     color:currentColor;
     stroke-width:2;
   }
@@ -1447,20 +1449,20 @@ textarea{min-height:108px;resize:vertical}
   }
   .desktopSidebarTrending{
     display:grid;
-    gap:12px;
+    gap:10px;
     padding-top:28px;
     border-top:1px solid rgba(255,255,255,.12);
   }
   .desktopSidebarTrending span{
     color:#8e8c86;
-    font-size:25px;
-    font-weight:850;
+    font-size:16px;
+    font-weight:760;
   }
   .desktopSidebarTrending a{
     width:max-content;
     color:#d6d4cd;
-    font-size:25px;
-    font-weight:800;
+    font-size:17px;
+    font-weight:720;
   }
   .desktopSidebarTrending a:hover{
     color:#7bb7ff;
@@ -1482,8 +1484,8 @@ textarea{min-height:108px;resize:vertical}
     z-index:130;
     display:grid;
     place-items:center;
-    width:57px;
-    height:58px;
+    width:48px;
+    height:48px;
     border:0;
     border-radius:9px;
     background:#1d1d1b;
@@ -1491,14 +1493,16 @@ textarea{min-height:108px;resize:vertical}
     cursor:pointer;
   }
   .desktopMoreButton svg{
+    width:22px;
+    height:22px;
     margin:0;
   }
   .homeHeroSlot{
     display:none;
   }
   .homeNyikaLiveShell{
-    min-height:420px;
-    padding:58px 64px 38px;
+    min-height:360px;
+    padding:54px 64px 34px;
     background:#0b0b0b;
     border:0;
   }
@@ -1513,7 +1517,7 @@ textarea{min-height:108px;resize:vertical}
   .homeNyikaAISection{
     max-width:982px;
     padding:0;
-    gap:32px;
+    gap:24px;
     background:transparent;
     border:0;
     box-shadow:none;
@@ -1523,23 +1527,23 @@ textarea{min-height:108px;resize:vertical}
   .homeNyikaLiveHeader{
     display:grid;
     justify-content:start;
-    gap:12px;
+    gap:10px;
   }
   .homeNyikaLiveHeader .pill{
     padding:0;
     border:0;
     background:transparent;
     color:#74b4ff;
-    font-size:26px;
-    font-weight:850;
+    font-size:18px;
+    font-weight:760;
     text-transform:none;
   }
   .homeNyikaLiveHeader h2{
     max-width:820px;
     color:#fff;
-    font-size:42px;
-    line-height:1.08;
-    font-weight:900;
+    font-size:34px;
+    line-height:1.14;
+    font-weight:760;
   }
   .homeNyikaChatCard{
     gap:16px;
@@ -1550,7 +1554,7 @@ textarea{min-height:108px;resize:vertical}
   }
   .homeNyikaBubble{
     max-width:982px;
-    padding:27px 32px;
+    padding:22px 28px;
     border-radius:14px;
     background:#191918;
     border:1px solid rgba(255,255,255,.04);
@@ -1568,9 +1572,9 @@ textarea{min-height:108px;resize:vertical}
   .homeNyikaBubble p,
   .homeNyikaBubble.quiet p{
     color:#fff;
-    font-size:30px;
-    line-height:1.24;
-    font-weight:850;
+    font-size:22px;
+    line-height:1.38;
+    font-weight:650;
   }
   .homeNyikaBubble.user{
     max-width:760px;
@@ -1589,7 +1593,7 @@ textarea{min-height:108px;resize:vertical}
   }
   .homeNyikaIdeas>span{
     color:#84837e;
-    font-size:14px;
+    font-size:13px;
     text-transform:none;
     letter-spacing:0;
   }
@@ -1597,25 +1601,31 @@ textarea{min-height:108px;resize:vertical}
     background:#171716;
     border-color:rgba(255,255,255,.08);
     color:#d8d6cf;
+    font-size:13px;
+    font-weight:650;
     box-shadow:none;
   }
   .homeNyikaComposer{
     max-width:982px;
     grid-template-columns:auto minmax(0,1fr) auto auto;
-    padding:12px;
+    padding:10px;
     border:1px solid rgba(255,255,255,.08);
     border-radius:16px;
     background:#141413;
     box-shadow:none;
   }
   .homeNyikaComposerIcon{
+    width:44px;
+    height:44px;
+    border-radius:12px;
     background:#20201e;
     color:#d8d6cf;
   }
   .homeNyikaComposer textarea{
     color:#fff;
-    min-height:50px;
-    font-size:22px;
+    min-height:44px;
+    font-size:16px;
+    font-weight:650;
   }
   .homeNyikaComposer textarea::placeholder{
     color:#9a9992;
@@ -1633,9 +1643,55 @@ textarea{min-height:108px;resize:vertical}
     box-shadow:none;
   }
   .homePremiumIntro{
-    padding:60px 64px;
+    padding:52px 64px;
     background:#0f0f0e;
     border-top:1px solid rgba(255,255,255,.06);
+  }
+  .homePremiumIntro .compactHomeHeader h2,
+  .homeDiscoverySection .premiumSectionRow h2,
+  .homeClosingCard h2{
+    font-size:30px;
+    line-height:1.16;
+    font-weight:760;
+  }
+  .homePremiumIntro .lead,
+  .homeDiscoverySection .lead,
+  .homeClosingCard .lead{
+    max-width:680px;
+    font-size:15px;
+    line-height:1.55;
+    font-weight:520;
+  }
+  .homePlanAIIntro strong{
+    font-size:23px;
+    line-height:1.18;
+    font-weight:720;
+  }
+  .homePlanComposer textarea{
+    min-height:44px;
+    font-size:16px;
+    font-weight:650;
+  }
+  .homePlanSend{
+    min-height:44px;
+    font-size:15px;
+  }
+  .homePlanIdeas button{
+    font-size:13px;
+    font-weight:650;
+  }
+  .homeObjectiveCard{
+    min-height:218px;
+    padding:20px;
+  }
+  .homeObjectiveCard h3{
+    font-size:18px;
+    line-height:1.22;
+    font-weight:730;
+  }
+  .homeObjectiveCard p{
+    font-size:13px;
+    line-height:1.5;
   }
   .homePremiumIntro>.container,
   .homeMapLiveSection>.container,
