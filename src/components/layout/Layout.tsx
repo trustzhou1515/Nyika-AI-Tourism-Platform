@@ -1,8 +1,15 @@
-import { ArrowLeft } from "lucide-react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { ArrowLeft, Compass, Heart, Home, Map, MoreHorizontal } from "lucide-react";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { PrivacyConsent } from "../compliance/PrivacyConsent";
+
+const sidebarItems = [
+  { label: "Home", path: "/", icon: Home },
+  { label: "Explore", path: "/destinations", icon: Compass },
+  { label: "Map", path: "/map", icon: Map },
+  { label: "Memories", path: "/saved-trips", icon: Heart }
+];
 
 export function Layout() {
   const navigate = useNavigate();
@@ -19,8 +26,41 @@ export function Layout() {
   }
 
   return (
-    <>
+    <div className="appDesktopShell">
+      <aside className="desktopSidebar" aria-label="Primary navigation">
+        <div>
+          <strong className="desktopSidebarBrand">Explore Zimbabwe</strong>
+
+          <nav className="desktopSidebarNav">
+            {sidebarItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) => (isActive ? "active" : undefined)}
+                >
+                  <Icon size={27} />
+                  <span>{item.label}</span>
+                </NavLink>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div className="desktopSidebarTrending">
+          <span>Trending now</span>
+          <NavLink to="/destinations/victoria-falls">Victoria Falls</NavLink>
+          <NavLink to="/destinations/lake-kariba">Lake Kariba</NavLink>
+          <NavLink to="/destinations/nyanga">Nyanga</NavLink>
+        </div>
+      </aside>
+
+      <div className="appDesktopMain">
       <Navbar />
+        <button className="desktopMoreButton" type="button" aria-label="More options">
+          <MoreHorizontal size={26} />
+        </button>
       <main className={showBackButton ? "mainWithBack" : undefined}>
         {showBackButton && (
           <div className="routeBackShell">
@@ -36,6 +76,7 @@ export function Layout() {
       </main>
       <PrivacyConsent />
       <Footer />
-    </>
+      </div>
+    </div>
   );
 }

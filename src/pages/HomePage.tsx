@@ -277,7 +277,9 @@ export function HomePage() {
 
   return (
     <>
-      <Hero />
+      <div className="homeHeroSlot">
+        <Hero />
+      </div>
 
       <section className="section homeNyikaLiveShell">
         <div className="container">
