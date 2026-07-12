@@ -1534,16 +1534,16 @@ textarea{min-height:108px;resize:vertical}
     border:0;
     background:transparent;
     color:#74b4ff;
-    font-size:18px;
+    font-size:13px;
     font-weight:760;
     text-transform:none;
   }
   .homeNyikaLiveHeader h2{
     max-width:820px;
     color:#fff;
-    font-size:34px;
-    line-height:1.14;
-    font-weight:760;
+    font-size:23px;
+    line-height:1.18;
+    font-weight:720;
   }
   .homeNyikaChatCard{
     gap:16px;
@@ -1554,8 +1554,8 @@ textarea{min-height:108px;resize:vertical}
   }
   .homeNyikaBubble{
     max-width:982px;
-    padding:22px 28px;
-    border-radius:14px;
+    padding:18px 22px;
+    border-radius:12px;
     background:#191918;
     border:1px solid rgba(255,255,255,.04);
     color:#fff;
@@ -1572,8 +1572,8 @@ textarea{min-height:108px;resize:vertical}
   .homeNyikaBubble p,
   .homeNyikaBubble.quiet p{
     color:#fff;
-    font-size:22px;
-    line-height:1.38;
+    font-size:16px;
+    line-height:1.5;
     font-weight:650;
   }
   .homeNyikaBubble.user{
