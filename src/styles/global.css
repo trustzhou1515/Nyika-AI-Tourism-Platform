@@ -951,50 +951,50 @@ textarea{min-height:108px;resize:vertical}
   .privacyConsentActions .button{width:100%}
 }
 
-/* Simple trip answer refresh */
-.simpleTripAnswerPage{min-height:100vh;background:linear-gradient(180deg,#090909 0%,#0f0f11 38%,#121214 100%);color:#f4f1ea;padding:30px 0 96px}
-.simpleTripAnswerWrap{width:min(1180px,calc(100% - 44px));margin:0 auto;display:grid;gap:32px}
-.simpleTripTopbar{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
-.simpleTripTopbar h1{margin:0;color:#fff;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.5px;line-height:1.08}
-.simpleTripBack,.simpleTripActions button{border:0;background:rgba(255,255,255,.08);color:#f4f1ea;display:inline-flex;align-items:center;justify-content:center;border-radius:16px;width:56px;height:56px;cursor:pointer;transition:transform .18s ease,background .18s ease}
-.simpleTripBack{gap:10px;font-size:16px;font-weight:900}
-.simpleTripBack:hover,.simpleTripActions button:hover{background:rgba(255,255,255,.14);transform:translateY(-1px)}
+/* Premium trip answer */
+.simpleTripAnswerPage{min-height:100vh;background:radial-gradient(circle at 18% 0%,rgba(142,82,48,.18),transparent 34%),linear-gradient(180deg,#0f0e0c 0%,#141210 46%,#0f0f0e 100%);color:#f4f1ea;padding:30px 0 96px;font-feature-settings:"kern" 1}
+.simpleTripAnswerWrap{width:min(1120px,calc(100% - 44px));margin:0 auto;display:grid;gap:22px}
+.simpleTripTopbar{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center}
+.simpleTripTopbar h1{margin:0;color:#f8f4ec;font-size:clamp(20px,2.35vw,28px);letter-spacing:0;line-height:1.18;font-weight:760;text-wrap:balance}
+.simpleTripBack,.simpleTripActions button{border:1px solid rgba(244,241,234,.1);background:rgba(255,255,255,.055);color:#f4f1ea;display:inline-flex;align-items:center;justify-content:center;border-radius:14px;width:48px;height:48px;cursor:pointer;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.simpleTripBack{gap:10px;font-size:15px;font-weight:800}
+.simpleTripBack:hover,.simpleTripActions button:hover{background:rgba(255,255,255,.1);border-color:rgba(244,216,158,.28);transform:translateY(-1px)}
 .simpleTripBack svg,.simpleTripActions svg{margin:0}
-.simpleTripActions{display:flex;gap:14px}
-.simpleTripHeroCard{display:grid;grid-template-columns:minmax(280px,.44fr) 1fr;gap:24px;align-items:end;padding:30px;border-radius:32px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);box-shadow:0 34px 96px rgba(0,0,0,.35);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}
-.simpleTripHeroCard img{width:100%;height:320px;object-fit:cover;border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.24)}
-.simpleTripHeroCard div{padding:10px 6px 10px 0}
-.simpleTripHeroCard span{display:inline-flex;width:max-content;margin-bottom:14px;padding:8px 12px;border-radius:999px;background:rgba(244,216,158,.14);color:#f8d89e;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.14em}
-.simpleTripHeroCard strong{display:block;color:#fff;font-size:clamp(28px,3.6vw,38px);line-height:1.02;letter-spacing:-.8px}
-.simpleTripHeroCard p{margin:14px 0 0;color:rgba(244,241,234,.82);font-size:16px;line-height:1.55;font-weight:600}
-.simpleBudgetGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.simpleBudgetGrid article,.simpleAnswerCard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:28px;box-shadow:0 24px 70px rgba(0,0,0,.26);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%)}
-.simpleBudgetGrid article{padding:32px 36px}
-.simpleBudgetGrid span{display:block;color:rgba(244,241,234,.74);font-size:18px;font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em}
-.simpleBudgetGrid b{display:block;color:#fff;font-size:clamp(34px,4vw,52px);letter-spacing:-1.8px;line-height:1}
-.simpleAnswerCard{padding:32px 36px}
-.simpleAnswerCard h2,.simpleCareCard h2{margin:0 0 22px;color:#fff;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.4px}
+.simpleTripActions{display:flex;gap:10px}
+.simpleTripHeroCard{display:grid;grid-template-columns:minmax(260px,.38fr) 1fr;gap:22px;align-items:end;padding:20px;border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.024));border:1px solid rgba(244,241,234,.095);box-shadow:0 24px 70px rgba(0,0,0,.28);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%)}
+.simpleTripHeroCard img{width:100%;height:250px;object-fit:cover;border-radius:18px;box-shadow:0 14px 38px rgba(0,0,0,.22)}
+.simpleTripHeroCard div{padding:6px 10px 8px 0}
+.simpleTripHeroCard span{display:inline-flex;width:max-content;margin-bottom:12px;padding:7px 10px;border-radius:999px;background:rgba(244,216,158,.1);color:#e9c98e;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.12em}
+.simpleTripHeroCard strong{display:block;max-width:720px;color:#fffaf2;font-size:clamp(24px,2.7vw,32px);line-height:1.12;letter-spacing:0;font-weight:760;text-wrap:balance}
+.simpleTripHeroCard p{max-width:780px;margin:12px 0 0;color:rgba(244,241,234,.76);font-size:15px;line-height:1.64;font-weight:480}
+.simpleBudgetGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.simpleBudgetGrid article,.simpleAnswerCard{background:rgba(255,255,255,.045);border:1px solid rgba(244,241,234,.11);border-radius:22px;box-shadow:0 18px 52px rgba(0,0,0,.22);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%)}
+.simpleBudgetGrid article{padding:24px 28px}
+.simpleBudgetGrid span{display:block;color:rgba(244,241,234,.62);font-size:12px;font-weight:760;margin-bottom:9px;text-transform:uppercase;letter-spacing:.08em}
+.simpleBudgetGrid b{display:block;color:#fffaf2;font-size:clamp(30px,3.25vw,42px);letter-spacing:0;line-height:1.05;font-weight:780}
+.simpleAnswerCard{padding:26px 30px}
+.simpleAnswerCard h2,.simpleCareCard h2{margin:0 0 18px;color:#fffaf2;font-size:clamp(21px,2vw,26px);letter-spacing:0;line-height:1.18;font-weight:760}
 .simpleDayRows{display:grid}
-.simpleDayRows div{display:grid;grid-template-columns:90px 1fr;gap:18px;padding:24px 0;border-top:1px solid rgba(255,255,255,.08)}
+.simpleDayRows div{display:grid;grid-template-columns:82px 1fr;gap:16px;padding:18px 0;border-top:1px solid rgba(244,241,234,.08)}
 .simpleDayRows div:first-child{border-top:0;padding-top:0}
 .simpleDayRows div:last-child{padding-bottom:0}
-.simpleDayRows b{color:#f4d89e;font-size:18px}
-.simpleDayRows p{margin:0;color:rgba(244,241,234,.86);font-size:18px;line-height:1.45;font-weight:600}
-.simpleMuted{margin:-10px 0 22px;color:rgba(244,241,234,.68);font-size:15px;font-weight:600}
-.simplePackGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 34px}
-.simplePackGrid span{display:flex;align-items:center;gap:12px;color:#fff;font-size:16px;font-weight:700}
-.simplePackGrid svg{margin:0;color:#f4d89e;flex:0 0 auto}
-.simpleCareCard{padding:32px 36px;border-radius:28px;background:linear-gradient(135deg,rgba(244,216,158,.18),rgba(97,56,16,.12));border:1px solid rgba(244,216,158,.18);color:#fff;box-shadow:0 24px 72px rgba(0,0,0,.24)}
-.simpleCareCard>div{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.simpleCareCard svg{margin:0;color:#f4d89e}
-.simpleCareCard h2{margin:0;color:#fff}
-.simpleCareCard ul{margin:0;padding-left:24px;display:grid;gap:12px}
-.simpleCareCard li{font-size:17px;line-height:1.5;font-weight:700;color:rgba(255,255,255,.92)}
-.simpleSplitGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
-.simpleSplitGrid div{padding:16px;border-radius:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
-.simpleSplitGrid span{display:block;color:rgba(244,241,234,.68);font-size:11px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-bottom:6px}
-.simpleSplitGrid b{color:#fff;font-size:16px}
-.simpleTripEmpty{padding:44px;border-radius:28px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);box-shadow:0 24px 60px rgba(0,0,0,.18)}
+.simpleDayRows b{color:#e9c98e;font-size:15px;font-weight:820}
+.simpleDayRows p{margin:0;color:rgba(244,241,234,.8);font-size:16px;line-height:1.58;font-weight:470}
+.simpleMuted{margin:-8px 0 20px;color:rgba(244,241,234,.58);font-size:14px;line-height:1.5;font-weight:480}
+.simplePackGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 26px}
+.simplePackGrid span{display:flex;align-items:center;gap:11px;color:rgba(255,250,242,.9);font-size:15px;font-weight:560;line-height:1.35}
+.simplePackGrid svg{margin:0;color:#e9c98e;flex:0 0 auto}
+.simpleCareCard{padding:26px 30px;border-radius:22px;background:linear-gradient(135deg,rgba(244,216,158,.16),rgba(86,50,18,.13));border:1px solid rgba(244,216,158,.2);color:#fff;box-shadow:0 18px 56px rgba(0,0,0,.22)}
+.simpleCareCard>div{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.simpleCareCard svg{margin:0;color:#e9c98e}
+.simpleCareCard h2{margin:0;color:#fffaf2}
+.simpleCareCard ul{margin:0;padding-left:22px;display:grid;gap:9px}
+.simpleCareCard li{font-size:15.5px;line-height:1.58;font-weight:500;color:rgba(255,250,242,.86)}
+.simpleSplitGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}
+.simpleSplitGrid div{padding:14px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(244,241,234,.08)}
+.simpleSplitGrid span{display:block;color:rgba(244,241,234,.58);font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:820;margin-bottom:6px}
+.simpleSplitGrid b{color:#fffaf2;font-size:15px;font-weight:720}
+.simpleTripEmpty{padding:38px;border-radius:22px;background:rgba(255,255,255,.05);border:1px solid rgba(244,241,234,.11);box-shadow:0 20px 56px rgba(0,0,0,.18)}
 .simpleTripEmpty h1{margin:0 0 10px;color:#fff}
 .simpleTripEmpty p{margin:0;color:rgba(244,241,234,.72)}
 
@@ -1002,19 +1002,19 @@ textarea{min-height:108px;resize:vertical}
   .simpleTripAnswerPage{padding:18px 0 88px}
   .simpleTripAnswerWrap{width:min(100% - 28px,680px);gap:20px}
   .simpleTripTopbar{grid-template-columns:auto 1fr auto;gap:10px}
-  .simpleTripTopbar h1{font-size:24px}
+  .simpleTripTopbar h1{font-size:19px;line-height:1.22}
   .simpleTripActions{gap:10px}
-  .simpleTripHeroCard{grid-template-columns:1fr;padding:20px;border-radius:24px}
-  .simpleTripHeroCard img{height:200px;border-radius:22px}
+  .simpleTripBack,.simpleTripActions button{width:42px;height:42px;border-radius:12px}
+  .simpleTripHeroCard{grid-template-columns:1fr;padding:16px;border-radius:20px}
+  .simpleTripHeroCard img{height:180px;border-radius:16px}
   .simpleTripHeroCard div{padding:6px}
   .simpleBudgetGrid{grid-template-columns:1fr;gap:16px}
-  .simpleBudgetGrid article{padding:24px}
-  .simpleBudgetGrid span{font-size:16px}
-  .simpleBudgetGrid b{font-size:48px}
-  .simpleAnswerCard,.simpleCareCard{padding:24px;border-radius:24px}
-  .simpleDayRows div{grid-template-columns:1fr;gap:12px;padding:18px 0}
-  .simpleDayRows p,.simplePackGrid span,.simpleCareCard li{font-size:17px}
+  .simpleBudgetGrid article{padding:20px}
+  .simpleBudgetGrid span{font-size:11px}
+  .simpleBudgetGrid b{font-size:34px}
+  .simpleAnswerCard,.simpleCareCard{padding:20px;border-radius:20px}
+  .simpleDayRows div{grid-template-columns:1fr;gap:8px;padding:16px 0}
+  .simpleDayRows p,.simplePackGrid span,.simpleCareCard li{font-size:15.5px}
   .simplePackGrid{grid-template-columns:1fr;gap:18px}
   .simpleSplitGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
