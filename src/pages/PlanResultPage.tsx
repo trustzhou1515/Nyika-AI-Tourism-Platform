@@ -64,7 +64,6 @@ export function PlanResultPage() {
     );
   }
 
-  const heroImage = destination?.image ?? "/images/victoria-falls.png";
   const dailyAverage = currencyRange(`$${Math.max(1, Math.round(currencyNumber(plan.totalBudget) / plan.daysCount))}`);
   const packItems = getPackItems(plan);
   const safetyTips = [
@@ -87,19 +86,10 @@ export function PlanResultPage() {
           </div>
         </header>
 
-        <article className="simpleTripHeroCard">
-          <img src={heroImage} alt="" />
-          <div>
-            <span>Nyika AI answer</span>
-            <strong>{plan.summary}</strong>
-            <p>{plan.conversationalBrief}</p>
-          </div>
-        </article>
-
         <div className="simpleBudgetGrid">
           <article>
             <span>Total estimated cost</span>
-            <b>{currencyRange(plan.totalBudget)}</b>
+            <b>{plan.totalBudget}</b>
           </article>
           <article>
             <span>Per person</span>
