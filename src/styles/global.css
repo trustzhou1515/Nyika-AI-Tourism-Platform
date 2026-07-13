@@ -3469,3 +3469,139 @@ body,
     background-color:#fbfaf7!important;
   }
 }
+
+/* Final contrast pass for the grey transition theme. */
+.appDesktopMain main>.section:not(.simpleTripAnswerPage),
+.appDesktopMain main>.pageTop,
+.pageIntro,
+.sectionHeader,
+.sectionHeaderCompact,
+.savedTripsHeader,
+.resultHeader,
+.sectionHeaderRow,
+.premiumSectionRow,
+.homeDiscoverySection,
+.homeClosingSection,
+.homeStoriesSection{
+  color:#1c1916!important;
+}
+.pageIntro h1,
+.sectionHeader h2,
+.sectionHeaderCompact h3,
+.savedTripsHeader h2,
+.resultHeader h2,
+.sectionHeaderRow h2,
+.premiumSectionRow h2,
+.destinationTitle,
+.mapDetails h2,
+.homeDiscoverySection .premiumSectionRow h2,
+.homeDiscoverySection .sectionHeaderCompact h3,
+.homeStoriesSection .premiumSectionRow h2,
+.homeClosingCard h2{
+  color:#111!important;
+}
+.lead,
+.muted,
+.pageIntro p,
+.sectionHeader p,
+.sectionHeaderCompact p,
+.premiumSectionRow .lead,
+.destinationDescription,
+.routeInfo,
+.mapActions,
+.realMapCard p,
+.card p,
+.panel p,
+.travelHistoryCard p,
+.travelHistoryCard small,
+.homeDiscoverySection .premiumSectionRow .lead,
+.homeStoriesSection .premiumSectionRow .lead{
+  color:#5f5852!important;
+}
+.homeDiscoverySection .pill,
+.homeStoriesSection .pill,
+.homeClosingCard .pill{
+  border-color:rgba(193,18,31,.22)!important;
+  background:rgba(193,18,31,.08)!important;
+  color:#c1121f!important;
+}
+.homeDiscoverySection .premiumSectionRow .button.secondary,
+.homeStoriesSection .premiumSectionRow .button.secondary{
+  border-color:rgba(17,17,17,.16)!important;
+  background:rgba(255,255,255,.68)!important;
+  color:#171412!important;
+}
+.homeExploreDiscoveryGrid .discoveryCard{
+  background:rgba(255,255,255,.34)!important;
+  border-color:rgba(255,255,255,.42)!important;
+  color:#1c1916!important;
+  box-shadow:0 22px 70px rgba(26,24,21,.14), inset 0 1px 0 rgba(255,255,255,.38)!important;
+  backdrop-filter:blur(20px) saturate(130%);
+  -webkit-backdrop-filter:blur(20px) saturate(130%);
+}
+.homeExploreDiscoveryGrid .discoveryCard h3{
+  color:#1c1916!important;
+}
+.homeExploreDiscoveryGrid .discoveryCard p{
+  color:#6b625b!important;
+}
+.homeExploreDiscoveryGrid .discoveryCard .chipList a{
+  background:rgba(255,255,255,.48)!important;
+  border-color:rgba(255,255,255,.5)!important;
+  color:#1c1916!important;
+}
+.homeStoryCard{
+  background:rgba(255,255,255,.74)!important;
+  border-color:rgba(255,255,255,.54)!important;
+  color:#1c1916!important;
+  box-shadow:0 24px 70px rgba(26,24,21,.14)!important;
+}
+.homeStoryContent p{
+  color:#6b625b!important;
+}
+.homeStoryContent b{
+  color:#111!important;
+}
+.homePlanAIBox,
+.homeNyikaBubble.user,
+.simpleTripAnswerPage .simpleTripHeroCard,
+.simpleTripAnswerPage .simpleBudgetBand,
+.simpleTripAnswerPage .simpleAnswerCard{
+  color:#f7f4ef!important;
+}
+.homePlanAIBox .homePlanAIIntro strong,
+.homePlanAIBox .homePlanAIIntro span,
+.homePlanAIBox .homePlanIdeas button,
+.homePlanAIBox .homePlanSend,
+.homeNyikaBubble.user p,
+.simpleTripAnswerPage .simpleTripHeroCard *,
+.simpleTripAnswerPage .simpleBudgetBand *,
+.simpleTripAnswerPage .simpleAnswerCard h2,
+.simpleTripAnswerPage .simpleAnswerCard h3{
+  color:inherit;
+}
+
+@media(max-width:760px){
+  .appDesktopMain main>.section:not(.simpleTripAnswerPage),
+  .appDesktopMain main>.pageTop,
+  .pageIntro,
+  .sectionHeader,
+  .sectionHeaderCompact,
+  .premiumSectionRow,
+  .homeDiscoverySection,
+  .homeClosingSection,
+  .homeStoriesSection{
+    color:#1c1916!important;
+  }
+  .homeDiscoverySection .premiumSectionRow h2,
+  .homeStoriesSection .premiumSectionRow h2,
+  .sectionHeaderRow h2,
+  .premiumSectionRow h2{
+    color:#111!important;
+  }
+  .homeDiscoverySection .premiumSectionRow .lead,
+  .homeStoriesSection .premiumSectionRow .lead,
+  .premiumSectionRow .lead{
+    color:#5f5852!important;
+  }
+}
