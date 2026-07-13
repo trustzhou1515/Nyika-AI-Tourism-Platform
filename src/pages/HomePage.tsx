@@ -285,7 +285,7 @@ export function HomePage() {
           <section className="homeNyikaAISection homeNyikaLiveSection" aria-label="Chat with Nyika AI">
             <div className="homeNyikaLiveHeader">
               <span className="pill">Nyika AI · Discover</span>
-              <h2>Chat with your imagination.</h2>
+              <h2>Tell me the kind of trip you are imagining. I will find the best places for you.</h2>
             </div>
 
             <div className="homeNyikaChatCard" aria-live="polite">
