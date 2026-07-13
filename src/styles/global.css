@@ -3384,3 +3384,88 @@ textarea{min-height:108px;resize:vertical}
     color:currentColor;
   }
 }
+
+/* Final app-wide route background guard. Keep every page on the soft grey transition. */
+body,
+.appDesktopShell,
+.appDesktopMain,
+.appDesktopMain main,
+.section,
+.pageTop,
+.homeNyikaLiveShell,
+.homePremiumIntro,
+.homeDiscoverySection,
+.homeClosingSection,
+.homeStoriesSection,
+.simpleTripAnswerPage{
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.28), transparent 34%),
+    linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%)!important;
+  background-color:#fbfaf7!important;
+}
+.routeBackShell{
+  background:transparent!important;
+}
+.desktopSidebar{
+  background:rgba(255,255,255,.68)!important;
+  border-right:1px solid rgba(255,255,255,.62)!important;
+  color:#25211e!important;
+  box-shadow:18px 0 60px rgba(26,24,21,.08)!important;
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+}
+.desktopSidebarBrand,
+.desktopSidebarTrending a{
+  color:#25211e!important;
+}
+.desktopSidebarTrending{
+  border-top-color:rgba(17,17,17,.1)!important;
+}
+.desktopSidebarTrending span{
+  color:#766f68!important;
+}
+.desktopSidebarNav a{
+  color:#5f5852!important;
+}
+.desktopSidebarNav a.active,
+.desktopSidebarNav a:hover{
+  background:#111!important;
+  color:#fff!important;
+}
+.desktopSidebarNav a.planNav{
+  background:rgba(13,58,49,.1)!important;
+  color:#0d3a31!important;
+}
+.desktopSidebarNav a.planNav:hover,
+.desktopSidebarNav a.planNav.active{
+  background:#0d3a31!important;
+  color:#fff!important;
+}
+.desktopMoreButton{
+  background:rgba(255,255,255,.78)!important;
+  border:1px solid rgba(17,17,17,.08)!important;
+  color:#25211e!important;
+  box-shadow:0 14px 34px rgba(26,24,21,.12)!important;
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+
+@media(max-width:760px){
+  body,
+  .appDesktopShell,
+  .appDesktopMain,
+  .appDesktopMain main,
+  .section,
+  .pageTop,
+  .homeNyikaLiveShell,
+  .homePremiumIntro,
+  .homeDiscoverySection,
+  .homeClosingSection,
+  .homeStoriesSection,
+  .simpleTripAnswerPage{
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,255,255,.3), transparent 34%),
+      linear-gradient(180deg,#5e5a55 0%,#aaa49d 34%,#e7e2dc 68%,#fbfaf7 100%)!important;
+    background-color:#fbfaf7!important;
+  }
+}
