@@ -944,6 +944,25 @@ function createBookingOptions(request: PlannerRequest): BookingOption[] {
     "Lake Chivero": "Harare city pickup toward Lake Chivero and return transfer"
   };
 
+  const flightGatewayByDestination: Record<string, string> = {
+    "Victoria Falls": "Victoria Falls International Airport flight options",
+    "Hwange National Park": "Victoria Falls or Bulawayo flight connection for Hwange access",
+    "Great Zimbabwe": "Harare or Bulawayo flight connection with Masvingo road transfer",
+    "Chiremba Balancing Rocks": "Robert Gabriel Mugabe International Airport arrival support",
+    "Chinhoyi Caves": "Harare flight arrival with A1 road transfer to Chinhoyi",
+    "Domboshava Caves": "Harare flight arrival with Domboshava road transfer",
+    "Eastern Highlands": "Harare flight arrival with Mutare / Eastern Highlands road connection",
+    "Chimanimani": "Harare flight arrival with Mutare / Chimanimani road connection",
+    "Vumba": "Harare flight arrival with Mutare / Vumba road connection",
+    "Honde Valley": "Harare flight arrival with Mutare / Honde Valley road connection",
+    "Binga": "Victoria Falls or Bulawayo flight connection with Binga road transfer",
+    "Nyanga": "Harare flight arrival with Nyanga road transfer",
+    "Mavuradonha Mountains": "Harare flight arrival with Centenary / Muzarabani road transfer",
+    "Lake Kariba": "Harare flight arrival with Kariba road or charter connection",
+    "Lake Mutirikwi": "Harare or Bulawayo flight arrival with Masvingo road transfer",
+    "Lake Chivero": "Harare flight arrival with Lake Chivero local transfer"
+  };
+
   return [
     {
       title: `Reserve accommodation in ${stayZoneByDestination[request.destination] ?? request.destination}`,
@@ -960,11 +979,18 @@ function createBookingOptions(request: PlannerRequest): BookingOption[] {
       paymentNote: "Request flow: pickup details are captured now, with prepaid vouchers and driver assignment ready for integration."
     },
     {
+      title: flightGatewayByDestination[request.destination] ?? `${request.destination} flight booking support`,
+      type: "Flight",
+      description: "Compare the practical arrival airport, travel dates and transfer connection before the visitor pays for flights.",
+      actionLabel: "Coming soon",
+      paymentNote: "Coming soon: flight search, fare comparison and airline/agent booking handoff will be connected after the MVP."
+    },
+    {
       title: `${request.destination} local taxi / day movement`,
       type: "Taxi",
       description: "Request a local taxi for dinner, short hops, market visits or moving between hotel and activity pickup points.",
-      actionLabel: "Request local taxi",
-      paymentNote: "Request flow: captures taxi need now, with fare estimate, driver rating and pay-in-app support ready for integration."
+      actionLabel: "Coming soon",
+      paymentNote: "Coming soon: taxi requests, fare estimate, driver rating and pay-in-app support will be connected after the MVP."
     },
     {
       title: `${request.destination} guide or activity booking`,

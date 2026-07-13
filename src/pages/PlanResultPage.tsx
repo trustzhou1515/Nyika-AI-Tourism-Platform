@@ -1,4 +1,4 @@
-import { ArrowLeft, Download, Glasses, Share2, Shirt, Sun, Waves, Droplets, ShieldAlert, Footprints } from "lucide-react";
+import { ArrowLeft, Car, Download, Glasses, Plane, Share2, Shirt, Sun, Waves, Droplets, ShieldAlert, Footprints } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { destinations } from "../data/destinations";
 import type { ItineraryPlan } from "../types/tourism";
@@ -71,6 +71,24 @@ export function PlanResultPage() {
     ...plan.safetyTips,
     ...plan.smartWarnings
   ].filter(Boolean).slice(0, 4);
+  const flightBooking = plan.bookingOptions.find((option) => option.type === "Flight");
+  const taxiBooking = plan.bookingOptions.find((option) => option.type === "Taxi");
+  const comingSoonBookings = [
+    {
+      icon: Plane,
+      label: "Flight booking",
+      title: flightBooking?.title ?? `${plan.destination} flight booking support`,
+      detail: "Compare flights and arrival airports before connecting the right transfer.",
+      status: "Coming soon"
+    },
+    {
+      icon: Car,
+      label: "Taxi booking",
+      title: taxiBooking?.title ?? `${plan.destination} local taxi / day movement`,
+      detail: "Request local taxis for airport pickup, dinner movement and activity transfers.",
+      status: "Coming soon"
+    }
+  ];
 
   return (
     <section className="simpleTripAnswerPage">
@@ -108,6 +126,21 @@ export function PlanResultPage() {
             ))}
           </div>
           <p className="simpleMuted">Daily average: {dailyAverage}</p>
+        </section>
+
+        <section className="simpleAnswerCard compact">
+          <h2>Bookings coming soon</h2>
+          <p className="simpleMuted">These will connect the trip plan to real travel services later.</p>
+          <div className="simpleComingSoonGrid">
+            {comingSoonBookings.map(({ icon: Icon, label, title, detail, status }) => (
+              <article key={label}>
+                <span><Icon size={20} /> {label}</span>
+                <b>{title}</b>
+                <p>{detail}</p>
+                <small>{status}</small>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="simpleAnswerCard">

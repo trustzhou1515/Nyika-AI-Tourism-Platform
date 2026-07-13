@@ -278,15 +278,21 @@ export function ItineraryResult({ plan }: ItineraryResultProps) {
         <strong>Book before you travel</strong>
         <p className="muted">These are the most important things to arrange early.</p>
         <div className="bookingGrid">
-          {plan.bookingOptions.map((option) => (
-            <div className="bookingCard" key={`${option.type}-${option.title}`}>
-              <span>{option.type}</span>
-              <b>{option.title}</b>
-              <p>{option.description}</p>
-              <small>{option.paymentNote}</small>
-              <button className="button secondary smallButton" type="button">{option.actionLabel}</button>
-            </div>
-          ))}
+          {plan.bookingOptions.map((option) => {
+            const isComingSoon = option.type === "Flight" || option.type === "Taxi";
+
+            return (
+              <div className={`bookingCard ${isComingSoon ? "comingSoon" : ""}`} key={`${option.type}-${option.title}`}>
+                <span>{isComingSoon ? `${option.type} - Coming soon` : option.type}</span>
+                <b>{option.title}</b>
+                <p>{option.description}</p>
+                <small>{option.paymentNote}</small>
+                <button className="button secondary smallButton" type="button" disabled={isComingSoon}>
+                  {isComingSoon ? "Coming soon" : option.actionLabel}
+                </button>
+              </div>
+            );
+          })}
         </div>
       </article>
 

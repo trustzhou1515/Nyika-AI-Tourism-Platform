@@ -67,7 +67,7 @@ export interface BusinessRecommendation {
 
 export interface BookingOption {
   title: string;
-  type: "Accommodation" | "Airport Transfer" | "Taxi" | "Guide" | "Activity";
+  type: "Accommodation" | "Airport Transfer" | "Flight" | "Taxi" | "Guide" | "Activity";
   description: string;
   actionLabel: string;
   paymentNote: string;
