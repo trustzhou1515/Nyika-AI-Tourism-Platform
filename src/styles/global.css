@@ -2873,6 +2873,302 @@ textarea{min-height:108px;resize:vertical}
   }
 }
 
+/* Last-mile Explore responsive guard: keep the final visual system consistent. */
+@media(min-width:1024px){
+  .appDesktopMain main>.section:has(.explorePageShell){padding:34px 54px 64px!important}
+  .appDesktopMain main>.section>.explorePageShell{width:min(100%,1120px);max-width:1120px}
+  .appDesktopMain .explorePageShell .visualAISection.mosiAISection{padding:24px;border-radius:26px}
+  .appDesktopMain .explorePageShell .mosiChatComposer{grid-template-columns:52px minmax(0,1fr) 44px auto;padding:12px;border-radius:22px}
+  .appDesktopMain .explorePageShell .mosiChatComposer textarea{min-height:48px;max-height:96px;font-size:15px;line-height:1.35}
+  .appDesktopMain .explorePageShell .visualAIMatchGrid.mosiMatchGrid,
+  .appDesktopMain .explorePageShell .exploreDestinationGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .appDesktopMain .explorePageShell .mosiMatchImage,
+  .appDesktopMain .explorePageShell .exploreDestinationCard{min-height:240px}
+}
+
+@media(max-width:760px){
+  .section.pageTop:has(.explorePageShell){padding:18px 0 92px}
+  .explorePageShell{width:min(100% - 28px,640px);gap:15px}
+  .explorePageShell .visualAISection.mosiAISection{padding:15px;border-radius:22px}
+  .explorePageShell .mosiHeroCopy h2{font-size:24px;line-height:1.12}
+  .explorePageShell .mosiHeroCopy p{font-size:13.5px;line-height:1.45}
+  .explorePageShell .mosiChatComposer{grid-template-columns:44px minmax(0,1fr) 40px;gap:8px;padding:10px;border-radius:20px}
+  .explorePageShell .mosiSearchIcon{width:42px;height:42px;border-radius:13px}
+  .explorePageShell .mosiClearButton{width:38px;height:38px}
+  .explorePageShell .mosiChatComposer textarea{min-height:42px;max-height:82px;padding:8px 2px;font-size:14px;line-height:1.28}
+  .explorePageShell .mosiSearchButton{grid-column:1 / -1;min-height:46px;border-radius:15px;font-size:15px}
+  .explorePageShell .mosiIdeaScroller{margin:0 -15px;padding:0 15px 4px}
+  .explorePageShell .mosiMatchesHeader h3{font-size:18px}
+  .explorePageShell .visualAIMatchGrid.mosiMatchGrid{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:minmax(278px,84vw);
+    grid-template-columns:none;
+    gap:12px;
+    margin:0 -15px;
+    padding:0 15px 4px;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:none;
+  }
+  .explorePageShell .visualAIMatchGrid.mosiMatchGrid::-webkit-scrollbar{display:none}
+  .explorePageShell .mosiMatchCard{scroll-snap-align:start}
+  .explorePageShell .mosiMatchImage{min-height:235px}
+  .explorePageShell .exploreFilterBar{margin:0 -14px;padding:4px 14px 6px;overflow-x:auto;scrollbar-width:none}
+  .explorePageShell .exploreFilterBar::-webkit-scrollbar{display:none}
+  .explorePageShell .exploreCategorySummary{display:grid;gap:14px;padding:16px;border-radius:20px}
+  .explorePageShell .exploreCategorySummary .smallButton{width:100%}
+  .explorePageShell .exploreDestinationGrid{gap:14px}
+  .explorePageShell .exploreDestinationCard{min-height:248px;border-radius:18px}
+}
+
+/* Final responsive polish for Explore. */
+.explorePageShell{
+  width:min(100%,1120px);
+}
+.explorePageShell .visualAISection.mosiAISection{
+  overflow:hidden;
+}
+.explorePageShell .mosiBadge{
+  font-size:11px;
+  letter-spacing:.12em;
+}
+.explorePageShell .mosiHeroCopy h2{
+  font-size:clamp(24px,2.6vw,31px);
+}
+.explorePageShell .mosiHeroCopy p,
+.explorePageShell .mosiMatchesHeader p,
+.explorePageShell .exploreCategorySummary p{
+  font-size:14px;
+}
+.explorePageShell .mosiChatComposer{
+  align-items:center;
+}
+.explorePageShell .mosiChatComposer textarea{
+  min-height:48px;
+  max-height:96px;
+  overflow:auto;
+}
+.explorePageShell .mosiSearchButton{
+  min-height:48px;
+}
+.explorePageShell .mosiIdeasRow{
+  gap:10px;
+}
+.explorePageShell .mosiIdeaScroller{
+  padding-bottom:4px;
+  scroll-snap-type:x proximity;
+}
+.explorePageShell .mosiIdeaScroller button{
+  scroll-snap-align:start;
+}
+.explorePageShell .mosiMatchCard,
+.explorePageShell .exploreDestinationCard{
+  transform:translateZ(0);
+}
+.explorePageShell .mosiMatchCard{
+  border-radius:18px;
+}
+.explorePageShell .mosiCardActions{
+  gap:8px;
+}
+.explorePageShell .mosiCardActions a,
+.explorePageShell .mosiCardActions button{
+  min-width:0;
+  min-height:40px;
+}
+.explorePageShell .exploreFilterBar{
+  gap:10px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+.explorePageShell .exploreFilterBar::-webkit-scrollbar{
+  display:none;
+}
+.explorePageShell .exploreFilter{
+  flex:0 0 auto;
+}
+.explorePageShell .exploreDestinationCard:before{
+  background:linear-gradient(180deg,rgba(0,0,0,.04) 12%,rgba(0,0,0,.5) 62%,rgba(0,0,0,.88) 100%);
+}
+.explorePageShell .exploreDestinationContent{
+  gap:8px;
+}
+.explorePageShell .exploreDestinationContent p{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+@media(min-width:1024px){
+  .appDesktopMain main>.section:has(.explorePageShell){
+    padding:34px 54px 64px!important;
+  }
+  .appDesktopMain main>.section>.explorePageShell{
+    width:min(100%,1120px);
+    max-width:1120px;
+  }
+  .appDesktopMain .explorePageShell .visualAISection.mosiAISection{
+    padding:24px;
+    border-radius:26px;
+  }
+  .appDesktopMain .explorePageShell .mosiHeroRow{
+    gap:10px;
+  }
+  .appDesktopMain .explorePageShell .mosiChatComposer{
+    grid-template-columns:52px minmax(0,1fr) 44px auto;
+    padding:12px;
+    border-radius:22px;
+  }
+  .appDesktopMain .explorePageShell .mosiSearchIcon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+  }
+  .appDesktopMain .explorePageShell .mosiClearButton{
+    width:42px;
+    height:42px;
+  }
+  .appDesktopMain .explorePageShell .visualAIMatchGrid.mosiMatchGrid,
+  .appDesktopMain .explorePageShell .exploreDestinationGrid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+  }
+  .appDesktopMain .explorePageShell .mosiMatchImage,
+  .appDesktopMain .explorePageShell .exploreDestinationCard{
+    min-height:240px;
+  }
+  .appDesktopMain .explorePageShell .exploreCategorySummary{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+    border-radius:20px;
+  }
+}
+
+@media(max-width:760px){
+  .section.pageTop:has(.explorePageShell){
+    padding:18px 0 92px;
+  }
+  .explorePageShell{
+    width:min(100% - 28px,640px);
+    gap:15px;
+  }
+  .explorePageShell .visualAISection.mosiAISection{
+    padding:15px;
+    border-radius:22px;
+  }
+  .explorePageShell .mosiBadge{
+    font-size:10px;
+  }
+  .explorePageShell .mosiHeroCopy h2{
+    font-size:24px;
+    line-height:1.12;
+  }
+  .explorePageShell .mosiHeroCopy p{
+    font-size:13.5px;
+    line-height:1.45;
+  }
+  .explorePageShell .mosiChatComposer{
+    grid-template-columns:44px minmax(0,1fr) 40px;
+    gap:8px;
+    padding:10px;
+    border-radius:20px;
+  }
+  .explorePageShell .mosiSearchIcon{
+    width:42px;
+    height:42px;
+    border-radius:13px;
+  }
+  .explorePageShell .mosiClearButton{
+    width:38px;
+    height:38px;
+  }
+  .explorePageShell .mosiChatComposer textarea{
+    min-height:42px;
+    max-height:82px;
+    padding:8px 2px;
+    font-size:14px;
+    line-height:1.28;
+  }
+  .explorePageShell .mosiSearchButton{
+    grid-column:1 / -1;
+    min-height:46px;
+    border-radius:15px;
+    font-size:15px;
+  }
+  .explorePageShell .mosiIdeasRow>span{
+    padding-top:0;
+    font-size:12px;
+  }
+  .explorePageShell .mosiIdeaScroller{
+    margin:0 -15px;
+    padding:0 15px 4px;
+  }
+  .explorePageShell .mosiIdeaScroller button{
+    padding:9px 11px;
+    font-size:12px;
+  }
+  .explorePageShell .mosiMatchesHeader{
+    gap:12px;
+  }
+  .explorePageShell .mosiMatchesHeader h3{
+    font-size:18px;
+  }
+  .explorePageShell .visualFilterMenu summary{
+    min-height:38px;
+    padding:9px 11px;
+    border-radius:12px;
+    font-size:12px;
+  }
+  .explorePageShell .mosiMatchImage{
+    min-height:235px;
+  }
+  .explorePageShell .visualAIConfidence{
+    font-size:14px;
+  }
+  .explorePageShell .visualAICardBody h3{
+    font-size:18px;
+  }
+  .explorePageShell .mosiCardActions{
+    grid-template-columns:1fr 1fr;
+  }
+  .explorePageShell .exploreFilterBar{
+    margin:0 -14px;
+    padding:4px 14px 6px;
+  }
+  .explorePageShell .exploreFilter{
+    min-height:42px;
+    padding:9px 12px;
+    font-size:12px;
+  }
+  .explorePageShell .exploreCategorySummary{
+    display:grid;
+    gap:14px;
+    padding:16px;
+    border-radius:20px;
+  }
+  .explorePageShell .exploreCategorySummary h2{
+    font-size:22px;
+  }
+  .explorePageShell .exploreCategorySummary .smallButton{
+    width:100%;
+  }
+  .explorePageShell .exploreDestinationGrid{
+    gap:14px;
+  }
+  .explorePageShell .exploreDestinationCard{
+    min-height:248px;
+    border-radius:18px;
+  }
+  .explorePageShell .exploreDestinationContent h3{
+    font-size:20px;
+  }
+}
+
 @media(max-width:760px){
   .explorePageShell{
     gap:16px;
