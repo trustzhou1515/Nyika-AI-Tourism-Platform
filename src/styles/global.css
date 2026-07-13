@@ -3221,7 +3221,7 @@ textarea{min-height:108px;resize:vertical}
 .section.pageTop:has(.explorePageShell){
   background:
     radial-gradient(circle at 50% 0%, rgba(255,255,255,.22), transparent 34%),
-    linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%);
+    linear-gradient(180deg,#b8b3ad 0%,#d0cac2 36%,#eee9e3 70%,#fffdf9 100%);
 }
 .explorePageShell .visualAISection.mosiAISection{
   border-color:rgba(255,255,255,.72);
@@ -3282,14 +3282,14 @@ textarea{min-height:108px;resize:vertical}
   .appDesktopShell:has(.explorePageShell){
     background:
       radial-gradient(circle at 34% 0%, rgba(255,255,255,.28), transparent 34%),
-      linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%)!important;
+      linear-gradient(180deg,#b8b3ad 0%,#d0cac2 36%,#eee9e3 70%,#fffdf9 100%)!important;
   }
   .appDesktopMain:has(.explorePageShell),
   .appDesktopMain:has(.explorePageShell) main,
   .appDesktopMain main>.section:has(.explorePageShell){
     background:
       radial-gradient(circle at 50% 0%, rgba(255,255,255,.24), transparent 32%),
-      linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%)!important;
+      linear-gradient(180deg,#b8b3ad 0%,#d0cac2 36%,#eee9e3 70%,#fffdf9 100%)!important;
     background-color:#fbfaf7!important;
   }
   .appDesktopShell:has(.explorePageShell) .desktopSidebar{
@@ -3400,8 +3400,8 @@ body,
 .simpleTripAnswerPage{
   background:
     radial-gradient(circle at 50% 0%, rgba(255,255,255,.28), transparent 34%),
-    linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%)!important;
-  background-color:#fbfaf7!important;
+    linear-gradient(180deg,#b8b3ad 0%,#d0cac2 36%,#eee9e3 70%,#fffdf9 100%)!important;
+  background-color:#fffdf9!important;
 }
 .routeBackShell{
   background:transparent!important;
@@ -3465,8 +3465,8 @@ body,
   .simpleTripAnswerPage{
     background:
       radial-gradient(circle at 50% 0%, rgba(255,255,255,.3), transparent 34%),
-      linear-gradient(180deg,#5e5a55 0%,#aaa49d 34%,#e7e2dc 68%,#fbfaf7 100%)!important;
-    background-color:#fbfaf7!important;
+      linear-gradient(180deg,#b8b3ad 0%,#d0cac2 34%,#eee9e3 68%,#fffdf9 100%)!important;
+    background-color:#fffdf9!important;
   }
 }
 
