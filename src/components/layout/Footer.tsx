@@ -1,9 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { Compass, Heart, Home, Map } from "lucide-react";
+import { Calculator, Compass, Heart, Home, Map } from "lucide-react";
 
 const tabItems = [
   { label: "Home", path: "/", icon: Home },
   { label: "Explore", path: "/destinations", icon: Compass },
+  { label: "Plan", path: "/planner", icon: Calculator, tone: "plan" },
   { label: "Map", path: "/map", icon: Map },
   { label: "Memories", path: "/saved-trips", icon: Heart }
 ];
@@ -25,7 +26,9 @@ export function Footer() {
             <NavLink
               key={item.path}
               to={item.path}
-              className={({ isActive }) => (isActive ? "active" : undefined)}
+              className={({ isActive }) =>
+                [isActive ? "active" : "", item.tone === "plan" ? "planTab" : ""].filter(Boolean).join(" ") || undefined
+              }
             >
               <Icon size={18} />
               <span>{item.label}</span>

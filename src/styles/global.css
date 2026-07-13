@@ -131,7 +131,7 @@ button,input,select,textarea{font-family:inherit}
 .navLinks a.active,.navLinks a:hover{color:var(--green)}
 
 .appDesktopShell{min-height:100vh}
-.desktopSidebar,.desktopMoreButton{display:none}
+.desktopSidebar,.desktopMoreButton,.mobileTrendingStrip{display:none}
 
 .button{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:999px;padding:13px 19px;font-weight:800;cursor:pointer;background:var(--green);color:#fff;box-shadow:0 16px 45px rgba(193,18,31,.2);transition:.22s ease}
 .button:hover{transform:translateY(-2px)}
@@ -818,6 +818,132 @@ button,input,select,textarea{font-family:inherit}
 .bottomTabs a.active{color:var(--green);background:rgba(53,227,137,.08)}
 .bottomTabs a:hover{color:var(--green)}
 .bottomTabs svg{margin-bottom:4px}
+
+@media(max-width:1023px){
+  body{
+    background:#0b0b0a;
+  }
+  .appDesktopShell{
+    min-height:100vh;
+    background:#0b0b0a;
+  }
+  .appDesktopMain{
+    min-height:100vh;
+    background:#0b0b0a;
+    color:#f4f1ea;
+  }
+  .appBar{
+    background:#0b0b0a;
+    border-bottom:1px solid rgba(255,255,255,.1);
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+  .appBarInner{
+    padding:0 16px;
+  }
+  .appTitle{
+    color:#f4f1ea;
+    font-size:15px;
+    font-weight:760;
+  }
+  .appTitle strong{
+    color:#f4f1ea;
+  }
+  .iconButton{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    border-color:rgba(255,255,255,.08);
+    background:#171716;
+    color:#f4f1ea;
+  }
+  .mobileTrendingStrip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px 12px;
+    overflow-x:auto;
+    background:#0b0b0a;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    scrollbar-width:none;
+  }
+  .mobileTrendingStrip::-webkit-scrollbar{
+    display:none;
+  }
+  .mobileTrendingStrip span{
+    flex:0 0 auto;
+    color:rgba(244,241,234,.48);
+    font-size:12px;
+    font-weight:760;
+  }
+  .mobileTrendingStrip a{
+    flex:0 0 auto;
+    padding:8px 11px;
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:999px;
+    background:#141414;
+    color:rgba(244,241,234,.76);
+    font-size:12px;
+    font-weight:680;
+  }
+  .mobileTrendingStrip a.active{
+    border-color:rgba(255,93,147,.32);
+    color:#ff7da8;
+  }
+  .bottomTabs{
+    position:sticky;
+    bottom:0;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    background:rgba(11,11,10,.96);
+    border-top:1px solid rgba(255,255,255,.1);
+    box-shadow:0 -18px 48px rgba(0,0,0,.24);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+  }
+  .bottomTabs a{
+    min-height:60px;
+    padding:8px 0 7px;
+    color:rgba(244,241,234,.58);
+    font-size:10.5px;
+    font-weight:620;
+  }
+  .bottomTabs a svg{
+    width:20px;
+    height:20px;
+    margin-bottom:4px;
+    color:currentColor;
+    stroke-width:2;
+  }
+  .bottomTabs a.active{
+    background:#182236;
+    color:#8bb8ff;
+  }
+  .bottomTabs a.planTab{
+    color:#55d8bd;
+  }
+  .bottomTabs a.planTab.active{
+    background:#0d3a31;
+    color:#55d8bd;
+  }
+  .bottomTabs a:hover{
+    color:#ff7da8;
+  }
+  .mainWithBack .routeBackShell{
+    padding:14px 16px 0;
+    background:#0b0b0a;
+  }
+  .mainWithBack .routeBackShell .container{
+    padding:0;
+  }
+  .routeBackButton{
+    border-color:rgba(255,255,255,.1);
+    background:#171716;
+    color:#f4f1ea;
+    box-shadow:none;
+  }
+}
 
 @media(max-width:640px){
   .container{max-width:480px}

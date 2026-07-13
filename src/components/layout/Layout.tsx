@@ -68,6 +68,12 @@ export function Layout() {
 
       <div className="appDesktopMain">
       <Navbar />
+        <div className="mobileTrendingStrip" aria-label="Trending destinations">
+          <span>Trending now</span>
+          <NavLink to="/destinations/victoria-falls">Victoria Falls</NavLink>
+          <NavLink to="/destinations/lake-kariba">Lake Kariba</NavLink>
+          <NavLink to="/destinations/nyanga">Nyanga</NavLink>
+        </div>
         <button className="desktopMoreButton" type="button" aria-label="More options">
           <MoreHorizontal size={26} />
         </button>
