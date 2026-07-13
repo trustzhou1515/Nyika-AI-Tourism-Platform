@@ -2222,3 +2222,276 @@ textarea{min-height:108px;resize:vertical}
     font-weight:460;
   }
 }
+
+/* Desktop-wide command-panel style for all app pages. */
+@media(min-width:1024px){
+  .appDesktopMain{
+    background:#0b0b0a;
+    color:#f4f1ea;
+  }
+  .desktopSidebar{
+    justify-content:flex-start;
+    gap:44px;
+  }
+  .desktopSidebarTrending{
+    display:grid;
+    gap:10px;
+    margin-top:34px;
+    padding:24px 10px 0;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .desktopSidebarTrending span{
+    color:rgba(244,241,234,.46);
+    font-size:13px;
+    font-weight:650;
+  }
+  .desktopSidebarTrending a{
+    display:block;
+    width:max-content;
+    max-width:100%;
+    color:rgba(244,241,234,.72);
+    font-size:15px;
+    line-height:1.25;
+    font-weight:520;
+  }
+  .desktopSidebarTrending a:hover,
+  .desktopSidebarTrending a.active{
+    color:#ff5d93;
+  }
+  .appDesktopMain main>.section:not(.homeNyikaLiveShell):not(.homePremiumIntro):not(.homeDiscoverySection):not(.homeClosingSection):not(.homeStoriesSection):not(.simpleTripAnswerPage){
+    padding:44px 64px 58px;
+    background:#0b0b0a;
+    color:#f4f1ea;
+  }
+  .appDesktopMain main>.pageTop{
+    min-height:100vh;
+  }
+  .appDesktopMain main>.section:not(.homeNyikaLiveShell):not(.homePremiumIntro):not(.homeDiscoverySection):not(.homeClosingSection):not(.homeStoriesSection):not(.simpleTripAnswerPage)>.container{
+    max-width:1044px;
+    margin:0;
+    padding:0;
+  }
+  .mainWithBack .pageTop{
+    padding-top:28px!important;
+  }
+  .routeBackShell{
+    padding:28px 64px 0;
+    background:#0b0b0a;
+  }
+  .routeBackShell .container{
+    max-width:1044px;
+    margin:0;
+    padding:0;
+  }
+  .routeBackButton{
+    border-color:rgba(255,255,255,.1);
+    background:#171716;
+    color:#f4f1ea;
+    box-shadow:none;
+  }
+  .routeBackButton:hover{
+    background:#222220;
+  }
+  .pageIntro,
+  .sectionHeader,
+  .sectionHeaderCompact,
+  .savedTripsHeader,
+  .resultHeader,
+  .sectionHeaderRow{
+    color:#f4f1ea;
+  }
+  .pageIntro h1,
+  .sectionHeader h2,
+  .sectionHeaderCompact h3,
+  .savedTripsHeader h2,
+  .resultHeader h2,
+  .destinationTitle,
+  .mapDetails h2{
+    color:#f4f1ea;
+  }
+  .lead,
+  .muted,
+  .pageIntro p,
+  .sectionHeader p,
+  .sectionHeaderCompact p,
+  .destinationDescription,
+  .routeInfo,
+  .mapActions,
+  .realMapCard p,
+  .card p,
+  .panel p,
+  .travelHistoryCard p,
+  .travelHistoryCard small{
+    color:rgba(244,241,234,.66);
+  }
+  .pill,
+  .badge{
+    border-color:rgba(255,93,147,.28);
+    background:rgba(255,93,147,.08);
+    color:#ff7da8;
+  }
+  .card,
+  .panel,
+  .realMapCard,
+  .visualAISection.mosiAISection,
+  .travellerVoiceCard,
+  .itineraryCard,
+  .assistantAnswer,
+  .journeyCard,
+  .journeyResultPanel,
+  .travelHistoryCard,
+  .destinationMetaGrid p,
+  .activityCard{
+    border:1px solid rgba(255,255,255,.11);
+    background:#141414;
+    color:#f4f1ea;
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+  .card h2,
+  .card h3,
+  .panel h2,
+  .panel h3,
+  .realMapCard h2,
+  .realMapCard h3,
+  .assistantAnswer h3,
+  .itineraryCard strong,
+  .travelHistoryCard h3,
+  .destinationMetaGrid b,
+  .activityCard h3,
+  .travellerVoiceCard b{
+    color:#f4f1ea;
+  }
+  .destinationMetaGrid span,
+  .activityCard p,
+  .activityCard small,
+  .travellerVoiceCard p,
+  .travellerVoiceCard span,
+  .assistantAnswer p{
+    color:rgba(244,241,234,.66);
+  }
+  input,
+  select,
+  textarea,
+  .journeyFieldShell,
+  .nyikaPromptBar,
+  .nyikaConfirmGrid input,
+  .nyikaConfirmGrid select{
+    border-color:rgba(255,255,255,.12);
+    background:#10100f;
+    color:#f4f1ea;
+    box-shadow:none;
+  }
+  input::placeholder,
+  textarea::placeholder{
+    color:rgba(244,241,234,.42);
+  }
+  label,
+  .travelNoteForm label,
+  .calculatorRow label{
+    color:rgba(244,241,234,.62);
+  }
+  .button.secondary,
+  .inlineAction,
+  .smallButton{
+    border-color:rgba(255,255,255,.12);
+    background:#171716;
+    color:#f4f1ea;
+    box-shadow:none;
+  }
+  .button.secondary:hover,
+  .inlineAction:hover{
+    background:#222220;
+  }
+  .button:not(.secondary),
+  .nyikaPlanButton,
+  .nyikaGenerateButton{
+    box-shadow:none;
+  }
+  .exploreHeroPanel{
+    border-color:rgba(255,255,255,.12);
+    background:#141414;
+    box-shadow:none;
+  }
+  .exploreHeroSearch,
+  .exploreCategorySummary,
+  .exploreFilter,
+  .discoveryCard,
+  .toolCard,
+  .visualDiscoveryCard{
+    border-color:rgba(255,255,255,.11);
+    background:#141414;
+    color:#f4f1ea;
+    box-shadow:none;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+  .exploreHeroCopy p,
+  .exploreCategorySummary p,
+  .discoveryCard p,
+  .toolCard p,
+  .visualDiscoveryCard p{
+    color:rgba(244,241,234,.66);
+  }
+  .exploreCategorySummary h2,
+  .discoveryCard h3,
+  .toolCard h3,
+  .visualDiscoveryCard h3{
+    color:#f4f1ea;
+  }
+  .chipList li,
+  .destinationChipList li,
+  .discoveryCard .chipList a,
+  .priorityCard,
+  .bookingCard,
+  .recommendation,
+  .dayGuide,
+  .mapQuickStats div,
+  .mapLegendKey,
+  .memoryPhotoPreview,
+  .premiumMemoryUpload{
+    border-color:rgba(255,255,255,.1);
+    background:#1b1b1a;
+    color:#f4f1ea;
+  }
+  .chipList li,
+  .destinationChipList li,
+  .discoveryCard .chipList a,
+  .priorityCard b,
+  .bookingCard b,
+  .recommendation b,
+  .dayGuide b,
+  .mapQuickStats b,
+  .memoryPhotoPreview strong,
+  .premiumMemoryUpload>span{
+    color:#f4f1ea;
+  }
+  .priorityCard p,
+  .bookingCard p,
+  .recommendation p,
+  .dayGuide p,
+  .mapQuickStats div{
+    color:rgba(244,241,234,.66);
+  }
+  .realMapFrame{
+    border:1px solid rgba(255,255,255,.11);
+    background:#141414;
+  }
+  .mapDetails{
+    color:#f4f1ea;
+  }
+  .mapPopupButton{
+    background:#171716;
+    color:#f4f1ea!important;
+  }
+  .leafletDestinationPopup{
+    color:#111;
+  }
+  .savedJournalGrid,
+  .plannerGrid,
+  .mapLayout,
+  .detailsGrid{
+    gap:18px;
+  }
+}
