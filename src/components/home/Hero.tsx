@@ -137,7 +137,7 @@ export function Hero() {
             <div className="homeNyikaChatCard heroNyikaChatCard" aria-live="polite">
               <div className="homeNyikaBubble assistant">
                 <span>Nyika AI</span>
-                <p>Tell me the kind of Zimbabwe trip you are imagining.</p>
+                <p>Tell me the kind of trip you are imagining. I will find the best places for you.</p>
               </div>
               <div className="homeNyikaBubble user">
                 <span>You</span>
