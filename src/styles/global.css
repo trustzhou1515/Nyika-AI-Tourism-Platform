@@ -2495,3 +2495,291 @@ textarea{min-height:108px;resize:vertical}
     gap:18px;
   }
 }
+
+/* Final simple Explore page refinement. */
+.explorePageShell{
+  gap:18px;
+}
+.explorePageShell .mosiAISection{
+  gap:14px;
+  padding:22px;
+  border-color:rgba(255,255,255,.11);
+  background:#141414;
+  color:#f4f1ea;
+  box-shadow:none;
+}
+.explorePageShell .mosiHeroRow{
+  grid-template-columns:minmax(0,1fr);
+  gap:14px;
+}
+.explorePageShell .mosiHeroCopy{
+  gap:8px;
+}
+.explorePageShell .mosiBadge{
+  margin:0;
+  background:transparent;
+  color:#ff5d93;
+  box-shadow:none;
+}
+.explorePageShell .mosiHeroCopy h2{
+  max-width:760px;
+  color:#f4f1ea;
+  font-size:clamp(25px,3vw,34px);
+  line-height:1.13;
+  letter-spacing:0;
+  font-weight:760;
+}
+.explorePageShell .mosiHeroCopy p{
+  max-width:680px;
+  margin:0;
+  color:rgba(244,241,234,.64);
+  font-size:15px;
+  line-height:1.5;
+  font-weight:520;
+}
+.explorePageShell .mosiChatPreview{
+  display:none;
+}
+.explorePageShell .mosiChatComposer{
+  margin-top:2px;
+  border-color:rgba(255,93,147,.42);
+  background:#10100f;
+  box-shadow:none;
+}
+.explorePageShell .mosiSearchIcon,
+.explorePageShell .mosiClearButton{
+  background:#1b1b1a;
+  border-color:rgba(255,255,255,.08);
+  color:#f4f1ea;
+  box-shadow:none;
+}
+.explorePageShell .mosiChatComposer textarea{
+  color:#f4f1ea;
+  font-size:16px;
+  font-weight:560;
+}
+.explorePageShell .mosiChatComposer textarea::placeholder{
+  color:rgba(244,241,234,.42);
+}
+.explorePageShell .mosiSearchButton{
+  background:#8e0011;
+  box-shadow:none;
+}
+.explorePageShell .mosiIdeasRow{
+  align-items:flex-start;
+}
+.explorePageShell .mosiIdeasRow>span{
+  padding-top:10px;
+}
+.explorePageShell .mosiMatchesPanel{
+  padding:0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+}
+.explorePageShell .mosiMatchesHeader{
+  align-items:center;
+}
+.explorePageShell .mosiMatchesHeader h3{
+  color:#f4f1ea;
+  font-size:20px;
+  font-weight:760;
+}
+.explorePageShell .mosiMatchesHeader p{
+  color:rgba(244,241,234,.64);
+}
+.explorePageShell .visualAIMatchGrid.mosiMatchGrid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+}
+.explorePageShell .mosiMatchImage{
+  min-height:210px;
+}
+.explorePageShell .visualAIConfidence{
+  font-size:15px;
+  border-radius:10px;
+}
+.explorePageShell .visualAICardBody h3{
+  font-size:17px;
+}
+.explorePageShell .exploreFilterBar{
+  padding-top:6px;
+}
+.explorePageShell .exploreFilter{
+  min-height:42px;
+  padding:10px 14px;
+  border-radius:12px;
+  box-shadow:none;
+  background:#141414;
+  border-color:rgba(255,255,255,.11);
+  color:rgba(244,241,234,.78);
+}
+.explorePageShell .exploreCategorySummary{
+  padding:18px;
+  border-radius:16px;
+}
+.explorePageShell .exploreCategorySummary h2{
+  margin:8px 0 6px;
+  font-size:clamp(22px,2.5vw,28px);
+  line-height:1.16;
+  font-weight:760;
+}
+.explorePageShell .exploreCategorySummary p{
+  max-width:680px;
+  font-size:14px;
+  line-height:1.48;
+}
+.explorePageShell .exploreDestinationGrid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.explorePageShell .exploreDestinationCard{
+  min-height:210px;
+  border-radius:16px;
+  padding:16px;
+}
+.explorePageShell .exploreDestinationContent h3{
+  font-size:19px;
+  line-height:1.12;
+  font-weight:760;
+}
+.explorePageShell .exploreDestinationContent p{
+  font-size:13px;
+  line-height:1.38;
+}
+
+@media(min-width:1024px){
+  .appDesktopMain main>.section>.explorePageShell{
+    max-width:1044px;
+    margin:0;
+    padding:0;
+  }
+  .appDesktopMain .explorePageShell .visualAISection.mosiAISection{
+    background:#141414;
+    border-color:rgba(255,255,255,.11);
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiBadge{
+    padding:0;
+    background:transparent;
+    color:#ff5d93;
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiHeroCopy h2{
+    color:#f4f1ea;
+  }
+  .appDesktopMain .explorePageShell .mosiHeroCopy p,
+  .appDesktopMain .explorePageShell .mosiMatchesHeader p{
+    color:rgba(244,241,234,.64);
+  }
+  .appDesktopMain .explorePageShell .mosiChatComposer{
+    border-color:rgba(255,93,147,.42);
+    background:#10100f;
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiSearchIcon,
+  .appDesktopMain .explorePageShell .mosiClearButton{
+    background:#1b1b1a;
+    border-color:rgba(255,255,255,.08);
+    color:#f4f1ea;
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiChatComposer textarea{
+    color:#f4f1ea;
+    font-size:16px;
+    font-weight:560;
+  }
+  .appDesktopMain .explorePageShell .mosiChatComposer textarea::placeholder{
+    color:rgba(244,241,234,.42);
+  }
+  .appDesktopMain .explorePageShell .mosiSearchButton{
+    background:#8e0011;
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiIdeasRow>span{
+    color:rgba(244,241,234,.54);
+  }
+  .appDesktopMain .explorePageShell .mosiIdeaScroller button{
+    background:#171716;
+    border-color:rgba(255,255,255,.1);
+    color:rgba(244,241,234,.78);
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiMatchesHeader h3{
+    color:#f4f1ea;
+  }
+  .appDesktopMain .explorePageShell .visualFilterMenu summary,
+  .appDesktopMain .explorePageShell .mosiCardActions a{
+    background:#171716;
+    border-color:rgba(255,255,255,.1);
+    color:#f4f1ea;
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .mosiMatchCard,
+  .appDesktopMain .explorePageShell .exploreCategorySummary,
+  .appDesktopMain .explorePageShell .exploreFilter{
+    background:#141414;
+    border-color:rgba(255,255,255,.11);
+    box-shadow:none;
+  }
+  .appDesktopMain .explorePageShell .exploreFilter{
+    color:rgba(244,241,234,.78);
+  }
+  .appDesktopMain .explorePageShell .exploreFilter:hover,
+  .appDesktopMain .explorePageShell .exploreFilter.active{
+    background:#1b1b1a;
+    border-color:rgba(255,93,147,.34);
+    color:#ff7da8;
+    transform:none;
+  }
+  .appDesktopMain .explorePageShell .exploreFilter svg{
+    color:currentColor;
+  }
+}
+
+@media(max-width:760px){
+  .explorePageShell{
+    gap:16px;
+  }
+  .explorePageShell .mosiAISection{
+    padding:16px;
+    border-radius:20px;
+  }
+  .explorePageShell .mosiHeroCopy h2{
+    font-size:24px;
+  }
+  .explorePageShell .mosiChatComposer{
+    grid-template-columns:auto minmax(0,1fr) auto;
+  }
+  .explorePageShell .mosiSearchButton{
+    grid-column:1 / -1;
+  }
+  .explorePageShell .mosiIdeasRow{
+    display:grid;
+  }
+  .explorePageShell .visualAIMatchGrid.mosiMatchGrid{
+    grid-template-columns:1fr;
+  }
+  .explorePageShell .mosiMatchImage{
+    min-height:230px;
+  }
+  .explorePageShell .exploreFilter{
+    flex:0 0 auto;
+    min-height:44px;
+    flex-direction:row;
+    padding:10px 13px;
+    border-radius:999px;
+  }
+  .explorePageShell .exploreFilter svg{
+    width:18px;
+    height:18px;
+  }
+  .explorePageShell .exploreCategorySummary{
+    padding:0;
+  }
+  .explorePageShell .exploreDestinationGrid{
+    grid-template-columns:1fr;
+  }
+  .explorePageShell .exploreDestinationCard{
+    min-height:235px;
+  }
+}

@@ -1,6 +1,6 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown, Clock3, Droplets, Heart, Landmark, MapPin, MessageCircle, Mountain, PawPrint, Plus, Send, ShieldCheck, SlidersHorizontal, Sparkles, Target, Trash2, Waves, X } from "lucide-react";
+import { ChevronDown, Droplets, Heart, Landmark, MapPin, MessageCircle, Mountain, PawPrint, Plus, Send, ShieldCheck, SlidersHorizontal, Sparkles, Waves, X } from "lucide-react";
 import { destinations } from "../data/destinations";
 import type { Destination } from "../types/tourism";
 import { searchDestinations, type VisualSearchFilters } from "../utils/destinationMatcher";
@@ -118,29 +118,6 @@ const exploreCategories: ExploreCategory[] = [
       "lake-chivero"
     ],
     prompt: "I want lakes in Zimbabwe for 3 days, 2 people"
-  }
-];
-
-const exploreHeroSlides = [
-  {
-    name: "Victoria Falls",
-    image: "/images/explore-victoria-falls-rainbow.png"
-  },
-  {
-    name: "Great Zimbabwe",
-    image: "/images/explore-great-zimbabwe-ruins.png"
-  },
-  {
-    name: "Nyanga Highlands",
-    image: "/images/explore-nyanga-mountain-view.png"
-  },
-  {
-    name: "Hwange National Park",
-    image: "/images/explore-hwange-safari-sunset.png"
-  },
-  {
-    name: "Lake Kariba",
-    image: "/images/explore-kariba-lake-sunset.png"
   }
 ];
 
@@ -405,42 +382,16 @@ function getCardCategory(destination: Destination, activeCategory: string) {
   return findCategory("mountains");
 }
 
-function getFeaturedActivities(categoryDestinations: Destination[], limit: number) {
-  const activityGroups = categoryDestinations
-    .map((destination) => ({
-      destination,
-      activities: destination.activities ?? []
-    }))
-    .filter((group) => group.activities.length > 0);
-  const mixedActivities = [];
-  const longestGroup = Math.max(...activityGroups.map((group) => group.activities.length));
-
-  for (let index = 0; index < longestGroup; index += 1) {
-    for (const group of activityGroups) {
-      const activity = group.activities[index];
-      if (!activity) continue;
-
-      mixedActivities.push({ ...activity, destination: group.destination });
-      if (mixedActivities.length >= limit) return mixedActivities;
-    }
-  }
-
-  return mixedActivities;
-}
-
 export function DestinationsContent() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [visualAIDraft, setVisualAIDraft] = useState("I love wildlife and waterfalls, somewhere beautiful for photos.");
   const [visualAIQuery, setVisualAIQuery] = useState("I love wildlife and waterfalls, somewhere beautiful for photos.");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [favouriteSlugs, setFavouriteSlugs] = useState<string[]>([]);
   const [savedTripSlugs, setSavedTripSlugs] = useState<string[]>([]);
   const [visualFilters, setVisualFilters] = useState<VisualSearchFilters>(defaultVisualFilters);
   const activeCategoryData = exploreCategories.find((category) => category.id === activeCategory) ?? exploreCategories[0];
   const galleryDestinations = getCategoryDestinations(activeCategory);
-  const featuredActivities = getFeaturedActivities(galleryDestinations, 8);
   const visualAIInsight = useMemo(() => analyzeNyikaQuery(visualAIQuery), [visualAIQuery]);
   const visualAIMatches = useMemo(
     () => searchDestinations(visualAIInsight.expandedQuery, destinations, visualFilters),
@@ -468,15 +419,6 @@ export function DestinationsContent() {
   const travellerOptions = ["all", "family", "couples", "adventure", "photography", "culture", "wildlife"];
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveHeroSlide((current) => (current + 1) % exploreHeroSlides.length);
-    }, 4200);
-
-    return () => window.clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    setRecentSearches(readStoredList(visualStorageKeys.recent));
     setFavouriteSlugs(readStoredList(visualStorageKeys.favourites));
     setSavedTripSlugs(readStoredList(visualStorageKeys.savedTrips));
   }, []);
@@ -489,11 +431,6 @@ export function DestinationsContent() {
     setIsAnalyzing(true);
     window.setTimeout(() => {
       setVisualAIQuery(trimmedQuery);
-      setRecentSearches((current) => {
-        const next = [trimmedQuery, ...current.filter((item) => item.toLowerCase() !== trimmedQuery.toLowerCase())].slice(0, 5);
-        writeStoredList(visualStorageKeys.recent, next);
-        return next;
-      });
       setIsAnalyzing(false);
     }, 420);
   }
@@ -506,11 +443,6 @@ export function DestinationsContent() {
   function clearVisualSearch() {
     setVisualAIDraft("");
     setVisualAIQuery("");
-  }
-
-  function clearRecentSearches() {
-    setRecentSearches([]);
-    writeStoredList(visualStorageKeys.recent, []);
   }
 
   function toggleFavourite(slug: string) {
@@ -535,52 +467,14 @@ export function DestinationsContent() {
 
   return (
     <div className="container explorePageShell">
-      <section className="exploreHeroPanel">
-        <div className="exploreHeroMedia" aria-hidden="true">
-          {exploreHeroSlides.map((slide, index) => (
-            <img
-              key={slide.name}
-              className={index === activeHeroSlide ? "active" : undefined}
-              src={slide.image}
-              alt=""
-            />
-          ))}
-        </div>
-        <div className="exploreHeroOverlay"></div>
-
-        <div className="exploreHeroCopy">
-          <span className="exploreScript">Describe. Match. Plan.</span>
-          <h1>
-            Nyika AI matches the places you imagine.
-          </h1>
-          <p>
-            Tell Nyika AI the trip you want. It reads your interests, matches Zimbabwe destinations and activities, then helps you plan the route.
-          </p>
-          <div className="exploreHeroActions">
-            <a className="button" href="#explore-results">
-              Try Nyika AI
-            </a>
-            <Link className="button secondary" to="/planner">
-              Plan from a match
-            </Link>
-          </div>
-          <div className="exploreHeroStats" aria-label="Explore Zimbabwe highlights">
-            <span><b>{destinations.length}</b> place profiles</span>
-            <span><b>AI</b> activity matching</span>
-            <span><b>Plan</b> budget-ready</span>
-          </div>
-        </div>
-
-      </section>
-
       <section className="visualAISection mosiAISection" aria-label="Nyika AI image intelligence">
         <div className="mosiHeroRow">
           <div className="mosiHeroCopy">
             <span className="mosiBadge"><MessageCircle size={14} /> Nyika AI</span>
             <h2>
-              Describe your trip. <span>Nyika finds the place.</span>
+              Tell Nyika what you want.
             </h2>
-            <p>Say the activities, mood, people, days or budget. Nyika AI picks the closest Zimbabwe places and shows why they fit.</p>
+            <p>Write a sentence. Nyika matches places, activities and moods across Zimbabwe.</p>
           </div>
 
           <div className="mosiChatPreview" aria-live="polite">
@@ -635,24 +529,6 @@ export function DestinationsContent() {
             })}
           </div>
         </div>
-
-        {recentSearches.length > 0 && (
-          <div className="mosiRecentRow">
-            <span><Clock3 size={17} /> Recent ideas</span>
-            <div className="mosiRecentChips">
-              {recentSearches.slice(0, 4).map((recent) => (
-                <button key={recent} type="button" onClick={() => runVisualSearch(recent)}>
-                  {recent}
-                  <X size={14} />
-                </button>
-              ))}
-              <button className="mosiClearRecent" type="button" onClick={clearRecentSearches}>
-                <Trash2 size={14} />
-                Clear all
-              </button>
-            </div>
-          </div>
-        )}
 
         <div className="mosiMatchesPanel">
           {visualAIInsight.notice && (
@@ -765,30 +641,6 @@ export function DestinationsContent() {
               </article>
             ))}
           </div>
-
-          <div className="mosiTrustStrip">
-            <article>
-              <Target size={26} />
-              <div>
-                <strong>Smart matching</strong>
-                <p>We match landscapes, activities and mood.</p>
-              </div>
-            </article>
-            <article>
-              <ShieldCheck size={26} />
-              <div>
-                <strong>Local and trusted</strong>
-                <p>Curated Zimbabwe places with real context.</p>
-              </div>
-            </article>
-            <article>
-              <Heart size={26} />
-              <div>
-                <strong>Save your favourites</strong>
-                <p>Keep places you love for your trip.</p>
-              </div>
-            </article>
-          </div>
         </div>
       </section>
 
@@ -853,46 +705,6 @@ export function DestinationsContent() {
           );
         })}
       </div>
-
-        <div className="sectionHeaderCompact">
-          <span className="pill">Activities</span>
-          <h3>What you can do here</h3>
-        </div>
-
-        <div className="visualDiscoveryGrid">
-          {featuredActivities.map((activity) => (
-            <Link
-              className="visualDiscoveryCard"
-              to={`/destinations/${activity.destination.slug}`}
-              key={`${activity.destination.slug}-${activity.title}`}
-            >
-              <img src={activity.image} alt={activity.title} />
-              <div>
-                <span>{activity.destination.name}</span>
-                <h3>{activity.title}</h3>
-                <p>{activity.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        <div className="sectionHeaderCompact">
-          <span className="pill">Guided journeys</span>
-          <h3>Travel across Zimbabwe</h3>
-        </div>
-
-        <article className="journeyCard">
-          <div className="journeyHeader">
-            <div>
-              <span className="pill">Across Zimbabwe</span>
-              <h3>Not sure where to go?</h3>
-              <p>Use Planning to choose what you like, enter days and people, then get a multi-place Zimbabwe route with an estimated budget.</p>
-            </div>
-            <Link className="button secondary smallButton" to="/planner#journey-builder">
-              Open journey planner
-            </Link>
-          </div>
-        </article>
     </div>
   );
 }
