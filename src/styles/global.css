@@ -2972,11 +2972,56 @@ textarea{min-height:108px;resize:vertical}
 }
 
 @media(min-width:1024px){
+  .appDesktopShell:has(.explorePageShell){
+    background:
+      radial-gradient(circle at 34% 0%, rgba(255,255,255,.28), transparent 34%),
+      linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%)!important;
+  }
+  .appDesktopMain:has(.explorePageShell),
+  .appDesktopMain:has(.explorePageShell) main,
   .appDesktopMain main>.section:has(.explorePageShell){
     background:
       radial-gradient(circle at 50% 0%, rgba(255,255,255,.24), transparent 32%),
       linear-gradient(180deg,#5e5a55 0%,#aaa49d 36%,#e7e2dc 70%,#fbfaf7 100%)!important;
     background-color:#fbfaf7!important;
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebar{
+    background:rgba(255,255,255,.68)!important;
+    border-right:1px solid rgba(255,255,255,.62);
+    color:#25211e;
+    box-shadow:18px 0 60px rgba(26,24,21,.08);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarBrand,
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarTrending a{
+    color:#25211e;
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarTrending{
+    border-top-color:rgba(17,17,17,.1);
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarTrending span{
+    color:#766f68;
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarNav a{
+    color:#5f5852;
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarNav a.active,
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarNav a:hover{
+    background:#111;
+    color:#fff;
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarNav a.planNav{
+    background:rgba(13,58,49,.1);
+    color:#0d3a31;
+  }
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarNav a.planNav:hover,
+  .appDesktopShell:has(.explorePageShell) .desktopSidebarNav a.planNav.active{
+    background:#0d3a31;
+    color:#fff;
+  }
+  .appDesktopMain:has(.explorePageShell) .routeBackShell{
+    background:transparent!important;
   }
   .appDesktopMain .explorePageShell .visualAISection.mosiAISection{
     border-color:rgba(255,255,255,.72);
