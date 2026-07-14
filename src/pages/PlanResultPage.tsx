@@ -47,11 +47,15 @@ export function PlanResultPage() {
   const plan = state?.plan ?? getStoredPlan();
   const destination = plan ? destinations.find((item) => item.name === plan.destination) : undefined;
 
+  function openPlanner() {
+    navigate("/planner", { replace: true });
+  }
+
   if (!plan) {
     return (
       <section className="simpleTripAnswerPage">
         <div className="simpleTripAnswerWrap">
-          <button className="simpleTripBack" type="button" onClick={() => navigate("/planner")}>
+          <button className="simpleTripBack" type="button" onClick={openPlanner}>
             <ArrowLeft size={24} />
             Open planner
           </button>
@@ -94,7 +98,7 @@ export function PlanResultPage() {
     <section className="simpleTripAnswerPage">
       <div className="simpleTripAnswerWrap">
         <header className="simpleTripTopbar">
-          <button className="simpleTripBack" type="button" aria-label="Back" onClick={() => navigate(-1)}>
+          <button className="simpleTripBack" type="button" aria-label="Back to planner" onClick={openPlanner}>
             <ArrowLeft size={25} />
           </button>
           <h1>{plan.destination} - {plan.daysCount} days, {plan.travelers} {plan.travelers === 1 ? "person" : "people"}</h1>

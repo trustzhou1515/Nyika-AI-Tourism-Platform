@@ -13,7 +13,7 @@ export function Navbar() {
           <strong>Explore Zimbabwe</strong>
         </div>
 
-        <Link className="iconButton" to="/business" aria-label="Profile">
+        <Link className="iconButton" to="/login" aria-label="Profile and login">
           <User size={20} />
         </Link>
       </div>

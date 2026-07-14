@@ -10,6 +10,7 @@ import { BusinessPortalPage } from "./pages/BusinessPortalPage";
 import { AdminDashboardPage } from "./pages/AdminDashboardPage";
 import { SavedTripsPage } from "./pages/SavedTripsPage";
 import { TravelMapPage } from "./pages/TravelMapPage";
+import { AuthPage } from "./pages/AuthPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="/destinations/:slug" element={<DestinationDetailsPage />} />
           <Route path="/saved-trips" element={<SavedTripsPage />} />
           <Route path="/map" element={<TravelMapPage />} />
+          <Route path="/login" element={<AuthPage />} />
           <Route path="/business" element={<BusinessPortalPage />} />
           <Route path="/admin" element={<AdminDashboardPage />} />
           <Route path="*" element={<NotFoundPage />} />

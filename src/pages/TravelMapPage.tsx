@@ -489,7 +489,7 @@ export function TravelMapOverview({
           />
           <Polygon
             positions={ZIMBABWE_BORDER}
-            pathOptions={{ color: "#111", weight: 3, opacity: 0.8, fillColor: "#c1121f", fillOpacity: 0.05, dashArray: "10 6" }}
+            pathOptions={{ color: "#111", weight: 3, opacity: 0.8, fillColor: "#BE6A35", fillOpacity: 0.05, dashArray: "10 6" }}
           >
             <Tooltip sticky>Zimbabwe border</Tooltip>
           </Polygon>
@@ -686,7 +686,7 @@ export function TravelMapPage() {
                   />
                   <Polygon
                     positions={ZIMBABWE_BORDER}
-                    pathOptions={{ color: "#111", weight: 3, opacity: 0.8, fillColor: "#c1121f", fillOpacity: 0.05, dashArray: "10 6" }}
+                    pathOptions={{ color: "#111", weight: 3, opacity: 0.8, fillColor: "#BE6A35", fillOpacity: 0.05, dashArray: "10 6" }}
                   >
                     <Tooltip sticky>Zimbabwe border</Tooltip>
                   </Polygon>

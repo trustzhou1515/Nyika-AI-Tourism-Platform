@@ -9,10 +9,10 @@
   </defs>
   <rect width="360" height="240" fill="url(#bg)"/>
   <path d="M48 42c18 29 39 29 57 0 18 29 39 29 57 0 18 29 39 29 57 0 18 29 39 29 57 0 12 22 26 28 42 18" fill="none" stroke="#a7c8d8" stroke-width="12" stroke-linecap="round"/>
-  <path d="M143 58h77l45 35-28 46-19-11v63h-73v-63l-20 11-28-46 46-35z" fill="#c1121f"/>
+  <path d="M143 58h77l45 35-28 46-19-11v63h-73v-63l-20 11-28-46 46-35z" fill="#BE6A35"/>
   <path d="M161 58c7 15 16 23 21 23s14-8 21-23" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
   <path d="M182 82v107" stroke="#fff" stroke-width="5"/>
   <path d="M92 183c16-14 39-14 55 0v25H92zM213 183c16-14 39-14 55 0v25h-55z" fill="#111"/>
-  <path d="M92 207h56M213 207h56" stroke="#c1121f" stroke-width="7" stroke-linecap="round"/>
+  <path d="M92 207h56M213 207h56" stroke="#BE6A35" stroke-width="7" stroke-linecap="round"/>
   <path d="M74 91c0 13-10 21-19 21s-19-8-19-21c0-14 19-38 19-38s19 24 19 38zM323 116c0 11-8 18-16 18s-16-7-16-18c0-12 16-32 16-32s16 20 16 32z" fill="#53a9c9" opacity=".88"/>
 </svg>

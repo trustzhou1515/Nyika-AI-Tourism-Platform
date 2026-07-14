@@ -521,7 +521,7 @@ export function DestinationsContent() {
               const Icon = visualIdeaIcons[idea] ?? Sparkles;
 
               return (
-                <button key={idea} type="button" onClick={() => runVisualSearch(idea)}>
+                <button key={idea} type="button" onClick={() => setVisualAIDraft(idea)}>
                   <Icon size={21} />
                   {idea}
                 </button>
