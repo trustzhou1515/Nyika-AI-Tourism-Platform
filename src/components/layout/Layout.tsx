@@ -1,4 +1,4 @@
-import { ArrowLeft, Calculator, Compass, Heart, Home, Map, MoreHorizontal, UserRound } from "lucide-react";
+import { ArrowLeft, Calculator, Compass, Heart, Home, Map, MoreHorizontal, Sparkles, UserRound } from "lucide-react";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
@@ -63,6 +63,9 @@ export function Layout() {
       <aside className="desktopSidebar" aria-label="Primary navigation">
         <div>
           <div className="desktopSidebarBrand nyikaDesktopBrand" aria-label="Nyika AI Explore Zimbabwe">
+            <span className="nyikaLogoMark" aria-hidden="true">
+              <Sparkles size={30} strokeWidth={2.2} />
+            </span>
             <div>
               <strong>Nyika AI</strong>
               <small>Explore Zimbabwe</small>
