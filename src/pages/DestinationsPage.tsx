@@ -447,6 +447,30 @@ export function DestinationsContent() {
     () => Array.from(new Set(visualAIMatches.flatMap((match) => match.matchedTerms))).slice(0, 3),
     [visualAIMatches]
   );
+  const selectedTripDestinations = useMemo(
+    () =>
+      savedTripSlugs
+        .map((slug) => destinations.find((destination) => destination.slug === slug))
+        .filter(Boolean) as Destination[],
+    [savedTripSlugs]
+  );
+  const selectedTripNames = selectedTripDestinations.map((destination) => destination.name);
+  const selectedTripPrompt = selectedTripNames.length > 0
+    ? `Plan ${selectedTripNames.join(", ")} for ${selectedTripNames.length > 1 ? Math.max(4, selectedTripNames.length * 2) : 3} days, 2 people, standard style`
+    : "Plan a Zimbabwe trip for 3 days, 2 people";
+  const selectedTripPlannerState = selectedTripNames.length > 1
+    ? {
+        journeyPrompt: selectedTripPrompt,
+        journeyPlaceSlugs: savedTripSlugs,
+        journeyDays: Math.max(4, selectedTripNames.length * 2),
+        journeyTravelers: 2,
+        journeyStyle: "standard",
+        generateJourneyFromHome: true
+      }
+    : {
+        heroQuery: selectedTripPrompt,
+        generateFromHero: false
+      };
   const provinces = useMemo(() => Array.from(new Set(destinations.map((destination) => destination.region))).sort(), []);
   const activityOptions = useMemo(
     () => [
@@ -511,6 +535,14 @@ export function DestinationsContent() {
   function addToTrip(slug: string) {
     setSavedTripSlugs((current) => {
       const next = current.includes(slug) ? current : [slug, ...current].slice(0, 40);
+      writeStoredList(visualStorageKeys.savedTrips, next);
+      return next;
+    });
+  }
+
+  function removeFromTrip(slug: string) {
+    setSavedTripSlugs((current) => {
+      const next = current.filter((item) => item !== slug);
       writeStoredList(visualStorageKeys.savedTrips, next);
       return next;
     });
@@ -586,6 +618,33 @@ export function DestinationsContent() {
             })}
           </div>
         </div>
+
+        {selectedTripDestinations.length > 0 && (
+          <div className="visualTripTray" aria-label="Places added to trip">
+            <div>
+              <span className="pill">{selectedTripDestinations.length} added</span>
+              <h3>Trip list</h3>
+              <p>These are the places you added from Explore. Open Plan when you are ready to calculate the route and budget.</p>
+            </div>
+            <div className="visualTripTrayPlaces">
+              {selectedTripDestinations.map((destination) => (
+                <span key={destination.slug}>
+                  {destination.name}
+                  <button type="button" onClick={() => removeFromTrip(destination.slug)} aria-label={`Remove ${destination.name} from trip list`}>
+                    <X size={13} />
+                  </button>
+                </span>
+              ))}
+            </div>
+            <Link
+              className="button visualTripPlanButton"
+              to={selectedTripDestinations.length > 1 ? "/planner#journey-builder" : "/planner"}
+              state={selectedTripPlannerState}
+            >
+              Plan selected trip
+            </Link>
+          </div>
+        )}
 
         <div className="mosiMatchesPanel">
           {visualAIInsight.notice && (
@@ -692,7 +751,7 @@ export function DestinationsContent() {
                   <Link to={`/destinations/${destination.slug}`}>View details</Link>
                   <button type="button" onClick={() => addToTrip(destination.slug)}>
                     <Plus size={15} />
-                    {savedTripSlugs.includes(destination.slug) ? "Added" : "Add to trip"}
+                    {savedTripSlugs.includes(destination.slug) ? "In trip list" : "Add to trip"}
                   </button>
                 </div>
               </article>

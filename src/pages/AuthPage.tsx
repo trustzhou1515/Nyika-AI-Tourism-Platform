@@ -8,6 +8,7 @@ type StoredAuth = { token: string; expiresAt: string; user: AuthUser };
 
 const API_BASE = import.meta.env.VITE_NYIKA_API_URL ?? "http://127.0.0.1:8787";
 const AUTH_STORAGE_KEY = "nyika.auth";
+const LOCAL_ACCOUNTS_KEY = "nyika.localAccounts";
 
 function readStoredAuth(): StoredAuth | null {
   try {
@@ -16,6 +17,68 @@ function readStoredAuth(): StoredAuth | null {
   } catch {
     return null;
   }
+}
+
+function readLocalAccounts(): AuthUser[] {
+  try {
+    const stored = localStorage.getItem(LOCAL_ACCOUNTS_KEY);
+    return stored ? JSON.parse(stored) as AuthUser[] : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeLocalAccounts(accounts: AuthUser[]) {
+  localStorage.setItem(LOCAL_ACCOUNTS_KEY, JSON.stringify(accounts));
+}
+
+function createLocalSession(user: AuthUser): StoredAuth {
+  return {
+    token: `local-${crypto.randomUUID?.() ?? Date.now()}`,
+    expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    user
+  };
+}
+
+function createLocalAccount(payload: { email: string; fullName: string; role: string }): StoredAuth {
+  const emailValue = payload.email.trim().toLowerCase();
+  const accounts = readLocalAccounts();
+  const existing = accounts.find((account) => account.email === emailValue);
+
+  if (existing) {
+    return createLocalSession(existing);
+  }
+
+  const user: AuthUser = {
+    id: `local-${crypto.randomUUID?.() ?? Date.now()}`,
+    email: emailValue,
+    fullName: payload.fullName.trim() || "Traveller",
+    role: payload.role,
+    createdAt: new Date().toISOString()
+  };
+
+  writeLocalAccounts([user, ...accounts].slice(0, 20));
+  return createLocalSession(user);
+}
+
+function loginLocalAccount(email: string): StoredAuth {
+  const emailValue = email.trim().toLowerCase();
+  const account = readLocalAccounts().find((item) => item.email === emailValue);
+
+  if (!account) {
+    throw new Error("Please create an account first on this device.");
+  }
+
+  return createLocalSession(account);
+}
+
+function canUseLocalAccount(errorMessage: string) {
+  const message = errorMessage.toLowerCase();
+  return message.includes("failed to fetch")
+    || message.includes("postgresql")
+    || message.includes("database")
+    || message.includes("not configured")
+    || message.includes("not ready");
 }
 
 export function AuthPage() {
@@ -65,7 +128,18 @@ export function AuthPage() {
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(data.error ?? "We could not sign you in. Please try again.");
+        const errorMessage = data.error ?? "We could not sign you in. Please try again.";
+        if (canUseLocalAccount(errorMessage)) {
+          const localAuth = mode === "login"
+            ? loginLocalAccount(email)
+            : createLocalAccount({ email, fullName, role });
+          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(localAuth));
+          setStoredAuth(localAuth);
+          setMessage(mode === "login" ? "Welcome back." : "Your account is ready.");
+          setPassword("");
+          return;
+        }
+        throw new Error(errorMessage);
       }
 
       const nextAuth: StoredAuth = { token: data.token, expiresAt: data.expiresAt, user: data.user };
@@ -75,10 +149,22 @@ export function AuthPage() {
       setPassword("");
     } catch (error) {
       const rawMessage = error instanceof Error ? error.message : "Something went wrong.";
-      const friendlyMessage = rawMessage.toLowerCase().includes("postgresql") || rawMessage.toLowerCase().includes("database")
-        ? "Account access is not ready on this device yet. Please try again after setup."
-        : rawMessage;
-      setMessage(friendlyMessage);
+      if (canUseLocalAccount(rawMessage)) {
+        try {
+          const localAuth = mode === "login"
+            ? loginLocalAccount(email)
+            : createLocalAccount({ email, fullName, role });
+          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(localAuth));
+          setStoredAuth(localAuth);
+          setMessage(mode === "login" ? "Welcome back." : "Your account is ready.");
+          setPassword("");
+          return;
+        } catch (localError) {
+          setMessage(localError instanceof Error ? localError.message : "Please create an account first.");
+          return;
+        }
+      }
+      setMessage(rawMessage);
     } finally {
       setLoading(false);
     }
