@@ -16,6 +16,6 @@ export default function SectionHeader({ title, subtitle }: SectionHeaderProps) {
 
 const styles = StyleSheet.create({
   container: { marginBottom: 18 },
-  title: { color: '#fff', fontSize: 20, fontWeight: '800', marginBottom: 6 },
-  subtitle: { color: '#9d9d9d', fontSize: 14, lineHeight: 20 }
+  title: { color: '#fff7e8', fontSize: 20, fontWeight: '900', marginBottom: 6 },
+  subtitle: { color: 'rgba(237,228,207,.72)', fontSize: 14, lineHeight: 20, fontWeight: '600' }
 });

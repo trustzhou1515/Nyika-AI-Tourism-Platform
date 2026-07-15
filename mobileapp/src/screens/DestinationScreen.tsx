@@ -1,14 +1,10 @@
 import { ScrollView, SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { RootStackParamList } from '../navigation/AppNavigator';
 import { destinations } from '../data/destinations';
-
-type DestinationNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Destination'>;
 
 export default function DestinationScreen() {
   const route = useRoute();
-  const navigation = useNavigation<DestinationNavigationProp>();
+  const navigation = useNavigation<any>();
   const { destinationId } = route.params as { destinationId: string };
   const destination = destinations.find((item) => item.id === destinationId);
 
@@ -84,26 +80,26 @@ export default function DestinationScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#050505' },
-  screen: { padding: 24, paddingBottom: 32, backgroundColor: '#050505' },
+  safeArea: { flex: 1, backgroundColor: '#071b13' },
+  screen: { padding: 24, paddingBottom: 32, backgroundColor: '#071b13' },
   topBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
-  backButton: { paddingVertical: 8, paddingHorizontal: 14, backgroundColor: '#1f1f1f', borderRadius: 16 },
-  backText: { color: '#fff', fontSize: 14, fontWeight: '600' },
-  badge: { color: '#ffb86c', fontWeight: '700', fontSize: 12, textTransform: 'uppercase' },
-  hero: { marginBottom: 24 },
-  title: { color: '#fff', fontSize: 30, fontWeight: '800', marginBottom: 8 },
-  subtitle: { color: '#a8a8a8', fontSize: 16, lineHeight: 24 },
+  backButton: { paddingVertical: 8, paddingHorizontal: 14, backgroundColor: '#0d2b1f', borderRadius: 16, borderWidth: 1, borderColor: 'rgba(245,209,138,.16)' },
+  backText: { color: '#fff7e8', fontSize: 14, fontWeight: '800' },
+  badge: { color: '#f5d18a', fontWeight: '900', fontSize: 12, textTransform: 'uppercase' },
+  hero: { marginBottom: 24, padding: 22, borderRadius: 26, backgroundColor: '#0d2b1f', borderWidth: 1, borderColor: 'rgba(245,209,138,.14)' },
+  title: { color: '#fff7e8', fontSize: 30, fontWeight: '900', marginBottom: 8 },
+  subtitle: { color: 'rgba(237,228,207,.76)', fontSize: 16, lineHeight: 24, fontWeight: '700' },
   section: { marginBottom: 24 },
-  sectionTitle: { color: '#fff', fontSize: 16, fontWeight: '700', marginBottom: 10 },
-  sectionText: { color: '#d3d3d3', fontSize: 15, lineHeight: 22 },
+  sectionTitle: { color: '#f5d18a', fontSize: 16, fontWeight: '900', marginBottom: 10 },
+  sectionText: { color: '#fff7e8', fontSize: 15, lineHeight: 22, fontWeight: '600' },
   tagRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  tag: { paddingVertical: 8, paddingHorizontal: 12, borderRadius: 16, backgroundColor: '#1f1f1f', marginRight: 10, marginBottom: 10 },
-  tagText: { color: '#fff', fontSize: 13 },
-  miniCard: { backgroundColor: '#121212', borderRadius: 22, padding: 18, flex: 1, marginBottom: 14 },
+  tag: { paddingVertical: 8, paddingHorizontal: 12, borderRadius: 16, backgroundColor: '#fffaf0', marginRight: 10, marginBottom: 10 },
+  tagText: { color: '#0b4d31', fontSize: 13, fontWeight: '900' },
+  miniCard: { backgroundColor: '#fffaf0', borderRadius: 22, padding: 18, flex: 1, marginBottom: 14 },
   sideBySide: { flexDirection: 'column', gap: 14, marginBottom: 10 },
-  miniTitle: { color: '#fff', fontSize: 15, fontWeight: '700', marginBottom: 10 },
-  miniText: { color: '#d3d3d3', fontSize: 14, lineHeight: 22, marginBottom: 8 },
-  bulletText: { color: '#d3d3d3', fontSize: 15, lineHeight: 24, marginBottom: 10 },
-  button: { marginTop: 6, paddingVertical: 18, borderRadius: 20, backgroundColor: '#ff8f3f', alignItems: 'center' },
-  buttonText: { color: '#050505', fontSize: 16, fontWeight: '700' }
+  miniTitle: { color: '#171412', fontSize: 15, fontWeight: '900', marginBottom: 10 },
+  miniText: { color: '#40392f', fontSize: 14, lineHeight: 22, marginBottom: 8, fontWeight: '600' },
+  bulletText: { color: '#fff7e8', fontSize: 15, lineHeight: 24, marginBottom: 10, fontWeight: '600' },
+  button: { marginTop: 6, paddingVertical: 18, borderRadius: 20, backgroundColor: '#f5d18a', alignItems: 'center' },
+  buttonText: { color: '#071b13', fontSize: 16, fontWeight: '900' }
 });

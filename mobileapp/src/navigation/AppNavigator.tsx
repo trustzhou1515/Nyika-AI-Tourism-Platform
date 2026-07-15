@@ -24,9 +24,9 @@ function MainTabs() {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarStyle: { backgroundColor: '#050505', borderTopColor: '#1a1a1a' },
-        tabBarActiveTintColor: '#ff8f3f',
-        tabBarInactiveTintColor: '#9d9d9d'
+        tabBarStyle: { backgroundColor: '#071b13', borderTopColor: 'rgba(245,209,138,.16)' },
+        tabBarActiveTintColor: '#f5d18a',
+        tabBarInactiveTintColor: 'rgba(237,228,207,.6)'
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{ tabBarLabel: 'Explore' }} />

@@ -5,8 +5,6 @@ import { destinations } from '../data/destinations';
 
 const budgetStyles = ['Budget', 'Standard', 'Premium'] as const;
 
-type PlannerNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Planner'>;
-
 type BudgetStyle = (typeof budgetStyles)[number];
 
 function formatCurrency(value: number) {
@@ -25,7 +23,7 @@ function buildBudgetBreakdown(amount: number) {
 }
 
 export default function PlannerScreen() {
-  const navigation = useNavigation<PlannerNavigationProp>();
+  const navigation = useNavigation<any>();
   const [destinationId, setDestinationId] = useState(destinations[0].id);
   const [days, setDays] = useState('4');
   const [travelers, setTravelers] = useState('2');
@@ -50,8 +48,9 @@ export default function PlannerScreen() {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.screen} showsVerticalScrollIndicator={false}>
         <View style={styles.hero}>
-          <Text style={styles.heading}>Your premium trip estimate</Text>
-          <Text style={styles.subtitle}>Fill in the key details and get a clear cost breakdown with packing notes.</Text>
+          <Text style={styles.kicker}>Plan AI · Budget</Text>
+          <Text style={styles.heading}>What trip should I calculate?</Text>
+          <Text style={styles.subtitle}>Choose a destination, days and people. Nyika AI estimates the money first, then gives care and packing notes.</Text>
         </View>
 
         <View style={styles.section}>
@@ -127,7 +126,7 @@ export default function PlannerScreen() {
 
         {submitted ? (
           <View style={styles.resultsCard}>
-            <Text style={styles.resultsTitle}>Plan summary</Text>
+            <Text style={styles.resultsTitle}>{selectedDestination.name} · {days || '4'} days</Text>
             <Text style={styles.resultsLine}>Destination: {selectedDestination.name}</Text>
             <Text style={styles.resultsLine}>Days: {days || '4'}</Text>
             <Text style={styles.resultsLine}>Travelers: {travelers || '2'}</Text>
@@ -163,37 +162,38 @@ export default function PlannerScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#050505' },
-  screen: { padding: 24, paddingBottom: 32, backgroundColor: '#050505' },
+  safeArea: { flex: 1, backgroundColor: '#071b13' },
+  screen: { padding: 24, paddingBottom: 32, backgroundColor: '#071b13' },
   hero: { marginBottom: 24 },
-  heading: { color: '#fff', fontSize: 30, fontWeight: '800', marginBottom: 10, maxWidth: 320 },
-  subtitle: { color: '#c8c8c8', fontSize: 15, lineHeight: 24, maxWidth: 360 },
+  kicker: { color: '#f5d18a', fontSize: 12, textTransform: 'uppercase', letterSpacing: 1.4, fontWeight: '900', marginBottom: 10 },
+  heading: { color: '#fff7e8', fontSize: 28, fontWeight: '900', marginBottom: 10, maxWidth: 320 },
+  subtitle: { color: 'rgba(237,228,207,.76)', fontSize: 15, lineHeight: 24, maxWidth: 360, fontWeight: '600' },
   section: { marginBottom: 20 },
-  sectionLabel: { color: '#7f7f7f', fontSize: 12, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 },
+  sectionLabel: { color: '#f5d18a', fontSize: 12, textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12, fontWeight: '900' },
   selectorRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  selectorButton: { paddingVertical: 12, paddingHorizontal: 14, borderRadius: 18, backgroundColor: '#121212', marginRight: 10, marginBottom: 10 },
-  selectorButtonActive: { backgroundColor: '#ff8f3f' },
-  selectorText: { color: '#d0d0d0', fontSize: 14, fontWeight: '600' },
-  selectorTextActive: { color: '#050505' },
+  selectorButton: { paddingVertical: 12, paddingHorizontal: 14, borderRadius: 18, backgroundColor: '#0d2b1f', borderWidth: 1, borderColor: 'rgba(245,209,138,.12)', marginRight: 10, marginBottom: 10 },
+  selectorButtonActive: { backgroundColor: '#f5d18a' },
+  selectorText: { color: '#fff7e8', fontSize: 14, fontWeight: '700' },
+  selectorTextActive: { color: '#071b13' },
   inputGrid: { flexDirection: 'row', gap: 16, marginBottom: 20 },
   inputGroup: { flex: 1, marginBottom: 18 },
-  inputLabel: { color: '#fff', fontSize: 13, marginBottom: 8 },
-  input: { backgroundColor: '#121212', borderRadius: 18, color: '#fff', paddingHorizontal: 16, paddingVertical: 14, fontSize: 15 },
-  styleButton: { paddingVertical: 12, paddingHorizontal: 16, borderRadius: 18, backgroundColor: '#121212', marginRight: 10, marginBottom: 10 },
-  styleButtonActive: { backgroundColor: '#ff8f3f' },
-  styleText: { color: '#d0d0d0', fontSize: 14, fontWeight: '600' },
-  styleTextActive: { color: '#050505' },
-  submitButton: { backgroundColor: '#ff8f3f', borderRadius: 18, paddingVertical: 16, alignItems: 'center', marginBottom: 24 },
-  submitText: { color: '#050505', fontSize: 16, fontWeight: '700' },
-  resultsCard: { backgroundColor: '#121212', borderRadius: 24, padding: 22, marginBottom: 24 },
-  resultsTitle: { color: '#fff', fontSize: 18, fontWeight: '700', marginBottom: 14 },
-  resultsLine: { color: '#d0d0d0', fontSize: 15, lineHeight: 24 },
-  breakdownSection: { marginTop: 18, paddingTop: 16, borderTopWidth: 1, borderTopColor: '#2a2a2a' },
+  inputLabel: { color: '#fff7e8', fontSize: 13, marginBottom: 8, fontWeight: '800' },
+  input: { backgroundColor: '#0d2b1f', borderRadius: 18, color: '#fff7e8', paddingHorizontal: 16, paddingVertical: 14, fontSize: 15, borderWidth: 1, borderColor: 'rgba(245,209,138,.12)' },
+  styleButton: { paddingVertical: 12, paddingHorizontal: 16, borderRadius: 18, backgroundColor: '#0d2b1f', marginRight: 10, marginBottom: 10 },
+  styleButtonActive: { backgroundColor: '#f5d18a' },
+  styleText: { color: '#fff7e8', fontSize: 14, fontWeight: '700' },
+  styleTextActive: { color: '#071b13' },
+  submitButton: { backgroundColor: '#c87236', borderRadius: 18, paddingVertical: 16, alignItems: 'center', marginBottom: 24 },
+  submitText: { color: '#fff7e8', fontSize: 16, fontWeight: '900' },
+  resultsCard: { backgroundColor: '#fffaf0', borderRadius: 24, padding: 22, marginBottom: 24 },
+  resultsTitle: { color: '#171412', fontSize: 18, fontWeight: '900', marginBottom: 14 },
+  resultsLine: { color: '#40392f', fontSize: 15, lineHeight: 24, fontWeight: '600' },
+  breakdownSection: { marginTop: 18, paddingTop: 16, borderTopWidth: 1, borderTopColor: '#e3d8c7' },
   breakdownRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 },
-  breakdownLabel: { color: '#c0c0c0', fontSize: 14 },
-  breakdownValue: { color: '#fff', fontSize: 14, fontWeight: '700' },
-  sectionTitle: { color: '#fff', fontSize: 16, fontWeight: '700', marginBottom: 12 },
-  bulletText: { color: '#d0d0d0', fontSize: 15, lineHeight: 24, marginBottom: 10 },
-  backButton: { paddingVertical: 16, borderRadius: 18, backgroundColor: '#1f1f1f', alignItems: 'center' },
-  backText: { color: '#fff', fontSize: 15, fontWeight: '700' }
+  breakdownLabel: { color: '#6b6258', fontSize: 14, fontWeight: '700' },
+  breakdownValue: { color: '#071b13', fontSize: 14, fontWeight: '900' },
+  sectionTitle: { color: '#171412', fontSize: 16, fontWeight: '900', marginBottom: 12 },
+  bulletText: { color: '#40392f', fontSize: 15, lineHeight: 24, marginBottom: 10, fontWeight: '600' },
+  backButton: { paddingVertical: 16, borderRadius: 18, backgroundColor: '#0d2b1f', alignItems: 'center' },
+  backText: { color: '#fff7e8', fontSize: 15, fontWeight: '900' }
 });

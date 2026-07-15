@@ -3,6 +3,8 @@ export type Destination = {
   name: string;
   region: string;
   category: string;
+  match: string;
+  tags: string[];
   description: string;
   highlights: string[];
   bestFor: string[];
@@ -16,6 +18,8 @@ export const destinations: Destination[] = [
     name: "Victoria Falls",
     region: "Matabeleland North",
     category: "Waterfall & Adventure",
+    match: "98%",
+    tags: ["Waterfalls", "Nature", "Adventure"],
     description: "Zimbabwe’s most iconic natural wonder, perfect for river cruises, rainforest walks and premium sunset experiences.",
     highlights: ["Rainforest viewpoints", "Helicopter flights", "Zambezi sunset cruises"],
     bestFor: ["Couples", "Photography", "Adventure"],
@@ -35,6 +39,8 @@ export const destinations: Destination[] = [
     name: "Hwange National Park",
     region: "Matabeleland North",
     category: "Wildlife Safari",
+    match: "95%",
+    tags: ["Wildlife", "Safari", "Elephants"],
     description: "A world-class safari destination with elephants, game drives and quiet bush lodge nights.",
     highlights: ["Elephant waterholes", "Guided game drives", "Birding hides"],
     bestFor: ["Families", "Wildlife", "Photography"],
@@ -54,6 +60,8 @@ export const destinations: Destination[] = [
     name: "Mana Pools",
     region: "Mashonaland West",
     category: "River Safari",
+    match: "92%",
+    tags: ["Wildlife", "River", "Quiet"],
     description: "Remote Zambezi wilderness offering walking safaris, canoe trips and intimate wildlife moments.",
     highlights: ["Walking safaris", "Canoeing", "Hippo river views"],
     bestFor: ["Adventure", "Wildlife", "Nature lovers"],
