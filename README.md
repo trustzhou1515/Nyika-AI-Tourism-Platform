@@ -29,7 +29,7 @@ Budget totals, group estimates, per-person calculations and itinerary cost break
 
 ## Architecture Summary
 
-The current MVP is a Vite React web application with a lightweight Node.js API. The backend captures consent, plan, memory and operator-lead records in local JSONL storage for demo auditability. Login support is PostgreSQL-ready through `DATABASE_URL` and stores users and sessions in database tables.
+The current MVP is a Vite React web application with a lightweight Node.js API and a companion Expo React Native mobile app. The backend captures consent, plan, memory and operator-lead records in local JSONL storage for demo auditability. Login support is PostgreSQL-ready through `DATABASE_URL` and stores users and sessions in database tables.
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full technical architecture, constraints and deployment notes.
 
@@ -44,10 +44,13 @@ src/data/                Destination, outfit and tourism data
 api/tests/               Evaluator-facing unit and API tests
 docs/                    Architecture and readiness documentation
 web/                     Web lockfile placeholder for future monorepo split
-mobile/                  Mobile lockfile placeholder for future React Native app
+mobile/                  Mobile lockfile placeholder requested for evaluator traceability
+mobileapp/               Expo React Native companion mobile app
+mobileapp/src/screens/   Mobile Home, Planner and Destination screens
+mobileapp/src/data/      Mobile destination seed data and match tags
 ```
 
-The app has not yet been split into separate `/api`, `/web` and `/mobile` packages. The current production code remains in `backend/` and `src/` to avoid breaking the working MVP. The requested `/api/tests` and lockfile evidence folders are included for evaluator traceability.
+The app has not yet been split into separate `/api`, `/web` and `/mobile` packages. The current production web code remains in `backend/` and `src/` to avoid breaking the working MVP. The requested `/api/tests` and lockfile evidence folders are included for evaluator traceability. The active React Native companion app is in `mobileapp/`.
 
 ## Required Services
 
@@ -89,6 +92,31 @@ Web: http://127.0.0.1:5173
 API: http://127.0.0.1:8787
 ```
 
+## React Native Mobile App
+
+The companion mobile app is in `mobileapp/`. It is an Expo React Native application that mirrors the MVP direction: Nyika AI chat-style discovery, destination match cards, destination detail screens and a mobile planner.
+
+```bash
+cd mobileapp
+npm install
+npm run start
+```
+
+Optional targets:
+
+```bash
+npm run android
+npm run ios
+npm run web
+```
+
+Type-check the mobile app:
+
+```bash
+cd mobileapp
+npx tsc --noEmit
+```
+
 ## Build
 
 ```bash
@@ -103,6 +131,13 @@ npm test
 
 The tests cover matching logic, budget logic and backend API request/response validation.
 
+Mobile verification:
+
+```bash
+cd mobileapp
+npx tsc --noEmit
+```
+
 ## Demo Instructions for Judges
 
 1. Open the web app at `http://127.0.0.1:5173`.
@@ -113,6 +148,7 @@ The tests cover matching logic, budget logic and backend API request/response va
 6. Open Map, click a destination pin and use View More.
 7. Open Memories and add a private travel note.
 8. Open Login to see the PostgreSQL-ready account flow. Set `DATABASE_URL` before live login testing.
+9. For the React Native companion app, run `cd mobileapp && npm run start`, then open it with Expo Go or a simulator. Review Home, Destination and Planner screens.
 
 ## Backend Endpoints
 
