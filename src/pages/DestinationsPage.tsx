@@ -1,10 +1,11 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Droplets, Heart, Landmark, MapPin, MessageCircle, Mountain, PawPrint, Plus, Send, ShieldCheck, SlidersHorizontal, Sparkles, Waves, X } from "lucide-react";
 import { destinations } from "../data/destinations";
 import type { Destination } from "../types/tourism";
 import { searchDestinations, type VisualSearchFilters } from "../utils/destinationMatcher";
 import { analyzeNyikaQuery } from "../utils/nyikaIntelligence";
+import { createResultSeed, randomizeStrongResults } from "../utils/resultBatches";
 
 interface ExploreCategory {
   id: string;
@@ -39,7 +40,8 @@ const exploreCategories: ExploreCategory[] = [
       "mbizi-game-park",
       "haka-game-park",
       "mukuvisi-woodlands",
-      "kuimba-shiri-bird-park"
+      "kuimba-shiri-bird-park",
+      "lion-and-cheetah-park"
     ],
     prompt: "I want wildlife places in Zimbabwe for 3 days, 2 people"
   },
@@ -188,6 +190,7 @@ function getVisualWords(destination: Destination) {
     destination.description,
     ...destination.highlights,
     ...destination.bestFor,
+    ...(destination.wildlifeTags ?? []),
     ...(destination.activities?.flatMap((activity) => [activity.title, activity.description, activity.note]) ?? [])
   ].join(" ").toLowerCase();
 
@@ -195,7 +198,7 @@ function getVisualWords(destination: Destination) {
   const rules: Array<[RegExp, string[]]> = [
     [/falls|waterfall|rainforest|zambezi|river|spray|rainbow/, ["water", "waterfall", "rainbow", "river", "mist", "photography"]],
     [/lake|boat|cruise|houseboat|fishing|dam|sunset|marina/, ["lake", "boat", "sunset", "fishing", "relaxing", "water"]],
-    [/wildlife|safari|elephant|rhino|lion|game|bird|animals|park/, ["wildlife", "safari", "animals", "elephants", "game drive", "nature"]],
+    [/wildlife|safari|elephant|rhino|lion|cheetah|cheatah|zebra|giraffe|buffalo|leopard|hyena|wild dog|hippo|crocodile|antelope|game|bird|animals|park/, ["wildlife", "safari", "animals", "elephants", "game drive", "nature"]],
     [/mountain|highlands|mist|viewpoint|hike|valley|forest|cool air/, ["mountains", "mist", "hiking", "forest", "viewpoint", "nature"]],
     [/heritage|culture|ruins|museum|history|monument|stone|architecture|gallery/, ["heritage", "ruins", "culture", "history", "stone", "architecture"]],
     [/rock|cave|granite|balancing|shelter|blue pool|limestone|dome/, ["rocks", "caves", "granite", "blue pool", "photography", "heritage"]],
@@ -229,7 +232,7 @@ function expandVisualQuery(query: string) {
   const tokens = new Set(normalized.split(" ").filter((word) => word.length > 2));
   const synonymRules: Array<[RegExp, string[]]> = [
     [/water|falls|waterfall|rainbow|river|zambezi|swim|pool/, ["water", "waterfall", "rainbow", "river", "mist"]],
-    [/animal|wild|safari|elephant|lion|rhino|game/, ["wildlife", "safari", "animals", "elephants", "game drive"]],
+    [/animal|wild|safari|elephant|lion|rhino|cheetah|cheatah|zebra|giraffe|buffalo|leopard|hyena|wild dog|hippo|crocodile|antelope|game/, ["wildlife", "safari", "animals", "elephants", "game drive"]],
     [/mountain|mist|hike|walk|forest|green|valley/, ["mountains", "mist", "hiking", "forest", "viewpoint"]],
     [/ruin|old|ancient|history|heritage|culture|stone/, ["heritage", "ruins", "culture", "history", "stone"]],
     [/rock|cave|granite|blue/, ["rocks", "caves", "granite", "blue pool"]],
@@ -246,6 +249,26 @@ function expandVisualQuery(query: string) {
   return Array.from(tokens);
 }
 
+const animalIntentRules: Array<{ aliases: string[]; tags: string[]; boost: number }> = [
+  { aliases: ["elephant", "elephants"], tags: ["elephant"], boost: 16 },
+  { aliases: ["lion", "lions"], tags: ["lion"], boost: 16 },
+  { aliases: ["cheetah", "cheetahs", "cheatah", "cheatahs"], tags: ["cheetah", "cheatah"], boost: 18 },
+  { aliases: ["zebra", "zebras"], tags: ["zebra"], boost: 15 },
+  { aliases: ["rhino", "rhinos", "rhinoceros"], tags: ["rhino", "black rhino", "white rhino"], boost: 18 },
+  { aliases: ["bird", "birds", "birding", "birdwatching", "eagle", "fish eagle", "raptors"], tags: ["birdlife", "water birds", "forest birds", "raptors", "eagle", "fish eagle"], boost: 16 },
+  { aliases: ["hippo", "hippos"], tags: ["hippo"], boost: 15 },
+  { aliases: ["crocodile", "crocodiles"], tags: ["crocodile"], boost: 15 },
+  { aliases: ["wild dog", "wild dogs", "painted dog", "painted dogs"], tags: ["wild dog"], boost: 17 },
+  { aliases: ["leopard", "leopards"], tags: ["leopard"], boost: 15 },
+  { aliases: ["buffalo", "buffalos", "buffaloes"], tags: ["buffalo"], boost: 14 },
+  { aliases: ["giraffe", "giraffes"], tags: ["giraffe"], boost: 14 },
+  { aliases: ["antelope", "kudu", "impala", "eland", "sable", "nyala"], tags: ["antelope", "kudu", "impala", "eland", "sable antelope", "nyala"], boost: 13 }
+];
+
+function hasAnimalAlias(query: string, alias: string) {
+  return alias.includes(" ") ? query.includes(alias) : new RegExp(`\\b${alias}\\b`).test(query);
+}
+
 function getVisualIntentBoost(destination: Destination, query: string) {
   const normalized = normalizeVisualQuery(query);
   const profile = [
@@ -260,13 +283,19 @@ function getVisualIntentBoost(destination: Destination, query: string) {
 
   let boost = 0;
 
+  const wildlifeTags = (destination.wildlifeTags ?? []).map((tag) => tag.toLowerCase());
+  for (const rule of animalIntentRules) {
+    if (!rule.aliases.some((alias) => hasAnimalAlias(normalized, alias))) continue;
+    if (rule.tags.some((tag) => wildlifeTags.includes(tag))) boost += rule.boost;
+  }
+
   if (/water|falls|waterfall|rainbow|river|zambezi|swim|pool/.test(normalized)) {
     if (/falls|waterfall/.test(profile)) boost += 8;
     if (/victoria-falls|mtarazi|bridalveil|inyangombe|pungwe/.test(profile)) boost += 5;
   }
 
-  if (/animal|wild|safari|elephant|lion|rhino|game/.test(normalized)) {
-    if (/wildlife|safari|game drive|elephant|rhino|lion/.test(profile)) boost += 8;
+  if (/animal|wild|safari|elephant|lion|rhino|cheetah|cheatah|zebra|giraffe|buffalo|leopard|hyena|wild dog|hippo|crocodile|antelope|game/.test(normalized)) {
+    if (/wildlife|safari|game drive|elephant|rhino|lion|cheetah|cheatah|zebra|giraffe|buffalo|leopard|hyena|wild dog|hippo|crocodile|antelope/.test(profile)) boost += 8;
     if (/hwange|mana-pools|gonarezhou|matobo|imire|mbizi|haka|mukuvisi|kuimba|bird/.test(profile)) boost += 5;
     if (/elephant|safari|game/.test(normalized) && destination.slug === "hwange-national-park") boost += 8;
     if (/river|canoe|wild dog/.test(normalized) && destination.slug === "mana-pools-national-park") boost += 6;
@@ -382,7 +411,15 @@ function getCardCategory(destination: Destination, activeCategory: string) {
   return findCategory("mountains");
 }
 
+type DestinationsLocationState = {
+  visualAIQuery?: string;
+  runVisualAI?: boolean;
+};
+
 export function DestinationsContent() {
+  const location = useLocation();
+  const locationState = location.state as DestinationsLocationState | null;
+  const incomingVisualQuery = locationState?.visualAIQuery?.trim();
   const [activeCategory, setActiveCategory] = useState("all");
   const [visualAIDraft, setVisualAIDraft] = useState("I love wildlife and waterfalls, somewhere beautiful for photos.");
   const [visualAIQuery, setVisualAIQuery] = useState("I love wildlife and waterfalls, somewhere beautiful for photos.");
@@ -390,13 +427,22 @@ export function DestinationsContent() {
   const [favouriteSlugs, setFavouriteSlugs] = useState<string[]>([]);
   const [savedTripSlugs, setSavedTripSlugs] = useState<string[]>([]);
   const [visualFilters, setVisualFilters] = useState<VisualSearchFilters>(defaultVisualFilters);
+  const [visualResultSeed, setVisualResultSeed] = useState(() => createResultSeed());
+  const [visualVisibleBatches, setVisualVisibleBatches] = useState(1);
+  const [visualMoreDismissed, setVisualMoreDismissed] = useState(false);
   const activeCategoryData = exploreCategories.find((category) => category.id === activeCategory) ?? exploreCategories[0];
   const galleryDestinations = getCategoryDestinations(activeCategory);
   const visualAIInsight = useMemo(() => analyzeNyikaQuery(visualAIQuery), [visualAIQuery]);
-  const visualAIMatches = useMemo(
+  const visualAISearchMatches = useMemo(
     () => searchDestinations(visualAIInsight.expandedQuery, destinations, visualFilters),
     [visualAIInsight.expandedQuery, visualFilters]
   );
+  const visualAIRandomizedMatches = useMemo(
+    () => randomizeStrongResults(visualAISearchMatches, visualResultSeed, 4),
+    [visualAISearchMatches, visualResultSeed]
+  );
+  const visualAIMatches = visualAIRandomizedMatches.slice(0, visualVisibleBatches * 4);
+  const hasMoreVisualMatches = visualAIMatches.length < visualAIRandomizedMatches.length;
   const visualConcepts = useMemo(
     () => Array.from(new Set(visualAIMatches.flatMap((match) => match.matchedTerms))).slice(0, 3),
     [visualAIMatches]
@@ -423,11 +469,20 @@ export function DestinationsContent() {
     setSavedTripSlugs(readStoredList(visualStorageKeys.savedTrips));
   }, []);
 
+  useEffect(() => {
+    if (!incomingVisualQuery) return;
+    setVisualAIDraft(incomingVisualQuery);
+    setVisualAIQuery(incomingVisualQuery);
+  }, [incomingVisualQuery]);
+
   function runVisualSearch(query: string) {
     const trimmedQuery = query.trim();
     if (!trimmedQuery) return;
 
     setVisualAIDraft(trimmedQuery);
+    setVisualVisibleBatches(1);
+    setVisualMoreDismissed(false);
+    setVisualResultSeed(createResultSeed());
     setIsAnalyzing(true);
     window.setTimeout(() => {
       setVisualAIQuery(trimmedQuery);
@@ -462,6 +517,9 @@ export function DestinationsContent() {
   }
 
   function updateFilter<Key extends keyof VisualSearchFilters>(key: Key, value: VisualSearchFilters[Key]) {
+    setVisualVisibleBatches(1);
+    setVisualMoreDismissed(false);
+    setVisualResultSeed(createResultSeed());
     setVisualFilters((current) => ({ ...current, [key]: value }));
   }
 
@@ -472,35 +530,34 @@ export function DestinationsContent() {
           <div className="mosiHeroCopy">
             <span className="mosiBadge"><MessageCircle size={14} /> Nyika AI</span>
             <h2>
-              Tell Nyika what you want.
+              Chat with your imagination.
             </h2>
-            <p>Write a sentence. Nyika matches places, activities and moods across Zimbabwe.</p>
+            <p>Tell me the kind of place, feeling or trip you want. I will suggest places that feel right for you.</p>
           </div>
 
           <div className="mosiChatPreview" aria-live="polite">
             <div className="mosiChatBubble assistant">
               <span>Nyika AI</span>
-              <p>Tell me the kind of trip you are imagining. I will find the best places for you.</p>
+              <p>Tell me the kind of place, feeling or trip you want. I will suggest places that feel right for you.</p>
             </div>
             <div className="mosiChatBubble user">
               <span>You</span>
-              <p>{visualAIQuery || "I love wildlife and waterfalls..."}</p>
+              <p>{visualAIQuery || "I love wildlife and waterfalls, but I also want somewhere peaceful..."}</p>
             </div>
             <div className="mosiChatBubble assistant answer">
               <span>Nyika AI</span>
-              <p>{isAnalyzing ? "I am reading your imagination..." : visualAIInsight.notice ? "I picked up a sensitive travel intent." : `I found ${visualAIMatches.length} places that fit that feeling.`}</p>
+              <p>{isAnalyzing ? "I am reading your imagination..." : visualAIInsight.notice ? "I picked up something important in your request." : `I found ${visualAIMatches.length} places that fit your feeling and need.`}</p>
               {visualAIMatches[0] && <img src={visualAIMatches[0].destination.image} alt="" />}
             </div>
           </div>
         </div>
 
-        <form className="visualSearchForm mosiSearchBar mosiChatComposer" role="search" aria-label="Chat with Nyika AI to match destinations" onSubmit={handleVisualSearchSubmit}>
-          <span className="mosiSearchIcon"><MessageCircle size={25} /></span>
+        <form className="visualSearchForm mosiSearchBar mosiChatComposer mosiChatComposerPlain" role="search" aria-label="Chat with Nyika AI to match destinations" onSubmit={handleVisualSearchSubmit}>
           <textarea
             rows={2}
             value={visualAIDraft}
             onChange={(event) => setVisualAIDraft(event.target.value)}
-            placeholder="I love wildlife and waterfalls, somewhere peaceful with beautiful views..."
+            placeholder="I am imagining wildlife, waterfalls, quiet views and beautiful photo moments..."
             aria-label="Tell Nyika AI what kind of place you imagine"
           />
           {visualAIDraft && (
@@ -548,8 +605,8 @@ export function DestinationsContent() {
 
           <div className="mosiMatchesHeader">
             <div>
-              <h3><Sparkles size={21} /> Top matches for you</h3>
-              <p>Based on {visualConcepts.join(", ") || visualAIQuery || "your description"}</p>
+              <h3><Sparkles size={21} /> I found these places for you</h3>
+              <p>They fit {visualConcepts.join(", ") || visualAIQuery || "the feeling you described"}</p>
             </div>
             <details className="visualFilterMenu">
               <summary><SlidersHorizontal size={16} /> Filters <ChevronDown size={15} /></summary>
@@ -641,6 +698,18 @@ export function DestinationsContent() {
               </article>
             ))}
           </div>
+
+          {hasMoreVisualMatches && !visualMoreDismissed && visualAIRandomizedMatches.length > 4 && (
+            <div className="nyikaMorePrompt visualMorePrompt">
+              <span>Do you want more places?</span>
+              <button type="button" onClick={() => setVisualVisibleBatches((current) => current + 1)}>
+                Yes
+              </button>
+              <button type="button" onClick={() => setVisualMoreDismissed(true)}>
+                No
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

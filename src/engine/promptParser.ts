@@ -306,9 +306,15 @@ const activityIntents: ActivityIntent[] = [
   },
   {
     label: "game drive",
-    aliases: ["game drive", "game drives", "safari drive", "wildlife drive", "see animals", "see elephants", "elephants", "lion viewing", "big five", "animal viewing"],
+    aliases: ["game drive", "game drives", "safari drive", "wildlife drive", "see animals", "see elephants", "elephants", "lion viewing", "big five", "animal viewing", "zebras", "zebra", "giraffes", "giraffe", "buffalo", "leopard", "leopards"],
     destination: "Hwange National Park",
     interests: ["wildlife", "safari", "game drives", "photography"]
+  },
+  {
+    label: "lion and cheetah viewing",
+    aliases: ["lion and cheetah park", "cheetah", "cheetahs", "cheatah", "cheatahs", "big cats", "see lions", "see cheetahs"],
+    destination: "Lion & Cheetah Park",
+    interests: ["wildlife", "big cats", "family", "short trip"]
   },
   {
     label: "walking safari",

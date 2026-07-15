@@ -176,7 +176,7 @@ function validateAuthInput(body, mode) {
   const email = normalizeEmail(body.email);
   const password = String(body.password ?? "");
   const fullName = String(body.fullName ?? body.name ?? "").trim().slice(0, 120);
-  const role = ["traveller", "operator", "admin"].includes(body.role) ? body.role : "traveller";
+  const role = ["traveller", "operator"].includes(body.role) ? body.role : "traveller";
 
   if (!/^\S+@\S+\.\S+$/.test(email)) {
     throw Object.assign(new Error("Please enter a valid email address."), { status: 400 });

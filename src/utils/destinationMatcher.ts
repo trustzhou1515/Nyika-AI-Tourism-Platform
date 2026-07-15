@@ -74,7 +74,7 @@ const conceptLabels: Record<SearchConcept, string> = {
 
 const conceptMatchers: Record<SearchConcept, RegExp> = {
   adventure: /adventure|zipline|skywalk|bungee|rafting|gorge|hiking|trail|dive|diving|remote|rugged/,
-  birding: /bird|birding|birdlife|birdwatching/,
+  birding: /bird|birding|birdlife|birdwatching|eagle|falcon|owl|vulture|hornbill|kingfisher|raptor|turaco|water birds|forest birds/,
   budget: /affordable|budget|city|day trip|short|accessible/,
   cave: /cave|caves|underground|blue pool|limestone|granite|rock shelter/,
   easy: /easy|accessible|family|short|city|day trip|picnic/,
@@ -90,7 +90,7 @@ const conceptMatchers: Record<SearchConcept, RegExp> = {
   premium: /premium|luxury|lodge|exclusive|helicopter|flight|houseboat/,
   romantic: /romantic|couple|honeymoon|sunset|quiet|lake|lodge/,
   ruins: /ruins|ancient|history|heritage|culture|monument|museum|stone|gallery|art/,
-  safari: /safari|wildlife|elephant|rhino|lion|game drive|animals|zebra|giraffe|buffalo/,
+  safari: /safari|wildlife|elephant|rhino|lion|cheetah|cheatah|game drive|animals|zebra|giraffe|buffalo|leopard|hyena|wild dog|hippo|crocodile|antelope|kudu|impala|eland|sable|nyala|warthog|baboon|monkey/,
   sunset: /sunset|evening|dusk|golden|cruise/,
   waterfall: /waterfall|falls|cascade|rainforest|spray|rainbow/,
   booking: /booking|book|reservation|accommodation|stay|hotel|lodge|airport|transfer|taxi|guide/,
@@ -99,6 +99,53 @@ const conceptMatchers: Record<SearchConcept, RegExp> = {
   food: /food|dinner|lunch|restaurant|traditional|boma|meal|cuisine|drum show/,
   transport: /transport|taxi|transfer|airport|drive|road|pickup|shuttle|car hire|arrival/
 };
+
+type AnimalIntentRule = {
+  label: string;
+  aliases: string[];
+  tags: string[];
+  points: number;
+};
+
+const animalIntentRules: AnimalIntentRule[] = [
+  { label: "Elephants", aliases: ["elephant", "elephants"], tags: ["elephant"], points: 34 },
+  { label: "Lions", aliases: ["lion", "lions"], tags: ["lion"], points: 34 },
+  { label: "Cheetahs", aliases: ["cheetah", "cheetahs", "cheatah", "cheatahs"], tags: ["cheetah", "cheatah"], points: 36 },
+  { label: "Zebras", aliases: ["zebra", "zebras"], tags: ["zebra"], points: 32 },
+  { label: "Rhinos", aliases: ["rhino", "rhinos", "rhinoceros"], tags: ["rhino", "black rhino", "white rhino"], points: 36 },
+  { label: "Birdlife", aliases: ["bird", "birds", "birding", "birdwatching", "birdlife", "raptors", "eagle", "fish eagle", "hornbill", "kingfisher"], tags: ["birdlife", "water birds", "forest birds", "raptors", "eagle", "fish eagle", "black eagle", "kingfisher", "swynnertons robin", "turaco"], points: 34 },
+  { label: "Hippos", aliases: ["hippo", "hippos"], tags: ["hippo"], points: 32 },
+  { label: "Crocodiles", aliases: ["crocodile", "crocodiles"], tags: ["crocodile"], points: 32 },
+  { label: "Wild dogs", aliases: ["wild dog", "wild dogs", "painted dog", "painted dogs"], tags: ["wild dog"], points: 34 },
+  { label: "Leopards", aliases: ["leopard", "leopards"], tags: ["leopard"], points: 32 },
+  { label: "Buffalo", aliases: ["buffalo", "buffalos", "buffaloes"], tags: ["buffalo"], points: 30 },
+  { label: "Giraffes", aliases: ["giraffe", "giraffes"], tags: ["giraffe"], points: 30 },
+  { label: "Antelope", aliases: ["antelope", "kudu", "impala", "eland", "sable", "nyala", "waterbuck", "bushbuck"], tags: ["antelope", "kudu", "impala", "eland", "sable antelope", "nyala", "waterbuck", "bushbuck"], points: 28 },
+  { label: "Fishing", aliases: ["fish", "fishing", "tiger fish", "tiger fishing", "angling"], tags: ["fish", "tiger fish", "trout"], points: 34 }
+];
+
+function includesQueryAlias(parsed: ParsedVisualSearch, alias: string) {
+  const normalizedAlias = alias.toLowerCase();
+  return normalizedAlias.includes(" ") ? parsed.normalized.includes(normalizedAlias) : parsed.tokens.includes(normalizedAlias);
+}
+
+function addAnimalMatches(destination: Destination, parsed: ParsedVisualSearch, matches: Map<string, { label: string; categories: Set<string>; points: number }>) {
+  const destinationTags = (destination.wildlifeTags ?? []).map((tag) => tag.toLowerCase());
+  if (destinationTags.length === 0) return 0;
+
+  let bonus = 0;
+  for (const rule of animalIntentRules) {
+    if (!rule.aliases.some((alias) => includesQueryAlias(parsed, alias))) continue;
+
+    const hasTag = rule.tags.some((tag) => destinationTags.includes(tag));
+    if (!hasTag) continue;
+
+    addMatch(matches, rule.label, rule.label === "Fishing" ? "Activity" : "Wildlife", rule.points);
+    bonus += rule.points;
+  }
+
+  return bonus;
+}
 
 function profileText(destination: Destination) {
   return [
@@ -111,6 +158,7 @@ function profileText(destination: Destination) {
     destination.nearestArrivalHub,
     ...destination.highlights,
     ...destination.bestFor,
+    ...(destination.wildlifeTags ?? []),
     ...(destination.activities?.flatMap((activity) => [activity.title, activity.description, activity.note]) ?? [])
   ].join(" ").toLowerCase();
 }
@@ -222,6 +270,8 @@ function buildResult(destination: Destination, parsed: ParsedVisualSearch, hasSp
     }
   }
 
+  score += addAnimalMatches(destination, parsed, matches);
+
   for (const concept of parsed.concepts) {
     const label = conceptLabels[concept];
     const matcher = conceptMatchers[concept];
@@ -261,6 +311,28 @@ function buildResult(destination: Destination, parsed: ParsedVisualSearch, hasSp
     if (text.includes(token)) {
       addMatch(matches, token, "Keyword", 4);
       score += 4;
+    }
+  }
+
+  const wantsFishing = /fishing|fish|angling|anglers/.test(parsed.normalized);
+  if (wantsFishing) {
+    const hasFishing = /fishing|fish|angling/.test(text);
+    const hasLakeOrRiver = /lake|dam|river|zambezi|kariba|chivero|mutirikwi|binga|shore|marina|houseboat|waterfront/.test(text);
+    const isWaterfallLed = /waterfall|falls|cascade|rainforest|spray/.test(text);
+
+    if (hasFishing) {
+      addMatch(matches, "Fishing", "Activity", 28);
+      score += 34;
+    }
+
+    if (hasLakeOrRiver) {
+      addMatch(matches, /lake|dam|kariba|chivero|mutirikwi|binga/.test(text) ? "Lake" : "River", "Landscape", 22);
+      score += 24;
+    }
+
+    if (isWaterfallLed && !hasFishing) {
+      score -= 32;
+      matches.delete("waterfall");
     }
   }
 

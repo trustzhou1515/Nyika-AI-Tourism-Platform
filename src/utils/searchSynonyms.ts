@@ -64,7 +64,7 @@ export const stopWords = new Set([
 
 export const searchSynonyms: Record<SearchConcept, string[]> = {
   waterfall: ["waterfall", "waterfalls", "falls", "fall", "cascade", "cascades", "spray", "river falls", "big water", "thundering water"],
-  safari: ["safari", "wildlife", "animal", "animals", "game", "game drive", "elephant", "elephants", "lion", "lions", "rhino", "rhinos", "zebra", "giraffe", "buffalo", "leopard", "wild dog", "bush", "big five", "game park", "national park", "nature reserve"],
+  safari: ["safari", "wildlife", "animal", "animals", "game", "game drive", "elephant", "elephants", "lion", "lions", "rhino", "rhinos", "zebra", "zebras", "giraffe", "giraffes", "buffalo", "buffalos", "leopard", "leopards", "cheetah", "cheetahs", "cheatah", "cheatahs", "hyena", "hyenas", "wild dog", "wild dogs", "hippo", "hippos", "crocodile", "crocodiles", "antelope", "kudu", "impala", "eland", "sable", "nyala", "warthog", "baboon", "monkey", "bush", "big five", "game park", "national park", "nature reserve", "lion and cheetah park"],
   mountain: ["mountain", "mountains", "highland", "highlands", "hill", "hills", "peak", "peaks", "valley", "viewpoint", "cool weather", "fresh air", "misty mountain", "green hills", "forest walk"],
   peaceful: ["peaceful", "quiet", "calm", "relax", "relaxing", "serene", "slow", "rest", "wellness", "private", "not crowded", "less people", "escape", "retreat", "refresh"],
   romantic: ["romantic", "couple", "couples", "honeymoon", "love", "anniversary"],
@@ -82,7 +82,7 @@ export const searchSynonyms: Record<SearchConcept, string[]> = {
   premium: ["premium", "luxury", "high end", "exclusive", "comfortable"],
   easy: ["easy", "accessible", "short", "family friendly", "children", "kids", "near town", "near harare", "simple", "safe walk"],
   hard: ["hard", "difficult", "rugged", "remote", "challenging", "multi day", "wilderness", "trek", "expedition"],
-  birding: ["bird", "birds", "birding", "birdwatching", "birdlife", "swynnertons robin", "eagle"],
+  birding: ["bird", "birds", "birding", "birdwatching", "birdlife", "swynnertons robin", "swynnerton robin", "eagle", "fish eagle", "black eagle", "falcon", "owl", "vulture", "hornbill", "kingfisher", "bee eater", "stork", "heron", "crane", "turaco", "raptor", "raptors", "water birds", "forest birds"],
   conservation: ["conservation", "protect animals", "animal rescue", "sanctuary", "rhino tracking", "anti poaching", "wildlife protection", "ethical safari", "photo safari", "photographic safari"],
   food: ["food", "dinner", "lunch", "breakfast", "restaurant", "eat", "eating", "traditional food", "boma", "drum show", "local meal"],
   booking: ["booking", "book", "reservation", "reserve", "pay", "payment", "accommodation", "sleep", "stay", "hotel", "lodge", "room"],

@@ -17,8 +17,19 @@ export interface NyikaInsight {
 }
 
 const tagRules: Array<{ tag: string; pattern: RegExp; expansion: string }> = [
-  { tag: "Wildlife", pattern: /wildlife|animal|animals|elephant|lion|rhino|buffalo|leopard|zebra|giraffe|safari|game drive|game park|national park/, expansion: "wildlife safari game drive elephant rhino national park conservation" },
-  { tag: "Water", pattern: /water|waterfall|falls|river|zambezi|lake|dam|boat|cruise|swim|swimming|pool|canoe|fishing|beach/, expansion: "waterfall lake river boat cruise swimming fishing" },
+  { tag: "Elephants", pattern: /elephant|elephants/, expansion: "elephant elephants hwange gonarezhou mana pools imire victoria falls lake kariba safari conservation" },
+  { tag: "Lions", pattern: /lion|lions|big cat|big cats/, expansion: "lion lions hwange gonarezhou lion and cheetah park safari big cats wildlife" },
+  { tag: "Cheetahs", pattern: /cheetah|cheetahs|cheatah|cheatahs/, expansion: "cheetah cheetahs cheatah lion and cheetah park hwange gonarezhou big cats wildlife" },
+  { tag: "Zebras", pattern: /zebra|zebras/, expansion: "zebra zebras hwange gonarezhou matobo mukuvisi haka mbizi imire wildlife" },
+  { tag: "Rhinos", pattern: /rhino|rhinos|rhinoceros/, expansion: "rhino rhinos matobo imire matusadona conservation tracking wildlife" },
+  { tag: "Birds", pattern: /bird|birds|birding|birdwatching|birdlife|eagle|fish eagle|hornbill|kingfisher|raptor|owl|vulture|falcon/, expansion: "birdlife birding kuimba shiri haka mukuvisi vumba lake chivero mana pools hwange fish eagle raptors" },
+  { tag: "Water wildlife", pattern: /hippo|hippos|crocodile|crocodiles/, expansion: "hippo crocodile mana pools lake kariba victoria falls lake chivero binga zambezi wildlife safety" },
+  { tag: "Antelope", pattern: /antelope|kudu|impala|eland|sable|nyala|waterbuck|bushbuck/, expansion: "antelope kudu impala eland sable nyala hwange gonarezhou mana pools matobo mbizi haka mukuvisi" },
+  { tag: "Wildlife", pattern: /wildlife|animal|animals|elephant|lion|rhino|buffalo|leopard|cheetah|cheatah|zebra|giraffe|hyena|wild dog|hippo|crocodile|antelope|safari|game drive|game park|national park/, expansion: "wildlife safari game drive elephant rhino national park conservation" },
+  { tag: "Fishing", pattern: /fishing|fish|angling|anglers/, expansion: "fishing lake dam river boat houseboat shore marina lake kariba lake chivero lake mutirikwi binga" },
+  { tag: "Lakes & rivers", pattern: /lake|dam|river|zambezi|boat|cruise|houseboat|shore|marina|waterfront|canoe/, expansion: "lake dam river boat cruise houseboat canoe waterfront" },
+  { tag: "Waterfalls", pattern: /waterfall|waterfalls|falls|cascade|rainforest|spray|rainbow/, expansion: "waterfall falls cascade rainforest mist spray rainbow" },
+  { tag: "Water", pattern: /water|swim|swimming|pool|beach/, expansion: "lake river swimming pool water activity" },
   { tag: "Mountains", pattern: /mountain|highland|hills|peak|hike|hiking|walk|walking|forest|cool weather|mist|valley|viewpoint/, expansion: "mountain highlands hiking forest viewpoint cool weather" },
   { tag: "Heritage", pattern: /history|historic|heritage|culture|ruins|ancient|stone|monument|museum|art|gallery|traditional/, expansion: "heritage culture ruins ancient stone museum art" },
   { tag: "Rocks & caves", pattern: /rock|rocks|cave|caves|granite|balancing|blue pool|limestone|underground|shelter/, expansion: "rocks caves granite balancing blue pool heritage" },

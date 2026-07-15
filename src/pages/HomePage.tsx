@@ -140,6 +140,45 @@ function getMixedFeaturedActivities(limit: number) {
   return mixedActivities;
 }
 
+function getHomeMatchLabel(destination: HomeDestination, query: string, matchedTerms: string[]) {
+  const normalizedQuery = query.toLowerCase();
+  const text = [
+    destination.name,
+    destination.region,
+    destination.category,
+    destination.description,
+    destination.mapNote,
+    ...destination.highlights,
+    ...destination.bestFor,
+    ...(destination.wildlifeTags ?? []),
+    ...(destination.activities?.flatMap((activity) => [activity.title, activity.description, activity.note]) ?? [])
+  ].join(" ").toLowerCase();
+
+  const wantsFishing = /fishing|fish|angling|anglers/.test(normalizedQuery);
+  if (wantsFishing) {
+    const labels = [
+      /fishing|fish|angling/.test(text) ? "Fishing" : "",
+      /lake|dam|kariba|chivero|mutirikwi|binga|shore|marina|houseboat|waterfront/.test(text) ? "Lake" : "",
+      /river|zambezi|canoe/.test(text) ? "River" : ""
+    ].filter(Boolean);
+
+    return Array.from(new Set(labels)).slice(0, 2).join(" / ") || destination.region;
+  }
+
+  const labels = [
+    /waterfall|falls|cascade|rainforest|spray/.test(text) ? "Waterfall" : "",
+    /lake|dam|houseboat|shore|marina|waterfront/.test(text) ? "Lake" : "",
+    /river|zambezi|canoe/.test(text) ? "River" : "",
+    /safari|wildlife|elephant|rhino|lion|cheetah|cheatah|zebra|giraffe|buffalo|leopard|hyena|wild dog|hippo|crocodile|antelope|game drive|animals/.test(text) ? "Wildlife" : "",
+    /mountain|highland|hills|peak|viewpoint|forest/.test(text) ? "Mountains" : "",
+    /ruins|heritage|culture|museum|monument|stone|gallery|art/.test(text) ? "Heritage" : "",
+    /cave|caves|granite|balancing|rock shelter/.test(text) ? "Rocks & Caves" : ""
+  ].filter(Boolean);
+
+  const truthfulLabels = Array.from(new Set(labels));
+  return truthfulLabels.slice(0, 2).join(" / ") || matchedTerms.slice(0, 2).join(" / ") || destination.region;
+}
+
 function normalizePlanText(value: string) {
   return value
     .toLowerCase()
@@ -221,7 +260,7 @@ function buildPlanConfirmation(prompt: string): PlanConfirmation {
 
 export function HomePage() {
   const navigate = useNavigate();
-  const [nyikaDraft, setNyikaDraft] = useState("I love wildlife and waterfalls, but I also want a quiet place for photos.");
+  const [nyikaDraft, setNyikaDraft] = useState("");
   const [nyikaQuery, setNyikaQuery] = useState("");
   const [planDraft, setPlanDraft] = useState("Plan Victoria Falls for 3 days, 2 people, standard style");
   const [planConfirmation, setPlanConfirmation] = useState<PlanConfirmation | null>(null);
@@ -232,18 +271,19 @@ export function HomePage() {
     () => (nyikaQuery ? searchDestinations(nyikaInsight.expandedQuery, destinations, homeDefaultVisualFilters).slice(0, 4) : []),
     [nyikaInsight.expandedQuery, nyikaQuery]
   );
+  const hasNyikaConversation = nyikaQuery.trim().length > 0;
 
   function handleNyikaSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const trimmedQuery = nyikaDraft.trim();
     if (!trimmedQuery) return;
-    setNyikaDraft(trimmedQuery);
     setNyikaQuery(trimmedQuery);
+    setNyikaDraft("");
   }
 
   function usePopularIdea(idea: string) {
-    setNyikaDraft(idea);
     setNyikaQuery(idea);
+    setNyikaDraft("");
   }
 
   function handlePlanSearch(event: FormEvent<HTMLFormElement>) {
@@ -280,110 +320,6 @@ export function HomePage() {
         <Hero />
       </div>
 
-      <section className="section homeNyikaLiveShell">
-        <div className="container">
-          <section className="homeNyikaAISection homeNyikaLiveSection" aria-label="Chat with Nyika AI">
-            <div className="homeNyikaLiveHeader">
-              <span className="pill">Nyika AI · Discover</span>
-              <h2>Tell me the kind of trip you are imagining. I will find the best places for you.</h2>
-            </div>
-
-            <div className="homeNyikaChatCard" aria-live="polite">
-              <div className="homeNyikaBubble assistant">
-                <span>Nyika AI</span>
-                <p>Tell me the kind of trip you are imagining. I will find the best places for you.</p>
-              </div>
-              {nyikaQuery && (
-                <>
-                  <div className="homeNyikaBubble user">
-                    <span>You</span>
-                    <p>{nyikaQuery}</p>
-                  </div>
-                  <div className="homeNyikaBubble assistant answer heroNyikaAnswer">
-                    <span>Nyika AI</span>
-                    <p>{nyikaInsight.notice ? "I picked up a sensitive travel intent." : `I found ${nyikaMatches.length} places that fit that feeling.`}</p>
-                    {nyikaMatches[0] && <img src={nyikaMatches[0].destination.image} alt="" />}
-
-                    {nyikaInsight.notice && (
-                      <div className={`nyikaGuidanceBox ${nyikaInsight.notice.tone}`}>
-                        <ShieldCheck size={20} />
-                        <div>
-                          <strong>{nyikaInsight.notice.title}</strong>
-                          <p>{nyikaInsight.notice.message}</p>
-                          <div>
-                            {nyikaInsight.notice.alternatives.map((alternative) => (
-                              <span key={alternative}>{alternative}</span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {!nyikaInsight.notice && nyikaInsight.detectedTags.length > 0 && (
-                      <div className="nyikaDetectedTags" aria-label="Nyika AI detected interests">
-                        {nyikaInsight.detectedTags.slice(0, 5).map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="heroChatPlaces" aria-label="Nyika AI matched places">
-                      {nyikaMatches.map(({ destination, percentage, matchedTerms }) => (
-                        <Link className="heroChatPlaceCard" to={`/destinations/${destination.slug}`} key={destination.slug}>
-                          <img src={destination.image} alt="" />
-                          <div>
-                            <strong>{destination.name}</strong>
-                            <span>{percentage}% match</span>
-                            <small>{matchedTerms.slice(0, 2).join(" / ") || destination.region}</small>
-                          </div>
-                          <MapPin size={16} />
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </>
-              )}
-              {!nyikaQuery && (
-                <div className="homeNyikaBubble assistant quiet">
-                  <span>Nyika AI</span>
-                  <p>Use a full sentence. I will match places, activities and moods.</p>
-                </div>
-              )}
-            </div>
-
-            <div className="homeNyikaIdeas" aria-label="Popular Nyika AI ideas">
-              <span>Popular ideas</span>
-              <div>
-                {nyikaPopularIdeas.map((idea) => (
-                  <button type="button" key={idea} onClick={() => usePopularIdea(idea)}>
-                    {idea}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <form className="homeNyikaComposer" role="search" aria-label="Tell Nyika AI the Zimbabwe trip you imagine" onSubmit={handleNyikaSearch}>
-              <span className="homeNyikaComposerIcon"><MessageCircle size={42} /></span>
-              <textarea
-                rows={1}
-                value={nyikaDraft}
-                onChange={(event) => setNyikaDraft(event.target.value)}
-                placeholder="I love wildlife and waterfalls, but I also want a quiet place for photos."
-                aria-label="Tell Nyika AI what kind of Zimbabwe trip you imagine"
-              />
-              {nyikaDraft && (
-                <button className="homeNyikaClear" type="button" onClick={() => setNyikaDraft("")} aria-label="Clear Nyika AI message">
-                  <X size={38} />
-                </button>
-              )}
-              <button className="homeNyikaSend" type="submit">
-                <Send size={35} />
-                Send
-              </button>
-            </form>
-          </section>
-        </div>
-      </section>
 
       <section className="section homePremiumIntro">
         <div className="container">

@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { LockKeyhole, LogOut, ShieldCheck, UserRound } from "lucide-react";
+import { LogOut, ShieldCheck } from "lucide-react";
 
 type AuthMode = "login" | "register";
 type AuthUser = { id: string; email: string; fullName: string; role: string; createdAt: string };
@@ -54,24 +54,31 @@ export function AuthPage() {
     setMessage("");
 
     try {
+      const payload = mode === "login"
+        ? { email, password }
+        : { email, password, fullName, role };
       const response = await fetch(`${API_BASE}/api/auth/${mode === "login" ? "login" : "register"}`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-Nyika-Client": "web-mvp" },
-        body: JSON.stringify({ email, password, fullName, role })
+        body: JSON.stringify(payload)
       });
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(data.error ?? "Login failed");
+        throw new Error(data.error ?? "We could not sign you in. Please try again.");
       }
 
       const nextAuth: StoredAuth = { token: data.token, expiresAt: data.expiresAt, user: data.user };
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(nextAuth));
       setStoredAuth(nextAuth);
-      setMessage("You are signed in.");
+      setMessage("Welcome back. Your account is ready.");
       setPassword("");
     } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Something went wrong.");
+      const rawMessage = error instanceof Error ? error.message : "Something went wrong.";
+      const friendlyMessage = rawMessage.toLowerCase().includes("postgresql") || rawMessage.toLowerCase().includes("database")
+        ? "Account access is not ready on this device yet. Please try again after setup."
+        : rawMessage;
+      setMessage(friendlyMessage);
     } finally {
       setLoading(false);
     }
@@ -95,13 +102,13 @@ export function AuthPage() {
     <section className="section pageTop authPage">
       <div className="container authShell">
         <div className="authIntro">
-          <span className="pill">Postgres login</span>
-          <h1>Secure accounts for Nyika AI.</h1>
-          <p>Login now has a real backend path: users and sessions are stored in PostgreSQL when the backend is connected with <code>DATABASE_URL</code>.</p>
-          <div className="authTrustGrid">
-            <span><ShieldCheck size={18} /> Passwords are hashed</span>
-            <span><LockKeyhole size={18} /> Sessions use secure tokens</span>
-            <span><UserRound size={18} /> Roles support travellers, operators and admins</span>
+          <span className="pill">Nyika account</span>
+          <h1>Welcome back.</h1>
+          <p>Sign in to save trips, memories and booking requests in one place.</p>
+          <div className="authValueList" aria-label="Account benefits">
+            <span><ShieldCheck size={18} /> Private memories</span>
+            <span><ShieldCheck size={18} /> Saved plans</span>
+            <span><ShieldCheck size={18} /> Booking follow-ups</span>
           </div>
         </div>
 
@@ -109,18 +116,19 @@ export function AuthPage() {
           {storedAuth ? (
             <div className="authSignedIn">
               <span className="pill">Signed in</span>
-              <h2>{storedAuth.user.fullName || storedAuth.user.email}</h2>
+              <h2>{storedAuth.user.fullName || "Traveller"}</h2>
               <p>{storedAuth.user.email}</p>
               <p className="authRole">{storedAuth.user.role}</p>
               <div className="authActions">
                 <Link className="button" to="/saved-trips">Open memories</Link>
+                <Link className="button secondary" to="/planner">Plan a trip</Link>
                 <button className="button secondary" type="button" onClick={logout}><LogOut size={18} /> Log out</button>
               </div>
             </div>
           ) : (
             <>
               <div className="authModeTabs">
-                <button className={mode === "login" ? "active" : ""} type="button" onClick={() => setMode("login")}>Login</button>
+                <button className={mode === "login" ? "active" : ""} type="button" onClick={() => setMode("login")}>Sign in</button>
                 <button className={mode === "register" ? "active" : ""} type="button" onClick={() => setMode("register")}>Create account</button>
               </div>
 
@@ -148,13 +156,12 @@ export function AuthPage() {
                     <select value={role} onChange={(event) => setRole(event.target.value)}>
                       <option value="traveller">Traveller</option>
                       <option value="operator">Tourism operator</option>
-                      <option value="admin">Admin</option>
                     </select>
                   </label>
                 )}
 
                 <button className="button" type="submit" disabled={loading}>
-                  {loading ? "Please wait..." : mode === "login" ? "Login" : "Create account"}
+                  {loading ? "Please wait..." : mode === "login" ? "Sign in" : "Create account"}
                 </button>
               </form>
             </>

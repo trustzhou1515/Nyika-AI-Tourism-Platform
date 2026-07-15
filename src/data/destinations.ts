@@ -7,7 +7,7 @@ export const destinations: Destination[] = [
     name: "Victoria Falls",
     region: "Matabeleland North",
     category: "Wonder",
-    image: "/images/downloads/victoria-falls-waterfall.jpeg",
+    image: "/images/explore-victoria-falls-rainbow.png",
     description: "Zimbabwe's iconic natural wonder with rainforest walks, adventure, culture and sunset experiences.",
     coordinates: { lat: -17.9243, lng: 25.856 },
     mapNote: "Use Victoria Falls town as the base for rainforest walks, airport pickup, river activities and dinner movement.",
@@ -15,6 +15,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Victoria Falls Airport / Victoria Falls town",
     highlights: ["Rainforest walk", "Zambezi sunset", "Craft markets", "Adventure activities"],
     bestFor: ["Photography", "Adventure", "Culture", "Honeymoon"],
+    wildlifeTags: ["elephant", "hippo", "crocodile", "baboon", "monkey", "birdlife", "fish eagle", "zambezi wildlife"],
     careTips: [
       "Stay on marked rainforest and gorge paths, especially near wet viewpoints.",
       "Use licensed activity operators for rafting, gorge, helicopter or bridge activities.",
@@ -82,6 +83,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Victoria Falls Airport, Bulawayo, or Hwange Main Camp area",
     highlights: ["Elephants", "Game drives", "Safari lodges", "Birding"],
     bestFor: ["Wildlife", "Families", "Photography"],
+    wildlifeTags: ["elephant", "lion", "leopard", "cheetah", "zebra", "giraffe", "buffalo", "hyena", "wild dog", "sable antelope", "kudu", "impala", "warthog", "ostrich", "secretary bird", "birdlife"],
     careTips: [
       "Do not leave vehicles or walk near wildlife unless a licensed guide says it is safe.",
       "Confirm gate, camp and lodge distances because park transfers can be long.",
@@ -143,6 +145,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Karoi / Mana Pools operator pickup",
     highlights: ["Walking safaris", "Canoeing", "Zambezi River", "Wild dogs"],
     bestFor: ["Wildlife", "Safari", "Photography", "Adventure"],
+    wildlifeTags: ["elephant", "hippo", "crocodile", "wild dog", "lion", "leopard", "buffalo", "kudu", "impala", "eland", "waterbuck", "fish eagle", "birdlife"],
     careTips: [
       "Use licensed guides for walking safaris and river activities.",
       "Confirm access, park conditions and operator pickup before travelling.",
@@ -349,6 +352,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Bulawayo / Matobo park access",
     highlights: ["Mother and Child rocks", "Rhino tracking", "San rock art", "World's View"],
     bestFor: ["Wildlife", "Culture", "History", "Photography"],
+    wildlifeTags: ["rhino", "white rhino", "black rhino", "leopard", "zebra", "giraffe", "klipspringer", "antelope", "black eagle", "eagle", "birdlife"],
     careTips: [
       "Use registered guides for rhino tracking and heritage interpretation.",
       "Wear shoes with grip for granite rock areas.",
@@ -397,6 +401,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Chiredzi / Gonarezhou park gates",
     highlights: ["Elephants", "Chilojo Cliffs", "Remote safari", "Birding"],
     bestFor: ["Wildlife", "Photography", "Adventure", "Remote safari"],
+    wildlifeTags: ["elephant", "lion", "leopard", "cheetah", "wild dog", "buffalo", "zebra", "giraffe", "hippo", "crocodile", "nyala", "kudu", "impala", "birdlife"],
     careTips: [
       "Confirm gate access, road conditions and fuel before entering the park.",
       "Use a capable vehicle and verified guide support where needed.",
@@ -445,6 +450,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Norton road access",
     highlights: ["Game viewing", "Family outings", "Short drives", "Nature breaks"],
     bestFor: ["Wildlife", "Families", "Local trips", "Relaxation"],
+    wildlifeTags: ["zebra", "giraffe", "antelope", "impala", "wildebeest", "ostrich", "birdlife", "family wildlife"],
     careTips: [
       "Confirm opening times and booking rules before departure.",
       "Follow park staff instructions around animals.",
@@ -493,6 +499,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Cleveland Dam side",
     highlights: ["Birding", "Short walks", "Family nature", "City wildlife"],
     bestFor: ["Wildlife", "Families", "Local trips", "Birding"],
+    wildlifeTags: ["birdlife", "water birds", "zebra", "giraffe", "antelope", "impala", "family wildlife"],
     careTips: [
       "Confirm current entry rules and opening times.",
       "Use marked areas and avoid isolated walking routes late in the day.",
@@ -541,6 +548,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Mukuvisi Woodlands access",
     highlights: ["Guided walks", "Birding", "Wildlife education", "Family nature"],
     bestFor: ["Wildlife", "Education", "Families", "Birding"],
+    wildlifeTags: ["zebra", "giraffe", "eland", "impala", "wildebeest", "birdlife", "family wildlife"],
     careTips: [
       "Use marked paths and follow staff guidance.",
       "Confirm opening times and guided walk availability.",
@@ -589,6 +597,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Lake Chivero access",
     highlights: ["Bird displays", "Lake Chivero scenery", "Family day trip", "Photography"],
     bestFor: ["Birding", "Families", "Photography", "Education"],
+    wildlifeTags: ["birdlife", "eagle", "falcon", "owl", "vulture", "fish eagle", "kingfisher", "water birds", "raptors"],
     careTips: [
       "Confirm opening hours and bird display times before travelling.",
       "Use safe transport and avoid returning too late if unfamiliar with the route.",
@@ -973,6 +982,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Mutare / Vumba lodge road",
     highlights: ["Bvumba Botanical Gardens", "Mountains of Mist", "Birdwatching", "Leopard Rock views"],
     bestFor: ["Wellness", "Couples", "Nature", "Photography"],
+    wildlifeTags: ["birdlife", "swynnertons robin", "turaco", "forest birds", "butterflies"],
     careTips: [
       "Mountain mist can reduce visibility, so avoid late unfamiliar drives.",
       "Confirm garden and cafe opening times before travelling.",
@@ -1021,6 +1031,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Mutare / Mutasa / Nyanga route",
     highlights: ["Tea estates", "Valley views", "Waterfall routes", "Green scenery"],
     bestFor: ["Nature", "Photography", "Road trips", "Wellness"],
+    wildlifeTags: ["birdlife", "forest birds", "butterflies", "small wildlife"],
     careTips: [
       "Check road conditions before valley drives, especially after rain.",
       "Use local guidance for tea estate viewpoints and waterfall routes.",
@@ -1069,6 +1080,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Binga town / lakefront lodge areas",
     highlights: ["Lake views", "Fishing", "Tonga culture", "Boating"],
     bestFor: ["Relaxation", "Culture", "Fishing", "Families"],
+    wildlifeTags: ["fish", "tiger fish", "crocodile", "hippo", "birdlife", "fish eagle", "lake wildlife"],
     careTips: [
       "Use verified boat operators and life jackets for lake activities.",
       "Keep away from unsafe lake edges because crocodiles and hippos may be present.",
@@ -1117,6 +1129,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Nyanga village / Juliasdale / Troutbeck area",
     highlights: ["Mount Nyangani", "Worlds View", "Mutarazi Falls", "Trout fishing"],
     bestFor: ["Wellness", "Couples", "Nature", "Photography"],
+    wildlifeTags: ["trout", "fish", "birdlife", "forest birds", "antelope", "small wildlife"],
     careTips: [
       "Start hikes early and avoid walking in thick mist around mountains or cliffs.",
       "Stay on known paths at Worlds View, Mount Nyangani and waterfall areas.",
@@ -1165,6 +1178,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Centenary / Muzarabani access routes",
     highlights: ["Mountain wilderness", "Hiking", "Wildlife edges", "Remote scenery"],
     bestFor: ["Mountains", "Adventure", "Nature", "Photography"],
+    wildlifeTags: ["birdlife", "antelope", "kudu", "bushbuck", "small wildlife", "leopard"],
     careTips: [
       "Confirm access, local guidance and road conditions before travelling.",
       "Avoid entering remote routes late in the day or without enough fuel, water and phone backup.",
@@ -1213,6 +1227,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Kariba town / marina area",
     highlights: ["Kariba Heights", "Boat cruises", "Fishing", "Sunset views"],
     bestFor: ["Families", "Relaxation", "Fishing", "Wildlife"],
+    wildlifeTags: ["hippo", "crocodile", "tiger fish", "fish", "elephant", "birdlife", "fish eagle", "water birds", "lake wildlife"],
     careTips: [
       "Use verified boat operators and life jackets for lake activities.",
       "Keep away from the water edge because crocodiles and hippos can be present.",
@@ -1275,6 +1290,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Masvingo / Great Zimbabwe route",
     highlights: ["Lake viewpoints", "Fishing", "Picnic stops", "Great Zimbabwe add-on"],
     bestFor: ["Lake", "Families", "Culture", "Photography"],
+    wildlifeTags: ["fish", "birdlife", "water birds", "antelope", "lake wildlife"],
     careTips: [
       "Confirm current access points, fees and activity rules before travelling.",
       "Use verified operators for any boat or fishing activity.",
@@ -1323,6 +1339,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Lake Chivero access roads",
     highlights: ["Harare day trip", "Picnic areas", "Birding", "Lake views"],
     bestFor: ["Lake", "Families", "Birding", "Short trips"],
+    wildlifeTags: ["birdlife", "water birds", "fish eagle", "hippo", "crocodile", "fish", "antelope", "ostrich"],
     careTips: [
       "Confirm current park access, fees and safety rules before travelling.",
       "Do not swim or move close to unsafe water edges unless the area is clearly approved.",
@@ -1550,6 +1567,55 @@ export const destinations: Destination[] = [
     ]
   },
   {
+    id: "33",
+    slug: "lion-and-cheetah-park",
+    name: "Lion & Cheetah Park",
+    region: "Harare / Lake Chivero Road",
+    category: "Wildlife Sanctuary",
+    image: "/images/downloads/giraffe-wildlife-real.jpeg",
+    description: "A close-to-Harare wildlife stop known for lion and cheetah viewing, family outings and short animal encounters near the Lake Chivero route.",
+    coordinates: { lat: -17.884, lng: 30.844 },
+    mapNote: "Use the Lake Chivero road from Harare, then confirm current opening times, guided viewing rules and animal encounter availability before travelling.",
+    driveTimeFromHarare: "About 30-60 minutes from central Harare depending on traffic.",
+    nearestArrivalHub: "Harare / Lake Chivero road access",
+    highlights: ["Lions", "Cheetahs", "Close-to-Harare wildlife", "Family outing"],
+    bestFor: ["Wildlife", "Families", "Short trips", "Photography"],
+    wildlifeTags: ["lion", "cheetah", "cheatah", "antelope", "birdlife", "family wildlife", "wildlife education"],
+    careTips: [
+      "Confirm current opening times and visitor rules before travelling.",
+      "Follow staff instructions around big cats and fenced viewing areas.",
+      "Do not feed, tease or approach animals outside approved guidance.",
+      "Carry water, sun protection and small cash or confirmed payment options."
+    ],
+    clothingTips: [
+      "Comfortable casual clothing for a short wildlife outing.",
+      "Closed shoes for walking areas.",
+      "Hat, sunglasses and sunscreen for daytime visits.",
+      "Light jacket in cooler months or for early morning movement."
+    ],
+    estimatedEntryFee: "Confirm current fee before visiting",
+    activities: [
+      {
+        title: "Lion and cheetah viewing",
+        description: "Use the park for a short, accessible big-cat viewing experience close to Harare.",
+        image: "/images/downloads/giraffe-wildlife-real.jpeg",
+        note: "Viewing conditions and animal activity vary; follow staff safety rules."
+      },
+      {
+        title: "Family wildlife stop",
+        description: "Introduce children or first-time visitors to wildlife before longer national park trips.",
+        image: "/images/downloads/zebra-wildlife.jpeg",
+        note: "Keep children supervised and respect all animal barriers."
+      },
+      {
+        title: "Lake Chivero route add-on",
+        description: "Combine the wildlife stop with Lake Chivero or Kuimba Shiri for a fuller Harare day trip.",
+        image: "/images/downloads/lake-chivero-view.jpeg",
+        note: "Plan daylight movement back to Harare."
+      }
+    ]
+  },
+  {
     id: "31",
     slug: "imire-rhino-wildlife-conservation",
     name: "Imire Rhino & Wildlife Conservation",
@@ -1563,6 +1629,7 @@ export const destinations: Destination[] = [
     nearestArrivalHub: "Harare / Marondera / Hwedza",
     highlights: ["Nzou and her buffalo herd", "Rhino conservation", "Guided wildlife viewing", "Conservation stories"],
     bestFor: ["Wildlife", "Families", "Conservation", "Photography"],
+    wildlifeTags: ["rhino", "black rhino", "white rhino", "elephant", "buffalo", "giraffe", "zebra", "sable antelope", "birdlife", "conservation"],
     careTips: [
       "Book or confirm the visit before travelling because activities and access can change.",
       "Follow every guide instruction around elephants, buffalo and rhinos.",

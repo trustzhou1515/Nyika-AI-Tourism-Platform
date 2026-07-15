@@ -19,6 +19,7 @@ export interface Destination {
   bestFor: string[];
   careTips: string[];
   clothingTips: string[];
+  wildlifeTags?: string[];
   estimatedEntryFee: string;
   activities?: {
     title: string;
