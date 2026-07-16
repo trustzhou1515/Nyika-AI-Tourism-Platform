@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { FlatList, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, Image, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import DestinationCard from '../components/DestinationCard';
 import SectionHeader from '../components/SectionHeader';
@@ -155,7 +155,7 @@ export default function HomeScreen() {
                 onPress={() => navigation.navigate('Destination', { destinationId: item.id })}
               >
                 <View style={styles.matchThumb}>
-                  <Text style={styles.matchInitial}>{item.name.slice(0, 1)}</Text>
+                  <Image source={item.image} style={styles.matchImage} resizeMode="cover" />
                 </View>
                 <View style={styles.matchCopy}>
                   <Text style={styles.matchName}>{item.name}</Text>
@@ -240,8 +240,8 @@ const styles = StyleSheet.create({
   matchPanel: { borderRadius: 24, backgroundColor: '#fffaf0', padding: 14, gap: 10 },
   matchTitle: { color: '#171412', fontSize: 17, fontWeight: '900', marginBottom: 2 },
   matchRow: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 10, borderRadius: 18, backgroundColor: '#f3ede2' },
-  matchThumb: { width: 54, height: 54, borderRadius: 16, backgroundColor: '#0b4d31', alignItems: 'center', justifyContent: 'center' },
-  matchInitial: { color: '#f5d18a', fontSize: 22, fontWeight: '900' },
+  matchThumb: { width: 54, height: 54, borderRadius: 16, backgroundColor: '#0b4d31', overflow: 'hidden' },
+  matchImage: { width: '100%', height: '100%' },
   matchCopy: { flex: 1 },
   matchName: { color: '#171412', fontSize: 16, fontWeight: '900' },
   matchMeta: { color: '#0b4d31', fontSize: 12, lineHeight: 18, fontWeight: '800' },

@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { Destination } from '../data/destinations';
 
 interface DestinationCardProps {
@@ -10,7 +10,8 @@ export default function DestinationCard({ destination, onPress }: DestinationCar
   return (
     <Pressable style={styles.card} onPress={onPress}>
       <View style={styles.hero}>
-        <Text style={styles.heroInitial}>{destination.name.slice(0, 1)}</Text>
+        <Image source={destination.image} style={styles.heroImage} resizeMode="cover" />
+        <View style={styles.heroShade} />
         <Text style={styles.match}>{destination.match} match</Text>
       </View>
       <View style={styles.body}>
@@ -24,8 +25,9 @@ export default function DestinationCard({ destination, onPress }: DestinationCar
 
 const styles = StyleSheet.create({
   card: { width: 230, backgroundColor: '#fffaf0', borderRadius: 24, overflow: 'hidden', marginRight: 16, elevation: 4 },
-  hero: { height: 132, backgroundColor: '#0d2b1f', padding: 16, justifyContent: 'space-between' },
-  heroInitial: { color: '#f5d18a', fontSize: 46, fontWeight: '900' },
+  hero: { height: 132, backgroundColor: '#0d2b1f', padding: 16, justifyContent: 'flex-end' },
+  heroImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },
+  heroShade: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(0,0,0,.2)' },
   match: { alignSelf: 'flex-start', overflow: 'hidden', paddingVertical: 6, paddingHorizontal: 10, borderRadius: 999, backgroundColor: '#c87236', color: '#fff7e8', fontSize: 12, fontWeight: '900' },
   body: { padding: 18 },
   title: { color: '#171412', fontSize: 18, fontWeight: '900', marginBottom: 6 },

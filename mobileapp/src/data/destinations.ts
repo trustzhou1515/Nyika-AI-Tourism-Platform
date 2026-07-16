@@ -1,9 +1,12 @@
+import type { ImageSourcePropType } from 'react-native';
+
 export type Destination = {
   id: string;
   name: string;
   region: string;
   category: string;
   match: string;
+  image: ImageSourcePropType;
   tags: string[];
   description: string;
   highlights: string[];
@@ -19,6 +22,7 @@ export const destinations: Destination[] = [
     region: "Matabeleland North",
     category: "Waterfall & Adventure",
     match: "98%",
+    image: require("../../assets/destinations/victoria-falls.png"),
     tags: ["Waterfalls", "Nature", "Adventure"],
     description: "Zimbabwe’s most iconic natural wonder, perfect for river cruises, rainforest walks and premium sunset experiences.",
     highlights: ["Rainforest viewpoints", "Helicopter flights", "Zambezi sunset cruises"],
@@ -40,6 +44,7 @@ export const destinations: Destination[] = [
     region: "Matabeleland North",
     category: "Wildlife Safari",
     match: "95%",
+    image: require("../../assets/destinations/hwange-national-park.png"),
     tags: ["Wildlife", "Safari", "Elephants"],
     description: "A world-class safari destination with elephants, game drives and quiet bush lodge nights.",
     highlights: ["Elephant waterholes", "Guided game drives", "Birding hides"],
@@ -61,6 +66,7 @@ export const destinations: Destination[] = [
     region: "Mashonaland West",
     category: "River Safari",
     match: "92%",
+    image: require("../../assets/destinations/mana-pools.png"),
     tags: ["Wildlife", "River", "Quiet"],
     description: "Remote Zambezi wilderness offering walking safaris, canoe trips and intimate wildlife moments.",
     highlights: ["Walking safaris", "Canoeing", "Hippo river views"],
@@ -82,6 +88,7 @@ export const destinations: Destination[] = [
     region: "Mashonaland West",
     category: "Lake & Relaxation",
     match: "92%",
+    image: require("../../assets/destinations/lake-kariba.png"),
     tags: ["Lake", "Fishing", "Boating", "Sunset", "Water", "Crocodiles", "Hippos", "Birds"],
     description: "A wide inland lake for houseboats, fishing, sunset cruises and relaxed family or school trips.",
     highlights: ["Houseboat stays", "Fishing trips", "Sunset boat cruises"],
@@ -103,6 +110,7 @@ export const destinations: Destination[] = [
     region: "Manicaland",
     category: "Mountains & Waterfalls",
     match: "91%",
+    image: require("../../assets/destinations/nyanga.png"),
     tags: ["Mountains", "Waterfalls", "Hiking", "Cool", "Quiet", "Birds", "Photography", "Nature"],
     description: "Cool mountain air, waterfalls, viewpoints and quiet lodge stays in Zimbabwe’s Eastern Highlands.",
     highlights: ["Mount Nyangani", "Inyangombe Falls", "Trout fishing"],
@@ -124,6 +132,7 @@ export const destinations: Destination[] = [
     region: "Masvingo",
     category: "Culture & Heritage",
     match: "89%",
+    image: require("../../assets/destinations/great-zimbabwe.png"),
     tags: ["Culture", "History", "Heritage", "Ruins", "Architecture", "Stone", "Photography"],
     description: "A powerful stone-city heritage site that tells the story of Zimbabwe’s ancient kingdom and identity.",
     highlights: ["Great Enclosure", "Hill Complex", "Museum"],
@@ -145,6 +154,7 @@ export const destinations: Destination[] = [
     region: "Matabeleland South",
     category: "Rocks, Caves & Wildlife",
     match: "88%",
+    image: require("../../assets/destinations/matobo-national-park.jpeg"),
     tags: ["Rocks", "Caves", "Rhinos", "Leopards", "Birds", "Culture", "History", "Wildlife"],
     description: "Granite balancing rocks, ancient San rock art, rhino tracking and dramatic views near Bulawayo.",
     highlights: ["Mother and Child rocks", "Rhino tracking", "San rock art"],
@@ -166,6 +176,7 @@ export const destinations: Destination[] = [
     region: "Masvingo Province",
     category: "Remote Wildlife",
     match: "87%",
+    image: require("../../assets/destinations/gonarezhou-national-park.jpeg"),
     tags: ["Elephants", "Lions", "Buffalo", "Zebras", "Wildlife", "Safari", "Remote", "Nature"],
     description: "A remote wilderness known as the place of elephants, with big landscapes and the Chilojo Cliffs.",
     highlights: ["Chilojo Cliffs", "Elephant herds", "Remote safari routes"],
@@ -187,6 +198,7 @@ export const destinations: Destination[] = [
     region: "Mashonaland West",
     category: "Caves & Blue Pool",
     match: "84%",
+    image: require("../../assets/destinations/chinhoyi-caves.jpeg"),
     tags: ["Caves", "Blue Pool", "Scuba", "Photography", "Hidden", "Water", "Rocks"],
     description: "A limestone cave system famous for its deep cobalt-blue pool and dramatic underground views.",
     highlights: ["Sleeping Pool", "Dark Cave", "Photography viewpoints"],
@@ -208,6 +220,7 @@ export const destinations: Destination[] = [
     region: "Mashonaland West",
     category: "Wildlife Sanctuary",
     match: "82%",
+    image: require("../../assets/destinations/lion-cheetah-park.jpeg"),
     tags: ["Lions", "Cheetahs", "Wildlife", "Family", "Short trip", "Photography", "Harare"],
     description: "A close-to-Harare wildlife stop for travellers who want to see lions, cheetahs and other animals on a short visit.",
     highlights: ["Lion viewing", "Cheetah encounters", "Family day trip"],

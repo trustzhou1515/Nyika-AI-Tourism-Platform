@@ -1,4 +1,4 @@
-import { ScrollView, SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-native';
+import { Image, ScrollView, SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { destinations } from '../data/destinations';
 
@@ -29,6 +29,8 @@ export default function DestinationScreen() {
         </View>
 
         <View style={styles.hero}>
+          <Image source={destination.image} style={styles.heroImage} resizeMode="cover" />
+          <View style={styles.heroShade} />
           <Text style={styles.title}>{destination.name}</Text>
           <Text style={styles.subtitle}>{destination.region}</Text>
         </View>
@@ -71,7 +73,7 @@ export default function DestinationScreen() {
           </View>
         </View>
 
-        <Pressable style={styles.button} onPress={() => navigation.navigate('Planner')}>
+        <Pressable style={styles.button} onPress={() => navigation.navigate('Main', { screen: 'Planner' })}>
           <Text style={styles.buttonText}>Plan a trip here</Text>
         </Pressable>
       </ScrollView>
@@ -86,7 +88,9 @@ const styles = StyleSheet.create({
   backButton: { paddingVertical: 8, paddingHorizontal: 14, backgroundColor: '#0d2b1f', borderRadius: 16, borderWidth: 1, borderColor: 'rgba(245,209,138,.16)' },
   backText: { color: '#fff7e8', fontSize: 14, fontWeight: '800' },
   badge: { color: '#f5d18a', fontWeight: '900', fontSize: 12, textTransform: 'uppercase' },
-  hero: { marginBottom: 24, padding: 22, borderRadius: 26, backgroundColor: '#0d2b1f', borderWidth: 1, borderColor: 'rgba(245,209,138,.14)' },
+  hero: { minHeight: 240, marginBottom: 24, padding: 22, borderRadius: 26, backgroundColor: '#0d2b1f', borderWidth: 1, borderColor: 'rgba(245,209,138,.14)', overflow: 'hidden', justifyContent: 'flex-end' },
+  heroImage: { ...StyleSheet.absoluteFill, width: '100%', height: '100%' },
+  heroShade: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(0,0,0,.36)' },
   title: { color: '#fff7e8', fontSize: 30, fontWeight: '900', marginBottom: 8 },
   subtitle: { color: 'rgba(237,228,207,.76)', fontSize: 16, lineHeight: 24, fontWeight: '700' },
   section: { marginBottom: 24 },
