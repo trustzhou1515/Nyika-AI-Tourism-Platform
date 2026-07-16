@@ -3,18 +3,117 @@ import { FlatList, Pressable, SafeAreaView, ScrollView, StatusBar, StyleSheet, T
 import { useNavigation } from '@react-navigation/native';
 import DestinationCard from '../components/DestinationCard';
 import SectionHeader from '../components/SectionHeader';
-import { destinations } from '../data/destinations';
+import { Destination, destinations } from '../data/destinations';
+
+type MatchResult = Destination & {
+  score: number;
+  reason: string;
+};
+
+const DEFAULT_PROMPT = 'I want a peaceful getaway with nature, wildlife and beautiful views.';
+
+const promptAliases: Record<string, string[]> = {
+  animal: ['wildlife', 'safari'],
+  animals: ['wildlife', 'safari'],
+  bird: ['birds', 'birding', 'nature'],
+  birds: ['birds', 'birding', 'nature'],
+  boating: ['boat', 'lake', 'water'],
+  buffalo: ['buffalo', 'wildlife', 'safari'],
+  cave: ['caves', 'rocks'],
+  caves: ['caves', 'rocks'],
+  cheetah: ['cheetahs', 'wildlife', 'sanctuary'],
+  cheetahs: ['cheetahs', 'wildlife', 'sanctuary'],
+  elephant: ['elephants', 'wildlife', 'safari'],
+  elephants: ['elephants', 'wildlife', 'safari'],
+  fishing: ['fishing', 'lake', 'water'],
+  fish: ['fishing', 'lake', 'water'],
+  history: ['history', 'heritage', 'culture'],
+  lion: ['lions', 'wildlife', 'safari'],
+  lions: ['lions', 'wildlife', 'safari'],
+  mountain: ['mountains', 'hiking', 'cool'],
+  mountains: ['mountains', 'hiking', 'cool'],
+  quiet: ['quiet', 'relaxation', 'nature'],
+  rhino: ['rhinos', 'wildlife', 'safari'],
+  rhinos: ['rhinos', 'wildlife', 'safari'],
+  ruins: ['ruins', 'heritage', 'history'],
+  safari: ['wildlife', 'safari'],
+  swim: ['water', 'lake'],
+  swimming: ['water', 'lake'],
+  waterfall: ['waterfalls', 'water', 'nature'],
+  waterfalls: ['waterfalls', 'water', 'nature'],
+  zebra: ['zebras', 'wildlife', 'safari'],
+  zebras: ['zebras', 'wildlife', 'safari']
+};
+
+function tokenize(value: string) {
+  const baseTerms = value
+    .toLowerCase()
+    .replace(/[’']/g, '')
+    .split(/[^a-z0-9]+/)
+    .filter((term) => term.length > 2);
+
+  return Array.from(
+    new Set(baseTerms.flatMap((term) => [term, ...(promptAliases[term] ?? [])]))
+  );
+}
+
+function hashPrompt(value: string) {
+  return value.split('').reduce((total, character) => total + character.charCodeAt(0), 0);
+}
+
+function matchDestinations(promptValue: string): MatchResult[] {
+  const terms = tokenize(promptValue);
+  const promptHash = hashPrompt(promptValue);
+
+  const scored = destinations.map((destination, index) => {
+    const fields = [
+      destination.name,
+      destination.region,
+      destination.category,
+      destination.description,
+      ...destination.tags,
+      ...destination.highlights,
+      ...destination.bestFor
+    ];
+    const searchable = fields.join(' ').toLowerCase();
+    const score = terms.reduce((total, term) => total + (searchable.includes(term) ? 1 : 0), 0);
+    const tieBreaker = ((promptHash + index * 7) % 11) / 100;
+    const matchedTerm = terms.find((term) => searchable.includes(term));
+
+    return {
+      ...destination,
+      score: score + tieBreaker,
+      reason: matchedTerm ? `Fits ${matchedTerm}` : destination.category
+    };
+  });
+
+  const strongMatches = scored.filter((item) => item.score >= 1);
+  const fallbackMatches = scored.filter((item) => ['Victoria Falls', 'Hwange National Park', 'Lake Kariba', 'Nyanga'].includes(item.name));
+
+  return (strongMatches.length ? strongMatches : fallbackMatches)
+    .sort((a, b) => b.score - a.score)
+    .map((item, index) => ({
+      ...item,
+      match: `${Math.max(76, 98 - index * 4)}%`
+    }));
+}
 
 export default function HomeScreen() {
   const navigation = useNavigation<any>();
   const [prompt, setPrompt] = useState('');
-  const [submittedPrompt, setSubmittedPrompt] = useState('I want a peaceful getaway with nature, wildlife and beautiful views.');
-  const popularDestinations = useMemo(() => destinations.slice(0, 3), []);
+  const [submittedPrompt, setSubmittedPrompt] = useState(DEFAULT_PROMPT);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const [showMorePrompt, setShowMorePrompt] = useState(true);
+  const matchedDestinations = useMemo(() => matchDestinations(submittedPrompt), [submittedPrompt]);
+  const visibleMatches = matchedDestinations.slice(0, visibleCount);
+  const popularDestinations = useMemo(() => destinations.slice(0, 5), []);
 
   function handleSend() {
     const cleanPrompt = prompt.trim();
     if (!cleanPrompt) return;
     setSubmittedPrompt(cleanPrompt);
+    setVisibleCount(3);
+    setShowMorePrompt(true);
     setPrompt('');
   }
 
@@ -48,8 +147,8 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.matchPanel}>
-            <Text style={styles.matchTitle}>Here are {popularDestinations.length} matches for you</Text>
-            {popularDestinations.map((item) => (
+            <Text style={styles.matchTitle}>Here are {visibleMatches.length} matches for you</Text>
+            {visibleMatches.map((item) => (
               <Pressable
                 key={item.id}
                 style={styles.matchRow}
@@ -60,11 +159,28 @@ export default function HomeScreen() {
                 </View>
                 <View style={styles.matchCopy}>
                   <Text style={styles.matchName}>{item.name}</Text>
-                  <Text style={styles.matchMeta}>{item.match} match · {item.tags.slice(0, 2).join(' / ')}</Text>
+                  <Text style={styles.matchMeta}>{item.match} match · {item.reason}</Text>
                 </View>
                 <Text style={styles.pin}>⌖</Text>
               </Pressable>
             ))}
+
+            {showMorePrompt && visibleCount < matchedDestinations.length ? (
+              <View style={styles.moreCard}>
+                <Text style={styles.moreTitle}>Do you want more places?</Text>
+                <View style={styles.moreActions}>
+                  <Pressable
+                    style={styles.moreButton}
+                    onPress={() => setVisibleCount((current) => Math.min(current + 3, matchedDestinations.length))}
+                  >
+                    <Text style={styles.moreButtonText}>Yes, show more</Text>
+                  </Pressable>
+                  <Pressable style={styles.moreButtonMuted} onPress={() => setShowMorePrompt(false)}>
+                    <Text style={styles.moreButtonMutedText}>No</Text>
+                  </Pressable>
+                </View>
+              </View>
+            ) : null}
           </View>
 
           <View style={styles.composer}>
@@ -84,7 +200,7 @@ export default function HomeScreen() {
 
         <SectionHeader title="Top destinations" subtitle="Open a place, then plan the route and budget." />
         <FlatList
-          data={popularDestinations}
+          data={matchedDestinations.slice(0, 5)}
           keyExtractor={(item) => item.id}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -130,6 +246,13 @@ const styles = StyleSheet.create({
   matchName: { color: '#171412', fontSize: 16, fontWeight: '900' },
   matchMeta: { color: '#0b4d31', fontSize: 12, lineHeight: 18, fontWeight: '800' },
   pin: { color: '#0b4d31', fontSize: 20, fontWeight: '900' },
+  moreCard: { marginTop: 4, padding: 14, borderRadius: 18, backgroundColor: '#f3ede2', borderWidth: 1, borderColor: '#e5d6c0' },
+  moreTitle: { color: '#171412', fontSize: 15, fontWeight: '900', marginBottom: 10 },
+  moreActions: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  moreButton: { paddingVertical: 10, paddingHorizontal: 14, borderRadius: 16, backgroundColor: '#0b4d31', marginRight: 10 },
+  moreButtonText: { color: '#fff7e8', fontSize: 13, fontWeight: '900' },
+  moreButtonMuted: { paddingVertical: 10, paddingHorizontal: 14, borderRadius: 16, backgroundColor: '#fffaf0', borderWidth: 1, borderColor: '#dfd2bf' },
+  moreButtonMutedText: { color: '#6b6258', fontSize: 13, fontWeight: '900' },
   composer: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 24, backgroundColor: 'rgba(255,250,240,.08)', borderWidth: 1, borderColor: 'rgba(245,209,138,.18)', padding: 10 },
   input: { flex: 1, minHeight: 42, maxHeight: 90, color: '#fff7e8', fontSize: 15, lineHeight: 21, fontWeight: '700', paddingHorizontal: 10 },
   sendButton: { borderRadius: 18, backgroundColor: '#c87236', paddingVertical: 13, paddingHorizontal: 18 },
