@@ -44,10 +44,11 @@ src/data/                Destination, outfit and tourism data
 api/tests/               Evaluator-facing unit and API tests
 docs/                    Architecture and readiness documentation
 web/                     Web lockfile placeholder for future monorepo split
-mobile/                  Mobile lockfile placeholder requested for evaluator traceability
 mobileapp/               Expo React Native companion mobile app
+mobileapp/assets/        Native app icons and destination image assets
 mobileapp/src/screens/   Mobile Home, Planner and Destination screens
 mobileapp/src/data/      Mobile destination seed data and match tags
+mobile/                  Legacy evaluator placeholder; active mobile app is in mobileapp/
 ```
 
 The app has not yet been split into separate `/api`, `/web` and `/mobile` packages. The current production web code remains in `backend/` and `src/` to avoid breaking the working MVP. The requested `/api/tests` and lockfile evidence folders are included for evaluator traceability. The active React Native companion app is in `mobileapp/`.
@@ -94,7 +95,18 @@ API: http://127.0.0.1:8787
 
 ## React Native Mobile App
 
-The companion mobile app is in `mobileapp/`. It is an Expo React Native application that mirrors the MVP direction: Nyika AI chat-style discovery, destination match cards, destination detail screens and a mobile planner.
+The companion mobile app is in `mobileapp/`. It is an Expo React Native application that mirrors the MVP direction: Nyika AI chat-style discovery, local destination matching, destination photo cards, destination detail screens and a mobile planner.
+
+Current mobile features include:
+
+- Hamburger menu on the Home screen.
+- Nyika AI chat-style discovery with typed prompts.
+- Local matching for animals, waterfalls, fishing, caves, history, quiet places, mountains, safaris and related terms.
+- “Do you want more places?” flow for categories with more matches.
+- Real destination image assets in `mobileapp/assets/destinations/`.
+- Destination detail hero images and care/packing notes.
+- Planner screen for destination, days, travellers, budget and style.
+- Expo Web support through `react-dom` and `react-native-web` for browser preview.
 
 ```bash
 cd mobileapp
@@ -108,6 +120,12 @@ Optional targets:
 npm run android
 npm run ios
 npm run web
+```
+
+Expo Web preview can be opened locally at the port shown by Expo, for example:
+
+```text
+http://localhost:8082
 ```
 
 Type-check the mobile app:
@@ -148,7 +166,7 @@ npx tsc --noEmit
 6. Open Map, click a destination pin and use View More.
 7. Open Memories and add a private travel note.
 8. Open Login to see the PostgreSQL-ready account flow. Set `DATABASE_URL` before live login testing.
-9. For the React Native companion app, run `cd mobileapp && npm run start`, then open it with Expo Go or a simulator. Review Home, Destination and Planner screens.
+9. For the React Native companion app, run `cd mobileapp && npm run start`, then open it with Expo Go, a simulator or Expo Web. Review Home, the hamburger menu, image-based destination matches, Destination detail and Planner screens.
 
 ## Backend Endpoints
 
