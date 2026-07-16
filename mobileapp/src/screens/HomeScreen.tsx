@@ -104,6 +104,7 @@ export default function HomeScreen() {
   const [submittedPrompt, setSubmittedPrompt] = useState(DEFAULT_PROMPT);
   const [visibleCount, setVisibleCount] = useState(3);
   const [showMorePrompt, setShowMorePrompt] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   const matchedDestinations = useMemo(() => matchDestinations(submittedPrompt), [submittedPrompt]);
   const visibleMatches = matchedDestinations.slice(0, visibleCount);
   const popularDestinations = useMemo(() => destinations.slice(0, 5), []);
@@ -122,14 +123,50 @@ export default function HomeScreen() {
       <StatusBar barStyle="light-content" backgroundColor="#071b13" />
       <ScrollView contentContainerStyle={styles.screen} showsVerticalScrollIndicator={false}>
         <View style={styles.brandRow}>
-          <View style={styles.logoMark}>
-            <Text style={styles.logoSpark}>✦</Text>
-          </View>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Open menu"
+            style={styles.menuButton}
+            onPress={() => setMenuOpen((current) => !current)}
+          >
+            <Text style={styles.menuIcon}>☰</Text>
+          </Pressable>
           <View>
             <Text style={styles.brand}>Nyika AI</Text>
             <Text style={styles.brandSmall}>Explore Zimbabwe</Text>
           </View>
         </View>
+
+        {menuOpen ? (
+          <View style={styles.menuPanel}>
+            <Pressable style={styles.menuItem} onPress={() => setMenuOpen(false)}>
+              <Text style={styles.menuItemText}>Home</Text>
+              <Text style={styles.menuItemMeta}>Current</Text>
+            </Pressable>
+            <Pressable style={styles.menuItem} onPress={() => setMenuOpen(false)}>
+              <Text style={styles.menuItemText}>Explore</Text>
+              <Text style={styles.menuItemMeta}>Nyika AI chat</Text>
+            </Pressable>
+            <Pressable
+              style={styles.menuItem}
+              onPress={() => {
+                setMenuOpen(false);
+                navigation.navigate('Planner');
+              }}
+            >
+              <Text style={styles.menuItemText}>Plan</Text>
+              <Text style={styles.menuItemMeta}>Budget trip</Text>
+            </Pressable>
+            <View style={styles.menuItemMuted}>
+              <Text style={styles.menuItemText}>Map</Text>
+              <Text style={styles.menuItemMeta}>Coming soon</Text>
+            </View>
+            <View style={styles.menuItemMuted}>
+              <Text style={styles.menuItemText}>Memories</Text>
+              <Text style={styles.menuItemMeta}>Coming soon</Text>
+            </View>
+          </View>
+        ) : null}
 
         <View style={styles.chatPanel}>
           <Text style={styles.kicker}>Nyika AI · Discover</Text>
@@ -225,10 +262,15 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#071b13' },
   screen: { padding: 20, paddingBottom: 34, backgroundColor: '#071b13' },
   brandRow: { flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 22 },
-  logoMark: { width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(245,209,138,.12)', borderWidth: 1, borderColor: 'rgba(245,209,138,.28)' },
-  logoSpark: { color: '#f5d18a', fontSize: 24, fontWeight: '900' },
+  menuButton: { width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(245,209,138,.12)', borderWidth: 1, borderColor: 'rgba(245,209,138,.28)' },
+  menuIcon: { color: '#fff7e8', fontSize: 24, fontWeight: '900', lineHeight: 28 },
   brand: { color: '#f5d18a', fontSize: 28, lineHeight: 31, fontWeight: '900' },
   brandSmall: { color: 'rgba(237,228,207,.78)', fontSize: 11, letterSpacing: 2.2, textTransform: 'uppercase', fontWeight: '800' },
+  menuPanel: { marginTop: -10, marginBottom: 22, borderRadius: 24, backgroundColor: '#fffaf0', padding: 10, gap: 8 },
+  menuItem: { borderRadius: 18, backgroundColor: '#f3ede2', paddingVertical: 13, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  menuItemMuted: { borderRadius: 18, backgroundColor: '#f7f1e8', paddingVertical: 13, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', opacity: 0.7 },
+  menuItemText: { color: '#171412', fontSize: 15, fontWeight: '900' },
+  menuItemMeta: { color: '#0b4d31', fontSize: 12, fontWeight: '800' },
   chatPanel: { borderRadius: 30, backgroundColor: '#0d2b1f', borderWidth: 1, borderColor: 'rgba(245,209,138,.16)', padding: 16, marginBottom: 28, gap: 14 },
   kicker: { alignSelf: 'flex-start', color: '#f5d18a', fontSize: 12, textTransform: 'uppercase', letterSpacing: 1.4, fontWeight: '900' },
   assistantBubble: { maxWidth: '94%', borderRadius: 22, backgroundColor: '#fffaf0', padding: 18 },
